@@ -174,10 +174,11 @@ deep-link parameters compose with it:
 `…/index.html#embed=1&lvl=2&h=1yr&base=2026-06`.
 
 **Theme.** Light and dark are both selected palettes, validated separately
-against their own surface — the dark arms are re-stepped, not flipped. By
-default the page follows the viewer's OS setting, which is right standalone and
-wrong in an embed: a dark-mode visitor would get a dark chart inside a light
-article. Pin it with `#theme=light` or `#theme=dark`.
+against their own surface — the dark arms are re-stepped, not flipped.
+Standalone, the page follows the viewer's OS setting. **Embedded, it defaults
+to light**, because the host page's theme governs and the page cannot read it;
+otherwise a dark-mode visitor would get a dark chart inside a light article.
+`#theme=light` / `#theme=dark` pins it explicitly either way.
 
 **Auto-height.** An iframe cannot resize itself, so the page posts its content
 height to the parent after every render. A host that wants an auto-sizing embed
@@ -191,6 +192,32 @@ addEventListener('message', (e) => {
 
 Hosts that set a fixed height can ignore the message — the compact layout
 already fits.
+
+## Levels are not partitions
+
+CES publishes only *some* children for many parents, so the tiles at a level do
+not sum to it — and nothing here is scaled, padded or balanced to make them.
+Every tile is the value CES reports for that series. Measured at 2026-06:
+
+| parent level | parents | children cover >99% | partial | worst |
+|---|---|---|---|---|
+| 2 | 11 | 11 | 0 | 100% |
+| 3 | 19 | 19 | 0 | 100% |
+| 4 | 68 | 64 | 4 | 45% |
+| 5 | 138 | 126 | 12 | 27% |
+| 6 | 39 | 34 | 5 | 46% |
+
+When the shortfall is material the page says so — drilling into *Religious,
+grantmaking, civic, professional, and similar organizations* reports that the
+four industries shown cover 45% of it. Level 1 carries its own warning for the
+opposite reason: those four are overlapping aggregates that sum to *more* than
+the total.
+
+The only reconciliation-related change anywhere is hiding three roll-ups that
+**double-count** their own same-level siblings; that removes a duplication
+rather than forcing a sum, and its test asserts a comparison with tolerance
+precisely because CES arithmetic is not exact (detailed series are
+independently seasonally adjusted and stored to one decimal).
 
 ## Branding
 

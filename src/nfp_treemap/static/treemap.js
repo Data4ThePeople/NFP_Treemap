@@ -364,6 +364,11 @@
     const pin = new URLSearchParams(location.hash.slice(1)).get("theme");
     if (pin === "light" || pin === "dark") {
       document.documentElement.dataset.theme = pin;
+    } else if (EMBEDDED) {
+      // Embedded, the host page's theme governs, and we cannot read it. The
+      // host is light, so default to light rather than letting a dark-mode
+      // visitor get a dark chart inside a light article. #theme=dark overrides.
+      document.documentElement.dataset.theme = "light";
     }
   })();
 
@@ -466,6 +471,11 @@
       $("#empty").textContent = "No industries at this level under the current selection.";
       svg.setAttribute("viewBox", "0 0 100 1");
       updateChrome(0);
+      // Must still run: returning early here left the previous view's notes
+      // on screen, describing industries that are no longer displayed.
+      updateLagNote(rows);
+      updateLevelNote(rows);
+      $("#nomatch").hidden = true;
       return;
     }
     $("#empty").hidden = true;
@@ -582,7 +592,7 @@
 
     updateChrome(maxAbs);
     updateLagNote(rows);
-    updateLevelNote();
+    updateLevelNote(rows);
     postHeight();
   }
 
@@ -590,16 +600,45 @@
      contains Goods-producing and Private service-providing, and
      Service-providing contains Private service-providing plus Government.
      Their tiles sum to far more than Total nonfarm, so say so. */
-  function updateLevelNote() {
+  function updateLevelNote(rows) {
     const note = $("#levelnote");
-    const show = state.level === 1 && !state.drill;
-    note.hidden = !show;
-    if (show) {
+
+    if (state.level === 1 && !state.drill) {
+      note.hidden = false;
       note.textContent =
         "These four are overlapping CES aggregates, not a partition — Total " +
         "private already includes Goods-producing and Private service-providing. " +
         "Their tiles do not sum to Total nonfarm; level 0 shows that figure.";
+      return;
     }
+
+    /* A treemap reads as parts-of-a-whole, but CES only publishes *some*
+       children for many parents, so the tiles genuinely do not sum to the
+       parent. Nothing here is scaled or padded to make them - so when the
+       shortfall is material, say how big it is rather than let the geometry
+       imply completeness. */
+    if (state.drill) {
+      const parent = byCode.get(state.drill);
+      const idx = labelToIdx.get(state.base);
+      const whole = valueAt(parent, idx);
+      let shown = 0;
+      let counted = 0;
+      for (const row of rows) {
+        const v = valueAt(row.item, idx);
+        if (v !== null) { shown += v; counted++; }
+      }
+      if (whole && counted && shown / whole < 0.99) {
+        note.hidden = false;
+        note.textContent =
+          `The ${counted} ${counted === 1 ? "industry" : "industries"} shown ` +
+          `cover${counted === 1 ? "s" : ""} ` +
+          `${Math.round((shown / whole) * 100)}% of ${parent.n} employment — ` +
+          `CES does not publish the rest separately at this level. Tiles are ` +
+          `actual reported values and are not scaled to sum to the parent.`;
+        return;
+      }
+    }
+    note.hidden = true;
   }
 
   /* An iframe cannot resize itself. Publish the content height so a host that
@@ -986,6 +1025,7 @@
 
     // Level 0 is Total nonfarm on its own - the headline payroll number, with
     // the same anomaly score and full history as any other tile.
+    if (state.drill && !byCode.has(state.drill)) state.drill = null;
     const min = state.drill ? byCode.get(state.drill).l + 1 : 0;
     const sel = $("#level");
     const want = String(state.level);

@@ -449,3 +449,76 @@ def test_logo_is_inlined_exactly_once():
     assert result["count"] == 1
     assert result["inMasthead"] is True
     assert result["alt"]
+
+
+def _levelnote(drill, level, base="2026-06"):
+    return run_js(
+        """
+        const t = window.__treemap;
+        t.state.drill = %s; t.state.level = %d; t.state.base = '%s';
+        t.state.horizon = '1mo';
+        t.render();
+        const n = document.getElementById('levelnote');
+        out = {hidden: n.hidden, text: n.textContent,
+               empty: !document.getElementById('empty').hidden};
+        """
+        % ("null" if drill is None else f"'{drill}'", level, base)
+    )
+
+
+def test_partial_child_coverage_is_disclosed_not_hidden():
+    """CES publishes only some children for many parents.
+
+    A treemap reads as parts-of-a-whole, so when the shortfall is material the
+    page must say how big it is. Nothing is scaled to close the gap.
+    """
+    result = _levelnote("80813000", 5)   # Religious, grantmaking, civic...
+    assert not result["hidden"]
+    assert "cover 45%" in result["text"], result["text"]
+    assert "not scaled" in result["text"]
+
+
+def test_coverage_note_is_silent_when_children_are_complete():
+    assert _levelnote("65620000", 4)["hidden"] is True   # health care: 100%
+
+
+def test_coverage_note_pluralises():
+    result = _levelnote("32313000", 5)   # Textile mills: one child published
+    assert "The 1 industry shown covers" in result["text"], result["text"]
+
+
+def test_notes_do_not_survive_into_an_empty_view():
+    """Returning early on an empty result left the previous view's note up."""
+    _levelnote("32313000", 5)                 # leaves a note on screen
+    result = _levelnote("55532200", 6)        # no children at this level
+    assert result["empty"] is True
+    assert result["hidden"] is True, result["text"]
+
+
+def test_nothing_rescales_tile_values_to_match_the_parent():
+    """Every tile is the reported series value, straight from the payload."""
+    result = run_js(
+        """
+        const t = window.__treemap;
+        t.state.drill = '80813000'; t.state.level = 5;
+        t.state.base = '2026-06'; t.state.horizon = '1mo';
+        t.render();
+        const idx = t.labelToIdx.get('2026-06');
+        const shown = [...document.querySelectorAll('.tile')].map(el => {
+          const item = t.byCode.get(el.dataset.code);
+          return {raw: t.change(item, idx, 1, 'abs'),
+                  label: el.getAttribute('aria-label')};
+        });
+        const parent = t.change(t.byCode.get('80813000'), idx, 1, 'abs');
+        out = {sum: shown.reduce((a, s) => a + s.raw, 0), parent,
+               n: shown.length,
+               // the label must carry the untouched value
+               matches: shown.every(s =>
+                 s.label.includes((s.raw >= 0 ? '+' : '-') +
+                   Math.abs(s.raw).toFixed(2) + 'k'))};
+        """
+    )
+    assert result["n"] > 0
+    assert result["matches"] is True, "tile labels must show the raw reported change"
+    # The children genuinely do not sum to the parent, and that is left alone.
+    assert abs(result["sum"] - result["parent"]) > 0.01, result
