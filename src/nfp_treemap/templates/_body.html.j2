@@ -77,9 +77,11 @@
     Tile area is the <strong>absolute</strong> change in employees in both colour modes — sizing by
     percent would let a very small industry outweigh Food Services. Colour is symmetric around zero,
     so a loss and a gain of equal size read at equal intensity.{{ export_note }}
-    Three CES roll-ups that duplicate their own same-level components — <em>Health care</em>,
-    <em>Specialty trade contractors</em> and <em>Motor vehicles and parts</em> — are hidden so the
-    tiles at each level sum to their parent; append <code>&amp;dupes=1</code> to the URL to show them.
+    CES publishes only some children for many parents, so the tiles at a level are not a complete
+    partition of it — every tile is the value CES actually reports, never scaled or padded to make
+    the pieces add up. Three roll-ups that would <em>double-count</em> their own same-level
+    components — <em>Health care</em>, <em>Specialty trade contractors</em> and <em>Motor vehicles
+    and parts</em> — are hidden for that reason; append <code>&amp;dupes=1</code> to show them.
   </p>
 </div>
 

@@ -216,16 +216,22 @@ def test_prismic_width_gets_the_desktop_layout():
     assert int(result["level"]) == 4
 
 
-def test_theme_follows_the_viewer_by_default_and_can_be_pinned():
-    """Auto-theming is right standalone and wrong for an embed: a dark-mode
-    visitor would otherwise get a dark chart inside a light article."""
-    auto = measure(900, 700)
+def test_embedded_defaults_to_light_and_can_still_be_pinned():
+    """Embedded, the host page's theme governs and the page cannot read it.
+
+    The host (Data 4 The People) is light, so an embed defaults to light
+    rather than letting a dark-mode visitor get a dark chart in a light
+    article. Standalone still follows the viewer's OS setting.
+    """
+    embedded = measure(900, 700)
+    standalone = measure(900, 700, "#embed=0")
     dark = measure(900, 700, "#theme=dark")
     light = measure(900, 700, "#theme=light")
 
-    assert auto["theme"] is None          # no stamp: follows prefers-color-scheme
-    assert dark["theme"] == "dark"
+    assert embedded["theme"] == "light"     # pinned for the host
+    assert standalone["theme"] is None      # no stamp: follows prefers-color-scheme
+    assert dark["theme"] == "dark"          # explicit pin still wins inside a frame
     assert light["theme"] == "light"
     # The pin must actually repaint, not just set an attribute.
     assert dark["bodyBg"] != light["bodyBg"]
-    assert auto["bodyBg"] == light["bodyBg"]   # harness runs in light mode
+    assert standalone["bodyBg"] == light["bodyBg"]   # harness runs in light mode
