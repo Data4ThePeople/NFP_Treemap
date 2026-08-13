@@ -18,7 +18,7 @@ python -m nfp_treemap.build              # -> dist/index.html  (1.8 MB, no serve
 ```bash
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-cp .env.example .env        # add your BLS registration key
+printf 'BLS_API_KEY=your-key-here\n' > .env    # gitignored
 ```
 
 Get a free key at <https://data.bls.gov/registrationEngine/>. It lifts the API to
