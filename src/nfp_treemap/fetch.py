@@ -57,7 +57,9 @@ def _merge(new: pd.DataFrame) -> pd.DataFrame:
 def run(mode: str) -> int:
     if not api_key():
         print(
-            "No BLS_API_KEY found. Copy .env.example to .env and add your key.\n"
+            "No BLS_API_KEY found. Create a .env file containing\n"
+            "  BLS_API_KEY=your-key-here\n"
+            "Register for a free key at https://data.bls.gov/registrationEngine/\n"
             "Without one the API allows only 25 series and 25 requests/day, which\n"
             "cannot cover 842 series in a single day.",
             file=sys.stderr,
