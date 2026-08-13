@@ -43,6 +43,8 @@ addEventListener('load', () => setTimeout(() => {
       contentHeight: de.scrollHeight,
       frameHeight: %(h)d,
       embed: de.classList.contains('embed'),
+      theme: de.dataset.theme || null,
+      bodyBg: w.getComputedStyle(d.body).backgroundColor,
       level: d.getElementById('level').value,
       tiles: d.querySelectorAll('.tile').length,
       wrapWidth: Math.round(d.querySelector('.wrap').getBoundingClientRect().width),
@@ -212,3 +214,18 @@ def test_prismic_width_gets_the_desktop_layout():
     result = measure(PRISMIC_WIDTH, 640)
     assert result["controlCols"] > 2
     assert int(result["level"]) == 4
+
+
+def test_theme_follows_the_viewer_by_default_and_can_be_pinned():
+    """Auto-theming is right standalone and wrong for an embed: a dark-mode
+    visitor would otherwise get a dark chart inside a light article."""
+    auto = measure(900, 700)
+    dark = measure(900, 700, "#theme=dark")
+    light = measure(900, 700, "#theme=light")
+
+    assert auto["theme"] is None          # no stamp: follows prefers-color-scheme
+    assert dark["theme"] == "dark"
+    assert light["theme"] == "light"
+    # The pin must actually repaint, not just set an attribute.
+    assert dark["bodyBg"] != light["bodyBg"]
+    assert auto["bodyBg"] == light["bodyBg"]   # harness runs in light mode

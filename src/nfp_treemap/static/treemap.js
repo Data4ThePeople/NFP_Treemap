@@ -356,6 +356,17 @@
   };
   const viewportHeight = () =>
     document.documentElement.clientHeight || innerHeight || 0;
+  /* Theme follows the viewer's OS setting by default, which is right for a
+     standalone page and wrong for an embed: a dark-mode visitor would get a
+     dark chart inside a light article. `#theme=light` / `#theme=dark` pins it;
+     the CSS already honours data-theme in both directions. */
+  (() => {
+    const pin = new URLSearchParams(location.hash.slice(1)).get("theme");
+    if (pin === "light" || pin === "dark") {
+      document.documentElement.dataset.theme = pin;
+    }
+  })();
+
   const NARROW = () => containerWidth() < 620;
 
   const state = {
@@ -369,6 +380,7 @@
     drill: null,
     highlight: "",
     showDupes: false,
+    theme: null,          // null = follow the viewer's OS setting
   };
 
   function readHash() {
@@ -381,6 +393,8 @@
     if (h.has("drill") && byCode.has(h.get("drill"))) state.drill = h.get("drill");
     if (h.has("q")) state.highlight = h.get("q");
     if (h.get("dupes") === "1") state.showDupes = true;
+    const theme = h.get("theme");
+    if (theme === "light" || theme === "dark") state.theme = theme;
   }
 
   function writeHash() {
@@ -391,6 +405,7 @@
     if (state.drill) p.set("drill", state.drill);
     if (state.highlight) p.set("q", state.highlight);
     if (state.showDupes) p.set("dupes", "1");
+    if (state.theme) p.set("theme", state.theme);
     history.replaceState(null, "", `#${p}`);
   }
 

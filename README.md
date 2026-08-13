@@ -173,6 +173,12 @@ frame) or `#embed=1` (force the compact layout standalone). All the other
 deep-link parameters compose with it:
 `…/index.html#embed=1&lvl=2&h=1yr&base=2026-06`.
 
+**Theme.** Light and dark are both selected palettes, validated separately
+against their own surface — the dark arms are re-stepped, not flipped. By
+default the page follows the viewer's OS setting, which is right standalone and
+wrong in an embed: a dark-mode visitor would get a dark chart inside a light
+article. Pin it with `#theme=light` or `#theme=dark`.
+
 **Auto-height.** An iframe cannot resize itself, so the page posts its content
 height to the parent after every render. A host that wants an auto-sizing embed
 can listen:
