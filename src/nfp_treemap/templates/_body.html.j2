@@ -1,0 +1,89 @@
+<div class="wrap">
+
+  <header class="masthead">
+    {# One element, relocated by JS when embedded. Duplicating it would inline
+       the whole data URI twice and add ~140KB to the page for nothing. #}
+    {% if logo %}<img class="brand" id="brand" src="{{ logo }}" alt="Bancreek Capital Advisors">{% endif %}
+    <div class="masthead-text">
+      <h1>{{ title }}</h1>
+      <p>Employment change by industry, from the BLS Current Employment Statistics survey</p>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="field">
+      <label for="base">Base period</label>
+      <select id="base"></select>
+    </div>
+    <div class="field">
+      <label for="horizon">Comparison period</label>
+      <select id="horizon"></select>
+    </div>
+    <div class="field">
+      <label for="level">Display level</label>
+      <select id="level"></select>
+    </div>
+    <div class="field">
+      <label for="metric">Colour metric</label>
+      <div class="seg" id="metric" role="group" aria-label="Colour metric">
+        <button type="button" data-metric="abs" aria-pressed="true">Absolute</button>
+        <button type="button" data-metric="pct" aria-pressed="false">Percent</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="palette">Palette</label>
+      <select id="palette">
+        <option value="accessible">Accessible red↔blue</option>
+        <option value="classic">Classic red↔green</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="q">Highlight industry</label>
+      <input id="q" type="search" placeholder="Type to highlight…" autocomplete="off">
+    </div>
+    <div class="field actions">
+      <button type="button" id="up" title="Go up one level (Esc)">↑ Up</button>
+      <button type="button" id="link" title="Copy a link to this exact view">Copy link</button>
+      <button type="button" id="csv" title="Download the current view as CSV">CSV</button>
+      <button type="button" id="png" title="Download the current view as PNG">PNG</button>
+    </div>
+  </div>
+
+  <nav class="crumbs" id="crumbs" aria-label="Industry hierarchy"></nav>
+
+  <h2 class="chart-title" id="charttitle"></h2>
+  <p class="lagnote" id="lagnote" hidden></p>
+  <p class="lagnote" id="nomatch" hidden></p>
+  <p class="lagnote" id="levelnote" hidden></p>
+
+  <div class="chart-wrap">
+    <svg id="treemap" role="img" aria-label="Treemap of employment change by industry. Tile area is the absolute change; colour is the signed change. Use Tab to move between industries, Enter to drill in, Escape to go up."></svg>
+    <p class="empty" id="empty" hidden></p>
+  </div>
+
+  <div class="legend-row">
+    <div class="legend">
+      <div class="cap" id="legendcap"></div>
+      <div class="bar" id="legendbar"></div>
+      <div class="ends"><span id="legendlo"></span><span>0</span><span id="legendhi"></span></div>
+      <div class="nodatakey"><span class="swatch" aria-hidden="true"></span> No data published for this period</div>
+    </div>
+    <div class="footer-brand" id="footer-brand">
+      <div class="stamp" id="stamp"></div>
+    </div>
+  </div>
+
+  <p class="stamp footnote" style="text-align:left;margin-top:14px">
+    Tile area is the <strong>absolute</strong> change in employees in both colour modes — sizing by
+    percent would let a very small industry outweigh Food Services. Colour is symmetric around zero,
+    so a loss and a gain of equal size read at equal intensity.{{ export_note }}
+    Three CES roll-ups that duplicate their own same-level components — <em>Health care</em>,
+    <em>Specialty trade contractors</em> and <em>Motor vehicles and parts</em> — are hidden so the
+    tiles at each level sum to their parent; append <code>&amp;dupes=1</code> to the URL to show them.
+  </p>
+</div>
+
+<div id="tip" role="tooltip"></div>
+
+<script>const PAYLOAD = {{ payload }};</script>
+<script>{{ js }}</script>
