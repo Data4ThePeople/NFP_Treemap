@@ -226,7 +226,9 @@ goes.
 ## 3. Ranking ahead of the Bancreek version
 
 You have no stake in Bancreek and are not being paid to maintain their copy, so
-nothing here depends on their cooperation. This is what wins without it.
+nothing here depends on their cooperation. They have confirmed they are staying
+on the Tableau version, which settles the positioning: **anomaly scoring exists
+only here.**
 
 ### What you are actually up against
 
@@ -238,22 +240,21 @@ ranks for exact and brandish phrases only, and it does not lead even for its own
 title. This one you beat on the first day.
 
 **The explainer** (`/p/visualizing-nonfarm-payroll-data`) is the real competitor:
-3,079 words with `Dataset` structured data, and it takes the descriptive queries
-that matter, the "nonfarm payrolls by industry interactive treemap" shape. It is
-a fair fight rather than a walkover.
+3,079 words with `Dataset` structured data, taking the descriptive queries that
+matter. A fair fight rather than a walkover.
 
 You win it on four things they no longer have.
 
-1. **A working, current tool.** Theirs is a Tableau embed of the older build.
-   Yours is the live tool, refreshed from the BLS API after every release.
-2. **Freshness.** They have let it go stale and are not paying to change that.
-   For a monthly-data query, a page that visibly updates each release and one
-   that does not diverge quickly.
-3. **Depth.** 3,854 words with methodology, a limitations section and twelve
-   FAQ answers written to stand alone, against 3,079 words of explainer.
-4. **Coverage they cannot match.** Their title is brandish and their explainer
-   is interpretation. Yours targets the tool-intent and question queries
-   directly, and carries `Dataset` markup pointing at a real CSV export.
+1. **Anomaly scoring.** Now the lead, in the title, the opening paragraph, the
+   hero image and the first two FAQ answers. Nothing else free scores a payroll
+   move against that industry's own history, and their Tableau version never
+   will. This is the differentiator that is genuinely defensible.
+2. **A working, current tool**, refreshed from the BLS API after every release,
+   against a static Tableau embed of the older build.
+3. **Freshness.** They have let it go stale and are not paying to change that.
+   For a monthly-data query, two pages diverge quickly on that alone.
+4. **Depth.** 4,405 words with methodology, limitations and fourteen FAQ answers
+   written to stand alone, against 3,079 words of explainer.
 
 ### The plan, in priority order
 

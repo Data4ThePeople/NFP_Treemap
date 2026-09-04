@@ -1,27 +1,46 @@
 ---
-title: "Nonfarm Payrolls by Industry: Free Interactive Treemap"
-subtitle: Every industry the BLS payroll survey publishes, in one chart. Drill from total nonfarm down to six-digit NAICS detail, pick any base month, and compare one month against twenty years.
+title: "Nonfarm Payrolls by Industry: Anomaly Detector"
+subtitle: A free interactive treemap of every industry the BLS payroll survey publishes, which scores each month's move against that industry's own twenty-year history and tells you whether it is actually unusual.
 slug: nonfarm-payrolls-by-industry
 date: 2026-09-04
-description: Free interactive treemap of US nonfarm payrolls by industry. All 842 BLS series, any base month, one month to twenty years, NAICS definitions, CSV export.
-keywords: nonfarm payrolls by industry, jobs by industry, BLS employment data, Current Employment Statistics, CES data visualization, payroll employment treemap, which industries added jobs, employment change by industry, NAICS employment data, jobs report by sector, interactive jobs data, seasonally adjusted employment, BLS jobs data drill down
+description: Free interactive treemap of US nonfarm payrolls by industry that scores every move against the industry's own history, so you can tell a signal from a noisy month.
+keywords: nonfarm payrolls by industry, jobs report anomaly, is this jobs number unusual, payroll data revisions, jobs by industry, BLS employment data, Current Employment Statistics, CES data visualization, payroll employment treemap, which industries added jobs, employment change by industry, NAICS employment data, jobs report by sector, interactive jobs data, seasonally adjusted employment, BLS jobs data drill down
 section: Visualization
 schema_type: dataset
 dataset_name: US nonfarm payroll employment by industry, monthly
-dataset_description: Monthly seasonally adjusted payroll employment for every industry published by the US Bureau of Labor Statistics Current Employment Statistics (CES) survey. 842 series covering the full published industry hierarchy, from total nonfarm payrolls down to six-digit NAICS industry detail, from January 1939 to the present month. Values are all employees in thousands, exactly as reported by BLS, with no modelling, smoothing or rescaling applied.
+dataset_description: Monthly seasonally adjusted payroll employment for every industry published by the US Bureau of Labor Statistics Current Employment Statistics (CES) survey, with each month's change scored against that industry's own history of comparable changes. 842 series covering the full published industry hierarchy, from total nonfarm payrolls down to six-digit NAICS industry detail, from January 1939 to the present month. Values are all employees in thousands, exactly as reported by BLS, with no modelling, smoothing or rescaling applied.
 temporal: 1939-01/..
 spatial: United States
 measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
-hero: charts/hero-treemap-level5-july.png
-hero_alt: Treemap of US payroll employment change across 249 industries in July 2026, each industry sized by the number of jobs it added or lost and coloured blue for gains and red for losses. Restaurants and other eating places is the largest tile, down 80,800 jobs.
+hero: charts/anomaly-tooltip.png
+hero_alt: The treemap with an industry tooltip open on local government education, showing an increase of 41,900 jobs scored as unusual at a robust z of 2.95 and the 96th percentile of comparable monthly changes over twenty years, above a sparkline of the industry's history since 1955.
 ---
 
-# Nonfarm Payrolls by Industry: Free Interactive Treemap
+# Nonfarm Payrolls by Industry: Anomaly Detector
 
-Every month the Bureau of Labor Statistics publishes one employment number that leads the news, and roughly 850 more that almost nobody sees. The headline is total nonfarm payrolls. Underneath it sits the entire industry hierarchy of the BLS employer survey, called the CES, running down to six-digit detail like underground coal mining and offices of dentists. This treemap shows all of it at once: every published industry, each one sized by the jobs it actually added or lost. Click any tile to drill into the industries inside it, set the base month to any month on record, and switch the comparison from one month to as long as twenty years.
+A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. That gap matters more every year, because the monthly print gets revised twice before it settles and the revisions are not small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
 
 <iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="Interactive treemap of US nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
+
+## Why a raw number is not enough
+
+Hover any industry and the tool answers the question the number leaves open.
+
+![The treemap with a tooltip open on local government education, showing an increase of 41,900 jobs scored as unusual at a robust z of 2.95 and the 96th percentile of twenty years of comparable monthly changes, above a sparkline of the industry's history since 1955.](charts/anomaly-tooltip.png)
+*Local government education added 41,900 jobs in a month. The score puts that above 96% of comparable monthly changes in the last twenty years, measured against 212 windows with the pandemic excluded.*
+
+Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly: this is bigger than 96% of comparable changes. Underneath, the sparkline shows the whole series since 1955 with recessions shaded, so you can see the shape the number came out of.
+
+Run that across every industry at once and the reading changes. The biggest tiles are not always the interesting ones. A large industry moving within its normal range is noise dressed as news, and a small industry breaking its own record is a story that the headline will never surface.
+
+## Why this matters more now
+
+The payroll survey revises. Every release restates the two preceding months, and each annual benchmark can restate up to five years of seasonally adjusted history. These are not rounding adjustments. One food services month in this data read −32,900 when it was first captured and −12,100 in the next vintage, a swing of more than 20,000 jobs on a single series.
+
+So a first print is a provisional reading of a noisy process, and treating any one month as a fact is the mistake the data invites. Scoring a move against twenty years of that same industry's behaviour is a defence against it. A change that is unremarkable for an industry stays unremarkable whichever way the revision lands. A change at the 99th percentile of two decades is worth attention even if the exact figure moves.
+
+The score is also honest about its own limits. Where an industry has too little independent history for the horizon you picked, it says so rather than producing a confident number.
 
 ## What you are looking at
 
@@ -33,6 +52,9 @@ Color is direction and scale. Blue is a gain, red is a loss, and the scale is sy
 
 Grouping is the hierarchy itself. Tiles are grouped into their supersector, or into the direct children of whatever you drilled into. Those labeled bands are the level of the tree you are standing on.
 
+![Treemap of payroll employment change across 249 industries in a single month, each sized by the jobs it added or lost.](charts/hero-treemap-level5-july.png)
+*The full surface at display level 5: 249 industries in one month. Restaurants and other eating places is the dark red block on the left, down 80,800.*
+
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
 
 ## Why the headline number hides so much
@@ -41,12 +63,7 @@ The monthly payroll figure is an aggregate of an economy that is not moving in o
 
 We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey. It is the kind of thing that is invisible in the headline and obvious the moment you can see every industry side by side.
 
-This is not a criticism of the headline. It is why BLS publishes the detail at all. The problem has always been reaching it. The detail exists as hundreds of separate time series behind a query interface built for people who already know the series identifier they want. If you want to know how software publishers or nursing homes or heavy civil engineering construction are doing, the data has been public the entire time and effectively out of reach.
-
-A treemap answers one question well. Of everything that moved this period, what moved most, and in which direction? You do not need to know what you are looking for before you look. The biggest shapes are the biggest movers, so the story finds you, and then you click into it.
-
-![Drill-down view showing the industries inside health care and social assistance, with breadcrumb navigation and notes stating how much of the parent industry the published children cover.](charts/drill-health-care-social-assistance.png)
-*Drill into a sector and you get its published sub-industries, a breadcrumb trail back up, and a plain statement of how much of the parent those children actually cover.*
+The detail has always been public. Reaching it was the problem. It exists as hundreds of separate time series behind a query interface built for people who already know the series identifier they want, and nothing in that interface tells you whether a number is normal.
 
 ## What you can do with it
 
@@ -54,22 +71,14 @@ Click a tile to descend into that industry's own children. The breadcrumb above 
 
 The display level controls how fine the breakdown is. Level 2 is the eleven supersectors. Level 3 is nineteen sectors, and it is where the page opens, because every industry at that level publishes with the headline. Levels 4 through 7 go progressively finer, ending in 166 six-digit industries.
 
-The base period is any month in the record and the comparison period is the horizon: one month, or one, two, three, five, ten or twenty years. One month is the jobs report. The longer horizons are where structural change separates from noise, which is why we carry history back to 1939 rather than to the last business cycle. Setting the base month is what turns this into a historical instrument. You can ask what the labor market looked like in March 2007 and what was moving then, not only what is moving now.
+The base period is any month in the record and the comparison period is the horizon: one month, or one, two, three, five, ten or twenty years. One month is the jobs report. The longer horizons are where structural change separates from noise. Setting the base month is what turns this into a historical instrument. You can ask what the labor market looked like in March 2007, what was moving then, and whether it was unusual at the time.
 
 Switch the color metric to Percent for proportional change instead of absolute. A small industry losing a tenth of its workforce is a real event that the absolute view draws as a sliver. Tile area stays absolute in both modes, so you see size and rate at the same time.
 
-Hover any tile for the employment level, the change over your horizon, the official NAICS definition of that industry, and an anomaly score. Type in the highlight box to find an industry by name instead of hunting for it. CSV downloads the view you are looking at, PNG saves the chart as an image, and Copy link writes the whole state into the URL, so a specific industry at a specific level over a specific horizon is a link you can send or cite.
+Hover any tile for the employment level, the change over your horizon, the anomaly score, the official NAICS definition of that industry, and its full history as a sparkline. Type in the highlight box to find an industry by name instead of hunting for it. CSV downloads the view you are looking at, PNG saves the chart as an image, and Copy link writes the whole state into the URL, so a specific industry at a specific level over a specific horizon is a link you can send or cite.
 
 ![Percent-change view over a one-year horizon at level 4, showing proportional employment change across 84 industries.](charts/percent-change-one-year.png)
 *The percent view over one year. Tile area is still the absolute job change, so a big industry moving slightly and a small industry moving sharply are both legible.*
-
-## What the anomaly score is for
-
-A change of 8,000 jobs means nothing on its own. It is enormous for an industry that normally moves by a few hundred and unremarkable for one that routinely swings by tens of thousands.
-
-The anomaly score answers the question the raw number cannot. Is this unusual for this industry? It compares the change on screen against that same industry's own history of changes over the same length of time, and reports a robust z-score, a percentile rank and a plain-language label. The tooltip tells you the span of history it actually covered, which is not always the span it wanted.
-
-It is willing to say it does not know. Where an industry lacks enough independent history for the horizon you chose, it reports insufficient history instead of a confident wrong number. Getting that comparison right was the hardest part of building this, and it is worth explaining what went wrong first.
 
 ## How we built it
 
@@ -79,7 +88,27 @@ We pull the monthly values directly from the BLS Public Data API rather than the
 
 Two things the API cannot give us are fetched once and cached. The `ce.industry` reference file carries each industry's display level, sort order and NAICS code, and the API has no metadata endpoint to serve them. The Census NAICS descriptions supply the definition text you see on hover.
 
-### The hierarchy is derived from the codes, not read off the file
+### The anomaly sample has to scale with the horizon
+
+This is the part that took the most work to get right, and the first version was confidently wrong.
+
+It used a fixed 120-month lookback. That holds 120 independent one-month changes but only about three independent three-year windows, so at long horizons the score was driven by whatever single episode all the overlapping windows happened to share.
+
+The result was an absurdity delivered with total confidence. Total nonfarm's three-year change scored −3.66, "extreme", 0th percentile, on a gain of 2.81 million jobs. All seventy-nine comparison windows had been measured off the 2020 trough, so every one of them was an enormous gain, and an ordinary large gain looked catastrophic beside them.
+
+Four things fix it.
+
+**The lookback scales with the horizon**, at ten months of history per month of comparison, with a twenty-year floor. That floor is not padding. A ten-year window with the pandemic removed contains no downturn at all, so every sample in it is an expansion-year change, and an ordinary year of +403,000 for total nonfarm scored −4.05, "extreme". At twenty years the sample reaches back through 2008 and the same year reads −2.31, "unusual".
+
+**Overlapping windows are not independent**, so we require at least six non-overlapping ones. Below that the tool reports insufficient history rather than a number. This is why the tooltip names the span it actually covered, which is not always the span it asked for.
+
+**The pandemic distortion is excluded**, from March 2020 to June 2022, which is the collapse through to payrolls regaining their February 2020 peak. A window is dropped if either endpoint falls inside it. Excluding only the acute months left three-year windows still starting from deep in the hole.
+
+**The z-score is robust**, built on the median and the median absolute deviation rather than the mean and standard deviation, which a handful of pandemic-scale outliers otherwise dominate. Mean and standard deviation had food services sitting at a "typical" −0.81 while it was at the 5th percentile of its own history.
+
+The same episode produced a wording bug worth mentioning, because it shows how easily a score misleads. Rank direction is not the sign of the change, and a gain of 2.81 million was being described as a larger drop than 100% of comparable windows. The tooltip now states the value and where it ranks, and never calls a gain a drop.
+
+### The industry hierarchy is derived from the codes, not read off the file
 
 This is the part that looks solved and is not. The obvious rule is that an industry's parent is the nearest preceding row with a smaller display level. It reports zero orphans, which is exactly what makes it dangerous. It is quietly wrong.
 
@@ -105,27 +134,14 @@ CES publishes only some children for many parents. The tiles at a level frequent
 
 That is deliberate, because the alternative is worse. Forcing a sum means inventing a residual category and putting a number in it that BLS never published. Instead every tile is the reported value, and where the shortfall matters the page says so: drill into a parent whose published children cover three quarters of it and you are told it is three quarters. The top level carries the opposite warning, because those four aggregates overlap and sum to more than the total.
 
-### The anomaly sample has to scale with the horizon
-
-Our first version used a fixed 120-month lookback. That holds 120 independent one-month changes but only about three independent three-year windows, so at long horizons the score was driven by whatever single episode all the overlapping windows happened to share.
-
-It produced a confident absurdity. Total nonfarm's three-year change scored −3.66, "extreme", 0th percentile, on a gain of 2.81 million jobs. All seventy-nine comparison windows had been measured off the 2020 trough, so every one of them was an enormous gain, and an ordinary large gain looked catastrophic beside them.
-
-Four things fix it.
-
-The lookback scales with the horizon, at ten months of history per month of comparison, with a twenty-year floor. That floor is not padding. A ten-year window with the pandemic removed contains no downturn at all, so every sample in it is an expansion-year change, and an ordinary year of +403,000 for total nonfarm scored −4.05, "extreme". At twenty years the sample reaches back through 2008 and the same year reads −2.31, "unusual".
-
-Overlapping windows are not independent, so we require at least six non-overlapping ones. Below that the tool reports insufficient history rather than a number.
-
-The pandemic distortion is excluded, from March 2020 to June 2022, which is the collapse through to payrolls regaining their February 2020 peak. A window is dropped if either endpoint falls inside it. Excluding only the acute months left three-year windows still starting from deep in the hole.
-
-The z-score is robust, built on the median and the median absolute deviation rather than the mean and standard deviation, which a handful of pandemic-scale outliers otherwise dominate.
+![Drill-down view showing the industries inside health care and social assistance, with breadcrumb navigation and notes stating how much of the parent industry the published children cover.](charts/drill-health-care-social-assistance.png)
+*Drill into a sector and you get its published sub-industries, a breadcrumb trail back up, and a plain statement of how much of the parent those children actually cover.*
 
 ### Revisions overwrite, because a jobs number is a moving target
 
-CES revises the two preceding months at every release, and up to five years of seasonally adjusted history at each annual benchmark. Our refresh upserts on industry and month, so a revision replaces the cached value instead of accumulating beside it.
+Our refresh upserts on industry and month, so a revision replaces the cached value instead of accumulating beside it. What you see is always the current vintage.
 
-This surprises people, so it is worth stating plainly. The number you saw last month may not be the number you see now, and that is the data behaving correctly. One food services month read −32,900 in the vintage we captured at the time and −12,100 in the next. Same series, same month, different vintage.
+This surprises people, so it is worth stating plainly. The number you saw last month may not be the number you see now, and that is the data behaving correctly.
 
 ### The detail lags the headline, and the page says so
 
@@ -149,9 +165,21 @@ It is national. CES publishes state and metropolitan detail, and this visualizat
 
 It is seasonally adjusted throughout, which is the right basis for comparing one month to the next and the wrong basis for asking how many people worked in retail in December.
 
-It does not forecast, and it will not tell you why an industry moved. It tells you what moved, by how much, how unusual that is for that industry, and exactly what the industry contains.
+An anomaly score is not a verdict. It says a move is large relative to the industry's own history, not that it is meaningful, causal or permanent. A strike, a hurricane, a benchmark revision and a genuine turning point can all produce the same score. It tells you where to look, not what you will find.
 
 ## Frequently asked questions
+
+### How do you know if a jobs number is unusual?
+
+Compare it against the same industry's own history of changes over the same length of time, rather than against other industries or against a single headline figure. This tool does that automatically, reporting a robust z-score, a percentile rank and a plain-language label for every industry it shows. A change of 8,000 jobs is enormous for an industry that normally moves by a few hundred and unremarkable for one that routinely swings by tens of thousands, and only the industry's own record can tell the two apart.
+
+### What does the anomaly score mean?
+
+It compares the change you are looking at against the same industry's own history of changes over the same length of time. It uses at least twenty years of history, requires at least six non-overlapping comparison windows before it will report anything, and excludes March 2020 through June 2022 so the pandemic collapse and recovery do not define what counts as normal. It is a robust z-score, built on the median and median absolute deviation, so a few extreme months cannot flatten the scale.
+
+### Why are nonfarm payroll numbers revised so much?
+
+The Current Employment Statistics survey publishes a first estimate before all responses are in, then restates the two preceding months at every release as more arrive. Each annual benchmark can restate up to five years of seasonally adjusted history. The revisions are often larger than people expect: one food services month in this data moved by more than 20,000 jobs between vintages. Scoring a change against decades of the same industry's behaviour is more durable than treating any single print as settled.
 
 ### What is the Current Employment Statistics survey?
 
@@ -159,11 +187,11 @@ The Current Employment Statistics survey, also called the establishment survey o
 
 ### Which industries added the most jobs last month?
 
-That changes every month, which is what this treemap is for. Open it on the most recent month with a one-month comparison and the largest blue tiles are the industries that added the most jobs, while the largest red tiles are the ones that lost the most. Click any tile to see which specific sub-industries inside it drove the change.
+That changes every month, which is what this treemap is for. Open it on the most recent month with a one-month comparison and the largest blue tiles are the industries that added the most jobs, while the largest red tiles are the ones that lost the most. Hovering any tile also tells you whether that move was unusual for the industry, which the size alone will not.
 
 ### How often is this data updated?
 
-BLS releases the Employment Situation report monthly, usually on the first Friday of the month, covering the previous month. We refresh this visualization from the BLS API after each release. Because CES revises the two preceding months at every release, and up to five years of seasonally adjusted history at each annual benchmark, a refresh also updates months that were already published.
+BLS releases the Employment Situation report monthly, usually on the first Friday of the month, covering the previous month. We refresh this visualization from the BLS API after each release. Because CES revises the two preceding months at every release, and up to five years of history at each annual benchmark, a refresh also updates months that were already published.
 
 ### How far back does BLS payroll data go?
 
@@ -184,10 +212,6 @@ Yes. There is no account, no paywall and no usage limit, and it can be embedded 
 ### Can I download the data as CSV?
 
 Yes. The CSV button downloads whatever view you are currently looking at, including any industry you have drilled into, with the same values shown on the tiles. The PNG button exports the chart as an image.
-
-### What does the anomaly score mean?
-
-It compares the change you are looking at against the same industry's own history of changes over the same length of time, and reports how unusual it is as a robust z-score, a percentile and a plain-language label. It uses at least twenty years of history, requires at least six non-overlapping comparison windows before it will report anything, and excludes March 2020 through June 2022 so that the pandemic collapse and recovery do not define what counts as normal for an industry.
 
 ### What is the difference between the payroll survey and the household survey?
 
