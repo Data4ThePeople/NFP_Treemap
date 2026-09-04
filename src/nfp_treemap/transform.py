@@ -82,20 +82,11 @@ def build_payload() -> dict:
     meta = json.loads(META_JSON.read_text()) if META_JSON.exists() else {}
 
     # CES publishes detailed industries a month behind the headline aggregates,
-    # so the newest month carries only ~20% of series. Defaulting the base
-    # period to it would show "no data" for almost everything below level 4.
-    # Pick the newest month where nearly every series has an observation.
-    coverage = [0] * (last - first + 2)
-    for item in industries:
-        coverage[item["s"] - first] += 1
-        coverage[item["s"] + len(item["d"]) - first] -= 1
-    running = 0
-    complete = []
-    for offset, delta in enumerate(coverage[:-1]):
-        running += delta
-        if running >= 0.95 * len(industries):
-            complete.append(first + offset)
-    default_base = max(complete) if complete else last
+    # so the newest month carries only the aggregates. Default to it anyway:
+    # the headline number is the reason anyone opens the page on release day,
+    # and the page flags how many industries are still awaiting publication
+    # (updateLagNote in treemap.js) rather than silently showing stale data.
+    default_base = last
 
     return {
         "meta": {

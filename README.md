@@ -38,6 +38,12 @@ every release and up to five years of seasonally adjusted data at each annual
 benchmark. The June 2026 figure for Food Services read −32.9k when the Tableau
 version was captured and −12.1k afterwards — same series, different vintage.
 
+The page opens on the **newest month at display level 3**. CES publishes most
+industry detail a month behind the headline aggregates, so on release day the
+finer levels are partly empty; the page says how many industries are still
+awaiting publication rather than defaulting to an older, complete month.
+Deep-link a different opening view with `#base=2026-07&lvl=4`.
+
 ## How it works
 
 | Stage | Module | Output |

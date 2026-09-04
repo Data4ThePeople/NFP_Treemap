@@ -377,9 +377,9 @@
   const state = {
     base: PAYLOAD.defaultBase || LABELS[LABELS.length - 1],
     horizon: "1mo",
-    // 84 level-4 tiles on a phone are unreadable; open shallower and let the
-    // reader drill in. An explicit level in the URL still wins.
-    level: NARROW() ? 2 : 4,
+    // Open at level 3 (the sectors), shallower still on a phone where even
+    // that many tiles get unreadable. An explicit level in the URL still wins.
+    level: NARROW() ? 2 : 3,
     metric: "abs",
     palette: "accessible",
     drill: null,
@@ -492,6 +492,20 @@
       bucket.value += Math.abs(row.value ?? 0);
     }
 
+    // The notes sit above the chart, so they must be in the DOM before the
+    // embedded height is measured: on release day the "awaiting publication"
+    // note is visible at the default view, and sizing the chart first pushed
+    // it 30px past the bottom of a fixed-height iframe.
+    updateLagNote(rows);
+    updateLevelNote(rows);
+    // Dimming every tile because the query matched nothing just looks broken;
+    // fall back to no highlighting and say so.
+    let q = state.highlight.trim().toLowerCase();
+    const matches = q ? rows.filter((r) => r.item.n.toLowerCase().includes(q)).length : 0;
+    $("#nomatch").hidden = !(q && matches === 0);
+    $("#nomatch").textContent = `No industry at level ${state.level} matches “${state.highlight}”.`;
+    if (q && matches === 0) q = "";
+
     const width = Math.max(280, svg.clientWidth || svg.parentElement.clientWidth - 16);
     // A handful of tiles stretched over a full-height canvas looks broken;
     // shrink the canvas rather than inflate four rectangles to 760px tall.
@@ -539,13 +553,6 @@
     for (const g of zeroGroups) { g.value = 1e-9; groupList.push(g); }
 
     const placed = squarify(groupList, 0, 0, width, height);
-    // Dimming every tile because the query matched nothing just looks broken;
-    // fall back to no highlighting and say so.
-    let q = state.highlight.trim().toLowerCase();
-    const matches = q ? rows.filter((r) => r.item.n.toLowerCase().includes(q)).length : 0;
-    $("#nomatch").hidden = !(q && matches === 0);
-    $("#nomatch").textContent = `No industry at level ${state.level} matches “${state.highlight}”.`;
-    if (q && matches === 0) q = "";
 
     for (const cell of placed) {
       const group = cell.node;
@@ -591,8 +598,6 @@
     }
 
     updateChrome(maxAbs);
-    updateLagNote(rows);
-    updateLevelNote(rows);
     postHeight();
   }
 

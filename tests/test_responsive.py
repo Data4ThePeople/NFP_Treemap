@@ -98,11 +98,11 @@ def test_no_horizontal_overflow_at_phone_widths(width):
 
 
 def test_phone_opens_at_a_readable_level():
-    """84 level-4 tiles are unreadable on a phone; open shallower."""
+    """Even the level-3 sectors crowd a phone; open shallower."""
     narrow = measure(390, 900, "#embed=0")
     wide = measure(1200, 900, "#embed=0")
     assert int(narrow["level"]) < int(wide["level"])
-    assert int(wide["level"]) == 4
+    assert int(wide["level"]) == 3
 
 
 def test_explicit_level_in_the_url_beats_the_narrow_default():
@@ -213,7 +213,7 @@ def test_prismic_width_gets_the_desktop_layout():
     """879px sits above the 830px breakpoint."""
     result = measure(PRISMIC_WIDTH, 640)
     assert result["controlCols"] > 2
-    assert int(result["level"]) == 4
+    assert int(result["level"]) == 3
 
 
 def test_embedded_defaults_to_light_and_can_still_be_pinned():

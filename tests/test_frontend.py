@@ -254,8 +254,9 @@ def test_csv_export_content():
     """The CSV must carry the same numbers the tiles show, plus the stats."""
     result = run_js(
         """
-        const {buildCsv} = window.__treemap;
-        const csv = buildCsv();
+        const t = window.__treemap;
+        t.state.level = 4; t.state.base = '2026-06'; t.render();
+        const csv = t.buildCsv();
         const lines = csv.split('\\n');
         const head = lines[0].split(',');
         const food = lines.find(l => l.startsWith('70722000'));
@@ -294,17 +295,20 @@ def test_highlight_with_no_matches_does_not_dim_everything():
 def test_change_is_null_when_either_endpoint_is_missing():
     result = run_js(
         """
-        const {change, byCode, labelToIdx} = window.__treemap;
+        const {change, byCode, labelToIdx, state} = window.__treemap;
         const detail = byCode.get('20238100');   // detail lags by a month
+        // The newest month is whatever the last release published; the detail
+        // series has no value for it yet, and does for the month before.
+        const newest = labelToIdx.get(state.base);
         out = {
-          july: change(detail, labelToIdx.get('2026-07'), 1, 'abs'),
-          june: change(detail, labelToIdx.get('2026-06'), 1, 'abs'),
+          newest: change(detail, newest, 1, 'abs'),
+          prior: change(detail, newest - 1, 1, 'abs'),
           beforeStart: change(detail, labelToIdx.get('1950-01'), 1, 'abs'),
         };
         """
     )
-    assert result["july"] is None
-    assert result["june"] is not None
+    assert result["newest"] is None
+    assert result["prior"] is not None
     assert result["beforeStart"] is None
 
 
@@ -401,7 +405,8 @@ def test_missing_data_note_blames_the_right_cause():
     assert "begins in 1990" in old["text"]
     assert "month behind" not in old["text"], old["text"]
 
-    new = _lagnote("2026-07", 5)
+    newest = run_js("out = {base: window.__treemap.state.base};")["base"]
+    new = _lagnote(newest, 5)
     assert not new["hidden"]
     assert "month behind the headline aggregates" in new["text"]
     assert "1990" not in new["text"], new["text"]

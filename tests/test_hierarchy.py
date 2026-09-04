@@ -170,21 +170,41 @@ def test_dropping_composites_stops_the_double_count(by_code):
     not OBSERVATIONS_PARQUET.exists(), reason="run nfp_treemap.fetch --backfill first"
 )
 def test_health_care_reconciles_exactly(by_code):
-    """The case that surfaced this: 61.3k double-counted vs a true 41.0k."""
+    """The case that surfaced this: Health care is its own siblings, again.
+
+    The literal figures (61.3k double-counted against a true 41.0k) were the
+    vintage current when the bug was found; CES revises, so the property is
+    asserted rather than the numbers. Any month works - use the newest pair.
+    """
     import pandas as pd
 
     frame = pd.read_parquet(OBSERVATIONS_PARQUET)
-    months = pd.to_datetime(["2026-05-01", "2026-06-01"])
+    kids = [
+        r for r in by_code.values()
+        if r["parent_code"] == "65620000" and r["level"] == 4
+    ]
+    codes = [r["code"] for r in kids] + ["65620000"]
+    dates = sorted(
+        frame[frame["industry_code"].isin(codes)]
+        .groupby("date")["industry_code"].nunique()
+        .pipe(lambda s: s[s == len(codes)]).index
+    )
+    months = dates[-2:]
     snap = frame[frame["date"].isin(months)].pivot(
         index="industry_code", columns="date", values="employees"
     )
     change = snap[months[1]] - snap[months[0]]
 
-    kids = [
-        r for r in by_code.values()
-        if r["parent_code"] == "65620000" and r["level"] == 4
-    ]
-    assert round(sum(change[r["code"]] for r in kids), 1) == 61.3
     kept = [r for r in kids if not r["composite"]]
-    assert round(sum(change[r["code"]] for r in kept), 1) == 41.0
-    assert round(float(change["65620000"]), 1) == 41.0
+    composites = [r for r in kids if r["composite"]]
+    assert composites, "Health care should be flagged as a duplicate roll-up"
+
+    parent = round(float(change["65620000"]), 1)
+    # The kept children reconcile to the parent; including the roll-up does not.
+    assert round(sum(change[r["code"]] for r in kept), 1) == pytest.approx(
+        parent, abs=0.2
+    )
+    naive = round(sum(change[r["code"]] for r in kids), 1)
+    assert abs(naive - parent) > 0.5 * abs(
+        sum(change[r["code"]] for r in composites)
+    )
