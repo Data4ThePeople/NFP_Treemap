@@ -290,6 +290,11 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 .embed .legend .cap { font-size: 11px; margin-bottom: 4px; }
 .embed .legend-row { margin-top: 8px; gap: 8px 20px; }
 .embed .footer-brand { gap: 10px; }
+
+/* Credit line back to the article this tool belongs to. It inherits .footnote,
+   so the embedded layout hides it along with the other footnotes. */
+.credit a { color: var(--focus); }
+.credit a:hover { text-decoration: none; }
 </style>
 </head>
 <body>
@@ -376,6 +381,11 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
     the pieces add up. Three roll-ups that would <em>double-count</em> their own same-level
     components — <em>Health care</em>, <em>Specialty trade contractors</em> and <em>Motor vehicles
     and parts</em> — are hidden for that reason; append <code>&amp;dupes=1</code> to show them.
+  </p>
+  <p class="stamp footnote credit" style="text-align:left">
+    Built and maintained by Data 4 The People. Rebuilt from the BLS API after each
+    Employment Situation release. Full methodology, sources and answers to common questions:
+    <a href="https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry">Nonfarm Payrolls by Industry</a>.
   </p>
 </div>
 

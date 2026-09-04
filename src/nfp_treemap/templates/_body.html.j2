@@ -83,7 +83,12 @@
     components — <em>Health care</em>, <em>Specialty trade contractors</em> and <em>Motor vehicles
     and parts</em> — are hidden for that reason; append <code>&amp;dupes=1</code> to show them.
   </p>
-</div>
+{% if source_url %}  <p class="stamp footnote credit" style="text-align:left">
+    Built and maintained by {{ source_publisher }}. Rebuilt from the BLS API after each
+    Employment Situation release. Full methodology, sources and answers to common questions:
+    <a href="{{ source_url }}">{{ source_title }}</a>.
+  </p>
+{% endif %}</div>
 
 <div id="tip" role="tooltip"></div>
 

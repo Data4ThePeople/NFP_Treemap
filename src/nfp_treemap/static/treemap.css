@@ -283,3 +283,8 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 .embed .legend .cap { font-size: 11px; margin-bottom: 4px; }
 .embed .legend-row { margin-top: 8px; gap: 8px 20px; }
 .embed .footer-brand { gap: 10px; }
+
+/* Credit line back to the article this tool belongs to. It inherits .footnote,
+   so the embedded layout hides it along with the other footnotes. */
+.credit a { color: var(--focus); }
+.credit a:hover { text-decoration: none; }
