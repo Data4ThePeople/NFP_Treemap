@@ -46,12 +46,19 @@ the `schema` field populated and the canonical URL resolved to
 
 Two things to know before the real run.
 
-**There is no drop cap.** House style opens every post with a `drop_cap` slice,
-and the installed converter does not emit one — the slice type does not appear
-anywhere in `prismic_slices.py`. The first paragraph converts to an ordinary
-`paragarph_text`. Either set it in the Prismic editor after import, or teach the
-converter the slice. This affects every post published with this tool, not just
-this one.
+**The drop cap is now emitted by the converter.** House style opens every post
+with a `drop_cap` slice and the converter did not produce one, so the opening
+paragraph arrived as ordinary body text. `prismic_slices.py` now lifts the first
+paragraph of the document into its own `drop_cap` slice carrying
+`primary.drop_cap_text`. Every post published with this tool gets it from here
+on, so there is nothing to set by hand.
+
+**Captioned figures now get a spacer after them.** A caption sits tight under
+its figure, and the text that followed read as a continuation of it. A
+`blog_body_content_image` whose `source_text` is filled is now followed by a
+20px `spacer`. Uncaptioned figures are unchanged, and the existing rule that
+declines a spacer next to an image, embed or another spacer still holds, so
+nothing doubles up.
 
 **The covers both come from `hero`, and `meta_image` is ignored.** This version
 of the converter sets `featured_image` and `meta_image` from the same `hero`
