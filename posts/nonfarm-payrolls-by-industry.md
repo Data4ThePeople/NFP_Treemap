@@ -21,7 +21,7 @@ hero_alt: Treemap of US nonfarm payroll employment change by industry, each indu
 
 Every month the Bureau of Labor Statistics publishes one employment number that leads the news, and roughly 850 more that almost nobody sees. The headline is total nonfarm payrolls. Underneath it sits the entire industry hierarchy of the BLS employer survey, called the CES, running down to six-digit detail like underground coal mining and offices of dentists. This treemap shows all of it at once: every published industry, each one sized by the jobs it actually added or lost. Click any tile to drill into the industries inside it, set the base month to any month on record, and switch the comparison from one month to as long as twenty years.
 
-::: embed 780px
+<iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="Interactive treemap of US nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
 
 ## What you are looking at
 
