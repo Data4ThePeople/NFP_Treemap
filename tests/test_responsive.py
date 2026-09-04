@@ -28,10 +28,35 @@ WRAPPER = """<!doctype html><meta charset="utf-8">
 <style>html,body{margin:0}iframe{border:0;width:%(w)dpx;height:%(h)dpx;display:block}</style>
 <iframe id="f" src="../index.html%(hash)s"></iframe>
 <script>
-addEventListener('load', () => setTimeout(() => {
+/* The chart sizes itself from the space left below the notes, and the legend
+   height it needs is only real after the first paint - so there is a reflow
+   shortly after load. Sampling at a fixed delay raced it and failed on a
+   different frame size each run. Wait for the layout to stop moving instead:
+   two identical samples in a row, then measure. */
+addEventListener('load', () => {
+  const f = document.getElementById('f');
+  let last = null, stable = 0, waited = 0;
+  const probe = () => {
+    const d = f.contentDocument;
+    const legend = d && d.querySelector('.legend-row');
+    const svg = d && d.getElementById('treemap');
+    if (!legend || !svg) return null;
+    return Math.round(legend.getBoundingClientRect().bottom) + ':' +
+           Math.round(svg.getBoundingClientRect().height);
+  };
+  const tick = () => {
+    const now = probe();
+    stable = (now !== null && now === last) ? stable + 1 : 0;
+    last = now;
+    waited += 100;
+    if ((stable >= 2 && waited >= 300) || waited >= 5000) return measureNow();
+    setTimeout(tick, 100);
+  };
+  setTimeout(tick, 100);
+
+  function measureNow() {
   let out;
   try {
-    const f = document.getElementById('f');
     const d = f.contentDocument, w = f.contentWindow;
     const de = d.documentElement;
     const svg = d.getElementById('treemap');
@@ -58,7 +83,8 @@ addEventListener('load', () => setTimeout(() => {
     };
   } catch (e) { out = {error: String(e && e.stack || e)}; }
   console.log('__R__' + JSON.stringify(out));
-}, 400));
+  }
+});
 </script>"""
 
 

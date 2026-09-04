@@ -496,6 +496,15 @@
     // embedded height is measured: on release day the "awaiting publication"
     // note is visible at the default view, and sizing the chart first pushed
     // it 30px past the bottom of a fixed-height iframe.
+    /* Everything that frames the chart is written before the chart is
+       measured. Sizing first meant measuring chrome this same pass was about
+       to change: the notes and title sit above the chart, and the legend row
+       below it holds the legend beside the provenance stamp - empty they sit
+       on one 60px row, filled they wrap to two 100px rows. The embedded chart
+       took the 60 and overflowed a fixed-height iframe by 40px. A deferred
+       re-render papered over it only when it won the race, so the same frame
+       size passed and failed run to run. */
+    updateChrome(maxAbs);
     updateLagNote(rows);
     updateLevelNote(rows);
     // Dimming every tile because the query matched nothing just looks broken;
@@ -597,7 +606,6 @@
       svg.appendChild(g);
     }
 
-    updateChrome(maxAbs);
     postHeight();
   }
 
@@ -1108,9 +1116,26 @@
   /* Two hosts, two mechanisms. Opened as a local file, an anchor with
      [download] works. Published as an Artifact, the viewer sandbox blocks
      page-initiated downloads outright and the file must be handed over through
-     window.claude.downloads.save(), which asks the viewer to confirm. */
+     the downloads capability, which asks the viewer to confirm.
+
+     The capability is reached with claude.use("downloads"), never as a member
+     of window.claude - only use() is promised there, so reading the member
+     found undefined and silently fell through to the anchor path, which the
+     sandbox blocks. Resolution is kicked off once at boot because it settles
+     asynchronously (null after ~10s if no viewer answers) and is memoised, so
+     a click that lands early still waits for the real answer rather than
+     deciding there is no saver. */
+  const saverReady = (async () => {
+    try {
+      const use = window.claude && window.claude.use;
+      return typeof use === "function" ? await use.call(window.claude, "downloads") : null;
+    } catch (err) {
+      return null;
+    }
+  })();
+
   async function download(blob, filename, button) {
-    const saver = window.claude && window.claude.downloads;
+    const saver = await saverReady;
     if (saver) {
       try {
         await saver.save({ filename, data: blob });
