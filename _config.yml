@@ -1,0 +1,21 @@
+# GitHub Pages serves this repository from the root, so Jekyll was rendering
+# README.md as a public page at /NFP_Treemap/ titled "U.S. Employment Data
+# Treemap | NFP_Treemap" — the same string as the tool itself, with 2,016
+# crawlable words against the tool's 164, and a self-referential canonical
+# claiming to be the preferred URL. A developer README about Python build
+# commands was the likelier page to rank for a query about jobs data.
+#
+# Excluding it stops Pages serving that page. The README still renders on
+# github.com, which is the repo UI rather than Pages, so nothing is lost.
+# There is no robots.txt lever here: data4thepeople.github.io has no
+# organization Pages site, so /robots.txt 404s and per-page tags are all
+# that exist.
+exclude:
+  - README.md
+  - posts
+  - src
+  - tests
+  - tools
+  - data
+  - requirements.txt
+  - pyproject.toml

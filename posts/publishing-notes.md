@@ -213,29 +213,107 @@ goes.
 
 ---
 
-## 3. One decision before publishing
+## 3. Publishing on both sites: what the research settled
 
-There is an existing, ranking page for essentially this tool:
-[bancreek.com/p/us-employment-data-treemap](https://www.bancreek.com/p/us-employment-data-treemap),
-with an [explainer](https://www.bancreek.com/p/visualizing-nonfarm-payroll-data/),
-published April 2025. It is currently the only on-topic result ranking for
-"jobs report treemap," which is the best low-competition query in this space.
+The worry was that publishing this on both bancreek.com and data4thepeople.com
+would split the two against each other. Measured, it does not.
 
-Two similar tools under related authorship competing for the same thin results
-page splits the signal and helps neither. Worth deciding which of these happens
-before the new post goes live:
+**The two articles share nothing.** Stripped to lowercase alphanumerics and
+compared as eight-word shingles, the Bancreek explainer and this draft share
+**zero** sequences. Jaccard similarity 0.0000. This is not a syndication or
+duplicate-content case, so the canonical and noindex machinery aimed at
+near-copies does not apply. Google clusters duplicates; with no overlap the
+clustering never fires. Separate registered domains are also not merged by the
+2019 site-diversity change, so both pages can appear at once.
 
-1. **Redirect** the Bancreek pages to the new post. Cleanest, and it passes the
-   existing ranking signal to the new page.
-2. **Point the old page at the new one** with a prominent canonical link, if the
-   Bancreek pages need to stay up for their own reasons.
-3. **Differentiate deliberately**, keeping Bancreek's as the firm-branded
-   version and this as the public-interest one, accepting that they compete.
+**Why the Bancreek page ranks: because the results page is empty.** It is 280
+body words with a JavaScript-injected Tableau embed and no crawlable tool
+content. It does not lead even for its own exact title. Its co-results for
+"jobs report treemap" include a Go treemap library and a university course
+assignment. A results page reaching for a Go library to fill slots has no
+supply. That page is not the competition. Nothing is.
 
-What the new tool has that the old one does not: a selectable base month (the
-old one anchors everything to the latest month), anomaly scoring, CSV and PNG
-export, deep links, and an embeddable frame. That is the honest differentiator
-and it is worth leading with if you keep both.
+**Where each domain is stronger.** Bancreek is older (2021 vs 2025), has fifteen
+monthly nonfarm-payroll recap posts, and internally links to its treemap from
+five of them. Data 4 The People has more volume and cadence but **zero** existing
+payroll posts, and would launch with no internal links to this one. The one place
+Data 4 The People wins outright is external editorial coverage, which is real and
+specifically about the jobs report: two Excess Returns episodes, Monetary Matters,
+and others. Third-party mentions of bancreek.com are directory listings only.
+
+### The plan, in priority order
+
+1. **Publish here first and leave Bancreek untouched for two to four weeks.**
+   Let this page get crawled and ranked on its own merits before changing any
+   competing signal, so you can see whether it wins unaided.
+2. **Do not apply a cross-domain canonical or noindex to the Bancreek pages.**
+   At zero overlap a canonical would either be ignored or, if honored, delete a
+   page that can rank on its own.
+3. **Differentiate by intent, not by rewriting.** Bancreek is monthly market
+   commentary; this is the instrument and its methodology. One concrete edit:
+   drop "Interactive Treemap Visualization" from the Bancreek explainer's title
+   tag so the two stop bidding on the same string.
+4. **Fix the Bancreek structured data.** Both pages ship JSON-LD dates that
+   contradict their visible dates, and the tool page's schema image points at an
+   orphaned S3 asset. Free to fix and it benefits the client.
+5. **Link from Bancreek to here.** This is the highest-leverage item. Because
+   signals never consolidate across two domains on their own, an editorial link
+   is the only way this page inherits any of Bancreek's topical equity. Link
+   from both Bancreek pages and from the monthly recaps. Do not reciprocate
+   heavily.
+
+Then: internal links from the existing labor posts, the tool URL into the
+podcast show notes, and a `Sitemap:` line in robots.txt, which both sites are
+missing.
+
+**On redirecting the Bancreek page here.** A 301 is the strongest consolidation
+signal Google documents and it would hand this page the one URL with proven
+traction. It is not recommended, for three reasons: it is a client's asset and
+that is a business decision rather than a technical one; five of Bancreek's own
+posts link to it, so redirecting sends their readers off-site mid-funnel; and at
+zero duplication there is no conflict to resolve, so it would be donating an
+asset rather than consolidating one. If Bancreek's stake is winding down and you
+choose it anyway, the order matters: publish here, wait four weeks, confirm this
+page holds the position, then redirect. Never redirect into a page that has not
+proven it can hold.
+
+---
+
+## 4. The two GitHub Pages URLs
+
+**The tool stays indexable, with no canonical and no noindex.** The only
+controlled test of how Googlebot handles iframes found that a parent page can
+rank for content that exists only in the framed URL, and that a noindex on the
+framed URL removes that ability. Noindexing the tool would strip it from both
+posts. A canonical is equally wrong: a 164-word tool and a 3,854-word article
+are not equivalent pages, and Google ignores canonicals between non-equivalent
+URLs. The build now emits a meta description; the levers for canonical and
+robots exist in `config.py` and default to empty on purpose, with the reasoning
+recorded there.
+
+**The repository root was the real liability and is now fixed.** Pages was
+rendering README.md at `/NFP_Treemap/` under the title "U.S. Employment Data
+Treemap | NFP_Treemap" — the same string as the tool, with 2,016 crawlable words
+against the tool's 164, and a self-referential canonical asserting itself as
+preferred. If Google indexed both, the developer README about Python build
+commands was the likelier page to rank for a query about jobs data. The
+`_config.yml` now excludes it, so that URL stops being served. The README still
+renders on github.com, which is the repository UI rather than Pages.
+
+There is no robots.txt lever on that domain. `data4thepeople.github.io/robots.txt`
+returns GitHub's "Site not found" because no organization Pages site exists, so
+per-page tags and Jekyll exclusion are the only controls.
+
+**Worth doing when this post is live:** add a visible credit link in the tool's
+footer pointing back to the article. The link is worth more than the meta tag.
+
+---
+
+## 5. Unrelated but worth knowing
+
+`data4thepeople.com` is on a one-year registration expiring 2026-10-29. Domain
+expiry is not a confirmed ranking factor, but an eight-week runway is avoidable
+risk. Renew multi-year.
 
 ---
 
