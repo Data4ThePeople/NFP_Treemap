@@ -63,6 +63,21 @@ META_DESCRIPTION = (
     "from total nonfarm down to six-digit NAICS detail, with any base month "
     "and horizons from one month to twenty years."
 )
+# The article this tool belongs to. Rendered as a credit line in the footnotes,
+# which the embedded layout hides - so the link appears on the standalone hosted
+# page (where it is a real cross-domain link from a page we control) and not
+# inside the iframe on the article itself, where it would only link to itself.
+SOURCE_URL = os.environ.get(
+    "NFP_TREEMAP_SOURCE_URL",
+    "https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry",
+).strip()
+SOURCE_TITLE = os.environ.get(
+    "NFP_TREEMAP_SOURCE_TITLE", "Nonfarm Payrolls by Industry"
+).strip()
+SOURCE_PUBLISHER = os.environ.get(
+    "NFP_TREEMAP_SOURCE_PUBLISHER", "Data 4 The People"
+).strip()
+
 CANONICAL_URL = os.environ.get("NFP_TREEMAP_CANONICAL", "").strip()
 ROBOTS = os.environ.get("NFP_TREEMAP_ROBOTS", "").strip()
 

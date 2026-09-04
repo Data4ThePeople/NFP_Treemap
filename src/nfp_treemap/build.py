@@ -13,6 +13,9 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .config import (
     CANONICAL_URL,
+    SOURCE_PUBLISHER,
+    SOURCE_TITLE,
+    SOURCE_URL,
     META_DESCRIPTION,
     DIST_DIR,
     LOGO_DIR,
@@ -73,6 +76,9 @@ def render(output: Path | None = None, artifact: bool = False) -> Path:
         title=TITLE,
         canonical="" if artifact else CANONICAL_URL,
         description="" if artifact else META_DESCRIPTION,
+        source_url=SOURCE_URL,
+        source_title=SOURCE_TITLE,
+        source_publisher=SOURCE_PUBLISHER,
         robots="" if artifact else ROBOTS,
         css=(STATIC / "treemap.css").read_text(),
         js=(STATIC / "treemap.js").read_text(),

@@ -213,71 +213,85 @@ goes.
 
 ---
 
-## 3. Publishing on both sites: what the research settled
+## 3. Ranking ahead of the Bancreek version
 
-The worry was that publishing this on both bancreek.com and data4thepeople.com
-would split the two against each other. Measured, it does not.
+You have no stake in Bancreek and are not being paid to maintain their copy, so
+nothing here depends on their cooperation. This is what wins without it.
 
-**The two articles share nothing.** Stripped to lowercase alphanumerics and
-compared as eight-word shingles, the Bancreek explainer and this draft share
-**zero** sequences. Jaccard similarity 0.0000. This is not a syndication or
-duplicate-content case, so the canonical and noindex machinery aimed at
-near-copies does not apply. Google clusters duplicates; with no overlap the
-clustering never fires. Separate registered domains are also not merged by the
-2019 site-diversity change, so both pages can appear at once.
+### What you are actually up against
 
-**Why the Bancreek page ranks: because the results page is empty.** It is 280
-body words with a JavaScript-injected Tableau embed and no crawlable tool
-content. It does not lead even for its own exact title. Its co-results for
-"jobs report treemap" include a Go treemap library and a university course
-assignment. A results page reaching for a Go library to fill slots has no
-supply. That page is not the competition. Nothing is.
+Their two pages are not equally strong, and the weak one is not the problem.
 
-**Where each domain is stronger.** Bancreek is older (2021 vs 2025), has fifteen
-monthly nonfarm-payroll recap posts, and internally links to its treemap from
-five of them. Data 4 The People has more volume and cadence but **zero** existing
-payroll posts, and would launch with no internal links to this one. The one place
-Data 4 The People wins outright is external editorial coverage, which is real and
-specifically about the jobs report: two Excess Returns episodes, Monetary Matters,
-and others. Third-party mentions of bancreek.com are directory listings only.
+**The tool page** (`/p/us-employment-data-treemap`) is 280 body words wrapping a
+JavaScript-injected Tableau embed. None of the tool's content is crawlable. It
+ranks for exact and brandish phrases only, and it does not lead even for its own
+title. This one you beat on the first day.
+
+**The explainer** (`/p/visualizing-nonfarm-payroll-data`) is the real competitor:
+3,079 words with `Dataset` structured data, and it takes the descriptive queries
+that matter, the "nonfarm payrolls by industry interactive treemap" shape. It is
+a fair fight rather than a walkover.
+
+You win it on four things they no longer have.
+
+1. **A working, current tool.** Theirs is a Tableau embed of the older build.
+   Yours is the live tool, refreshed from the BLS API after every release.
+2. **Freshness.** They have let it go stale and are not paying to change that.
+   For a monthly-data query, a page that visibly updates each release and one
+   that does not diverge quickly.
+3. **Depth.** 3,854 words with methodology, a limitations section and twelve
+   FAQ answers written to stand alone, against 3,079 words of explainer.
+4. **Coverage they cannot match.** Their title is brandish and their explainer
+   is interpretation. Yours targets the tool-intent and question queries
+   directly, and carries `Dataset` markup pointing at a real CSV export.
 
 ### The plan, in priority order
 
-1. **Publish here first and leave Bancreek untouched for two to four weeks.**
-   Let this page get crawled and ranked on its own merits before changing any
-   competing signal, so you can see whether it wins unaided.
-2. **Do not apply a cross-domain canonical or noindex to the Bancreek pages.**
-   At zero overlap a canonical would either be ignored or, if honored, delete a
-   page that can rank on its own.
-3. **Differentiate by intent, not by rewriting.** Bancreek is monthly market
-   commentary; this is the instrument and its methodology. One concrete edit:
-   drop "Interactive Treemap Visualization" from the Bancreek explainer's title
-   tag so the two stop bidding on the same string.
-4. **Fix the Bancreek structured data.** Both pages ship JSON-LD dates that
-   contradict their visible dates, and the tool page's schema image points at an
-   orphaned S3 asset. Free to fix and it benefits the client.
-5. **Link from Bancreek to here.** This is the highest-leverage item. Because
-   signals never consolidate across two domains on their own, an editorial link
-   is the only way this page inherits any of Bancreek's topical equity. Link
-   from both Bancreek pages and from the monthly recaps. Do not reciprocate
-   heavily.
+1. **Publish, then get it indexed deliberately.** Submit the URL in Search
+   Console the day it goes live rather than waiting to be crawled. Add a
+   `Sitemap:` line to the Data 4 The People robots.txt, which is currently
+   missing one.
+2. **Internal links, which is your biggest controllable lever.** The site has
+   twelve labor-market posts and none of them link here yet, while Bancreek
+   links to its treemap from five of its monthly recaps. Add links from
+   `beyond-the-unemployment-rate`, `cps-intro-post`, `labor-force-history-viz`,
+   `the-us-manufacturing-job-renaissance` and `she-carried-the-jobs-recovery`,
+   and from every labor post from here on. Use the target phrasing as the anchor
+   text, not "click here".
+3. **The github.io credit link, now shipped.** The hosted tool carries a credit
+   line linking back to this article, and the embedded layout hides it, so the
+   link appears on the standalone page you control and not inside the iframe
+   where it would only link to itself. That is a real cross-domain link from a
+   page that will accumulate its own traffic.
+4. **External links, where you already have an advantage.** Third-party
+   editorial coverage of Data 4 The People exists and is specifically about the
+   jobs report, including two Excess Returns episodes and Monetary Matters.
+   Third-party mentions of bancreek.com are directory listings. Get the tool URL
+   into those show notes. On-topic, real, and the cheapest links available.
+5. **Keep publishing the monthly cadence.** Their copy goes staler every month
+   you refresh yours. That gap widens on its own.
 
-Then: internal links from the existing labor posts, the tool URL into the
-podcast show notes, and a `Sitemap:` line in robots.txt, which both sites are
-missing.
+### What not to do
 
-**On redirecting the Bancreek page here.** A 301 is the strongest consolidation
-signal Google documents and it would hand this page the one URL with proven
-traction. It is not recommended, for three reasons: it is a client's asset and
-that is a business decision rather than a technical one; five of Bancreek's own
-posts link to it, so redirecting sends their readers off-site mid-funnel; and at
-zero duplication there is no conflict to resolve, so it would be donating an
-asset rather than consolidating one. If Bancreek's stake is winding down and you
-choose it anyway, the order matters: publish here, wait four weeks, confirm this
-page holds the position, then redirect. Never redirect into a page that has not
-proven it can hold.
+**Do not canonical or noindex anything to resolve this.** The two articles share
+zero eight-word sequences, so there is no duplication for Google to cluster and
+nothing for a canonical to consolidate. Separate registered domains are also not
+merged by the results-diversity rule. Both pages can rank at once, and that is
+the normal outcome rather than a problem to fix.
 
----
+**Do not spend effort on their structured data or their stale dates.** Their
+JSON-LD dates contradict their visible dates and their schema image is orphaned.
+Not your responsibility, and fixing it would only help a page you are trying to
+outrank.
+
+**Do not link to them.** Nothing in this post references Bancreek, and it should
+stay that way. A link from you to them moves signal in exactly the wrong
+direction.
+
+The reassuring part: for the tool-intent queries the results page is close to
+empty, with a Go treemap library and a university course assignment filling
+slots. You are not fighting for a contested position. You are the only person
+who has built the thing.
 
 ## 4. The two GitHub Pages URLs
 
