@@ -11,7 +11,15 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from .config import DIST_DIR, LOGO_DIR, LOGO_SUFFIXES, ROOT
+from .config import (
+    CANONICAL_URL,
+    META_DESCRIPTION,
+    DIST_DIR,
+    LOGO_DIR,
+    LOGO_SUFFIXES,
+    ROBOTS,
+    ROOT,
+)
 from .transform import build_payload
 
 TITLE = "U.S. Employment Data Treemap"
@@ -63,6 +71,9 @@ def render(output: Path | None = None, artifact: bool = False) -> Path:
     )
     html = template.render(
         title=TITLE,
+        canonical="" if artifact else CANONICAL_URL,
+        description="" if artifact else META_DESCRIPTION,
+        robots="" if artifact else ROBOTS,
         css=(STATIC / "treemap.css").read_text(),
         js=(STATIC / "treemap.js").read_text(),
         export_note=ARTIFACT_EXPORT_NOTE if artifact else "",

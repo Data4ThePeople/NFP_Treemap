@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ title }}</title>
-<style>{{ css }}</style>
+<meta name="description" content="{{ description }}">
+{% if robots %}<meta name="robots" content="{{ robots }}">
+{% endif %}{% if canonical %}<link rel="canonical" href="{{ canonical }}">
+{% endif %}<style>{{ css }}</style>
 </head>
 <body>
 {% include "_body.html.j2" %}

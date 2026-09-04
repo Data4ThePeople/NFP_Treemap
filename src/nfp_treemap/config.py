@@ -43,6 +43,29 @@ DAILY_REQUEST_LIMIT = 500
 
 CES_HISTORY_START = 1939  # supersectors reach back this far; most detail starts 1990
 
+# --- Hosted page metadata --------------------------------------------------
+# The build is served from GitHub Pages and embedded in articles on more than
+# one site. Both levers below default to EMPTY deliberately.
+#
+# Do not set ROBOTS to noindex. The only controlled test of how Googlebot
+# treats iframes (Grimm, 2022) found that a parent page can rank for content
+# that exists only in the framed URL, and that a noindex on the framed URL
+# removes that ability. Noindexing this file would strip the tool's content
+# from every article that embeds it.
+#
+# Do not set CANONICAL_URL to an embedding article either. A 164-word tool and
+# a 3,800-word article are not equivalent pages, and Google ignores canonicals
+# between URLs that are not equivalent. The levers exist for a future
+# consolidation, not for this one.
+META_DESCRIPTION = (
+    "Free interactive treemap of US nonfarm payroll employment by industry. "
+    "Every industry the BLS Current Employment Statistics survey publishes, "
+    "from total nonfarm down to six-digit NAICS detail, with any base month "
+    "and horizons from one month to twenty years."
+)
+CANONICAL_URL = os.environ.get("NFP_TREEMAP_CANONICAL", "").strip()
+ROBOTS = os.environ.get("NFP_TREEMAP_ROBOTS", "").strip()
+
 # Where a brand logo is picked up from, if present. Embedded as a data URI at
 # build time, since the published page may not fetch external assets.
 LOGO_DIR = ROOT / "logo"
