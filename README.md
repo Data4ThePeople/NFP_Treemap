@@ -1,4 +1,4 @@
-# Bancreek U.S. Employment Data Treemap
+# U.S. Employment Data Treemap
 
 A self-contained HTML treemap of BLS Current Employment Statistics: one tile per
 industry, **area = absolute change in employees**, **colour = signed change**,
@@ -140,7 +140,7 @@ sized to whatever height is left so a fixed-height iframe does not scroll.
 
 ```html
 <iframe src="…/index.html" width="100%" height="620" style="border:0"
-        title="Bancreek U.S. Employment Data Treemap"></iframe>
+        title="U.S. Employment Data Treemap"></iframe>
 ```
 
 ### Prismic (Data 4 The People)
@@ -227,8 +227,8 @@ independently seasonally adjusted and stored to one decimal).
 
 ## Branding
 
-Drop an image in `logo/` and rebuild — the first `.svg/.png/.jpg/.webp` found
-is inlined as a data URI (the published page cannot fetch external assets).
+`logo/` is empty, so the page ships unbranded. Drop an image in it and
+rebuild — the first `.svg/.png/.jpg/.webp` found is inlined as a data URI (the published page cannot fetch external assets).
 It renders in the masthead standalone and moves to the footer when embedded,
 where the masthead is hidden but the branding should still travel. It is a
 single element relocated by JS, not two copies: duplicating it would inline the

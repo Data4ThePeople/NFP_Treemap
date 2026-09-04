@@ -14,7 +14,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from .config import DIST_DIR, LOGO_DIR, LOGO_SUFFIXES, ROOT
 from .transform import build_payload
 
-TITLE = "Bancreek U.S. Employment Data Treemap"
+TITLE = "U.S. Employment Data Treemap"
 TEMPLATES = Path(__file__).parent / "templates"
 STATIC = Path(__file__).parent / "static"
 

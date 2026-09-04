@@ -3,7 +3,7 @@
   <header class="masthead">
     {# One element, relocated by JS when embedded. Duplicating it would inline
        the whole data URI twice and add ~140KB to the page for nothing. #}
-    {% if logo %}<img class="brand" id="brand" src="{{ logo }}" alt="Bancreek Capital Advisors">{% endif %}
+    {% if logo %}<img class="brand" id="brand" src="{{ logo }}" alt="{{ title }}">{% endif %}
     <div class="masthead-text">
       <h1>{{ title }}</h1>
       <p>Employment change by industry, from the BLS Current Employment Statistics survey</p>
