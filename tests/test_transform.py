@@ -60,17 +60,9 @@ class TestPayload:
             )
             assert decoded == pytest.approx(expected, abs=0.05)
 
-    def test_default_base_avoids_the_detail_publication_lag(self, payload):
-        """The newest month only carries the aggregates, so it is a bad default."""
-        default_idx = payload["periodLabels"].index(payload["defaultBase"])
-        default_idx += payload["periodStart"]
-        covered = sum(
-            1
-            for i in payload["industries"]
-            if i["s"] <= default_idx < i["s"] + len(i["d"])
-        )
-        assert covered >= 0.95 * len(payload["industries"])
-        assert payload["defaultBase"] != payload["periodLabels"][-1]
+    def test_default_base_is_the_newest_month(self, payload):
+        """Open on the latest release; the page flags the detail that lags it."""
+        assert payload["defaultBase"] == payload["periodLabels"][-1]
 
     def test_every_industry_carries_hierarchy_and_naics_fields(self, payload):
         for item in payload["industries"]:
