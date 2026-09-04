@@ -5,26 +5,23 @@ before this goes live.
 
 ---
 
-## 1. The iframe, for the empty `html_embed` slice
+## 1. The embed
 
-The post contains `::: embed 780px`, which the importer turns into an empty
-`html_embed` slice at the right place in the document. Paste this into it.
+The iframe is in the Markdown now, so the importer fills the `html_embed` slice
+rather than leaving it empty. Nothing to paste.
 
 ```html
-<iframe
-    src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html"
+<iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html"
     title="Interactive treemap of US nonfarm payroll employment change by industry"
-    width="100%"
-    height="780"
-    style="border:0"
-    loading="lazy"></iframe>
+    width="100%" height="780" style="border:0" loading="lazy"></iframe>
 ```
 
-Matches the house pattern used on the fertility, CPS and SNAP posts: `100%`
-width, fixed pixel height, `border:0`, `loading="lazy"`, descriptive `title`.
-
-**The `src` is live.** GitHub Pages is enabled on `main` and the URL returns the
-1.85 MB build.
+It matches the house pattern used on the fertility, CPS and SNAP posts: full
+width, a fixed pixel height, no border, lazy loading, and a descriptive title.
+The slice comes out as the `fullWidth` variation with `embed_height` of 780px,
+taken from the iframe's own height attribute. The converter used to hardcode
+760px there regardless, which would have sized the slice twenty pixels short of
+the frame it wraps.
 
 **Verified against the live URL at 879 x 780**, the real Prismic column width:
 the page detects the frame, drops the masthead, renders in light, and everything
@@ -32,8 +29,9 @@ through the provenance line sits above the bottom edge with margin to spare. No
 scrolling, no clipping. 640, 1200 and 1300 also fit. Below 560 the chart holds a
 readability floor and the frame scrolls instead.
 
-To open the embed on a specific view, append a fragment:
-`...#lvl=4&h=1yr&drill=65620000`.
+To open the embed on a specific view, append a fragment to the `src`:
+`#lvl=4&h=1yr` starts at the finer breakdown over one year, `#drill=65620000`
+opens inside health care and social assistance.
 
 ---
 
