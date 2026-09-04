@@ -440,10 +440,13 @@ def test_full_history_stays_selectable():
     assert result["n"] > 1000
 
 
-def test_logo_is_inlined_exactly_once():
-    """Duplicating the element would inline the whole data URI twice."""
+def test_logo_is_inlined_at_most_once():
+    """Optional branding: absent by default, and never inlined twice.
+
+    Duplicating the element would inline the whole data URI a second time, so
+    the single element is relocated by JS rather than copied.
+    """
     html = PAGE.read_text()
-    assert html.count("data:image/jpeg;base64,") == 1
     result = run_js(
         """
         const b = document.querySelectorAll('.brand');
@@ -451,7 +454,12 @@ def test_logo_is_inlined_exactly_once():
                alt: b[0] ? b[0].alt : null};
         """
     )
+    if result["count"] == 0:
+        assert "data:image/" not in html
+        return
     assert result["count"] == 1
+    assert sum(html.count(f"data:image/{k};base64,") for k in
+               ("jpeg", "png", "webp", "svg+xml")) == 1
     assert result["inMasthead"] is True
     assert result["alt"]
 

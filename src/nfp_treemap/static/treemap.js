@@ -1,4 +1,4 @@
-/* Bancreek U.S. Employment Data Treemap.
+/* U.S. Employment Data Treemap.
    PAYLOAD is injected by build.py as a global before this script runs. */
 (() => {
   "use strict";
