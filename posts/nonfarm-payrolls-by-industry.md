@@ -14,8 +14,7 @@ spatial: United States
 measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
 hero: charts/hero-treemap-august-2026.png
-meta_image: charts/social-card.png
-meta_image_alt: Treemap of US nonfarm payroll employment change by industry, each industry sized by the number of jobs it added or lost in the month.
+hero_alt: Treemap of US nonfarm payroll employment change by industry, each industry sized by the number of jobs it added or lost in the month and coloured blue for gains and red for losses.
 ---
 
 # Nonfarm Payrolls by Industry: Free Interactive Treemap

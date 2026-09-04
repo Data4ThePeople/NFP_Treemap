@@ -53,11 +53,16 @@ anywhere in `prismic_slices.py`. The first paragraph converts to an ordinary
 converter the slice. This affects every post published with this tool, not just
 this one.
 
-**The covers are set during the real run, not the dry run.** `featured_image`
-and `meta_image` need uploaded asset ids, so they are absent from the dry-run
-JSON by design. The front matter names `hero: charts/hero-treemap-august-2026.png`
-and `meta_image: charts/social-card.png`, and both files exist. The social card
-is not one of the body figures, so it carries its own `meta_image_alt`.
+**The covers both come from `hero`, and `meta_image` is ignored.** This version
+of the converter sets `featured_image` and `meta_image` from the same `hero`
+image, and reads its alt text from `hero_alt` only. A separate `meta_image:` key
+in the front matter does nothing and its file is never uploaded, which is why
+the first import sent the hero out with empty alt text. The front matter now
+carries `hero_alt`, and both cover fields resolve with it.
+
+`charts/social-card.png` is therefore unused. It is kept in the repo because a
+hero drawn for the page is usually the wrong shape for a link preview; set it as
+`meta_image` by hand in Prismic if you want the wider crop on social cards.
 
 ---
 
