@@ -23,14 +23,14 @@ The post contains `::: embed 780px`, which the importer turns into an empty
 Matches the house pattern used on the fertility, CPS and SNAP posts: `100%`
 width, fixed pixel height, `border:0`, `loading="lazy"`, descriptive `title`.
 
-**The `src` is not live yet.** GitHub Pages is not enabled on the repository —
-`gh api repos/Data4ThePeople/NFP_Treemap/pages` returns 404. Enable Pages on the
-`main` branch from the repository root and that URL serves the tracked
-`dist/index.html` unchanged. Nothing else needs to move.
+**The `src` is live.** GitHub Pages is enabled on `main` and the URL returns the
+1.85 MB build.
 
-Verified frame heights for the 879px Prismic column: 640, 780, 1200 and 1300 all
-fit without the frame scrolling. Below 560 the chart holds a readability floor
-and the frame scrolls instead.
+**Verified against the live URL at 879 x 780**, the real Prismic column width:
+the page detects the frame, drops the masthead, renders in light, and everything
+through the provenance line sits above the bottom edge with margin to spare. No
+scrolling, no clipping. 640, 1200 and 1300 also fit. Below 560 the chart holds a
+readability floor and the frame scrolls instead.
 
 To open the embed on a specific view, append a fragment:
 `...#lvl=4&h=1yr&drill=65620000`.
