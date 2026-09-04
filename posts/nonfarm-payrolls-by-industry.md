@@ -13,8 +13,8 @@ temporal: 1939-01/..
 spatial: United States
 measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
-hero: charts/hero-treemap-august-2026.png
-hero_alt: Treemap of US nonfarm payroll employment change by industry, each industry sized by the number of jobs it added or lost in the month and coloured blue for gains and red for losses.
+hero: charts/hero-treemap-level5-july.png
+hero_alt: Treemap of US payroll employment change across 249 industries in July 2026, each industry sized by the number of jobs it added or lost and coloured blue for gains and red for losses. Restaurants and other eating places is the largest tile, down 80,800 jobs.
 ---
 
 # Nonfarm Payrolls by Industry: Free Interactive Treemap
