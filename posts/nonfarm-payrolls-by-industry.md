@@ -44,10 +44,9 @@ worth a second look are not unprecedented.
 Each tier is a **rarity test with a magnitude guard**, and the rarity test is the one
 that defines it.
 
-| | rarity: share of the industry's own history at least this far from its median | magnitude: robust standard deviations | how often it fires |
-|---|---|---|---|
-| **Unusual** | top 10% | 2 | about a month a year, per industry |
-| **Anomaly** | top 1% | 3 | about once a decade, per industry |
+**Unusual** is the lighter mark. The change sits in the most extreme 10% of that industry's own comparable changes, and clears two robust standard deviations. For any given industry that is roughly one month a year.
+
+**Anomaly** is the heavier one. The most extreme 1%, and three robust standard deviations. Roughly one month a decade.
 
 The tiers nest, so nothing is an anomaly without also being unusual.
 
