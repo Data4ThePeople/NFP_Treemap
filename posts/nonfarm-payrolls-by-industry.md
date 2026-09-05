@@ -14,7 +14,7 @@ spatial: United States
 measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
 hero: charts/anomaly-tooltip.png
-hero_alt: The treemap with an industry tooltip open on local government education, showing an increase of 41,900 jobs scored as unusual at a robust z of 2.95 and the 96th percentile of comparable monthly changes over twenty years, above a sparkline of the industry's history since 1955.
+hero_alt: The treemap with a tooltip open on computing infrastructure and data processing, which lost 7,700 jobs in a month. The tooltip reports a robust z of -5.53 at the 0th percentile and flags it as inside the most extreme 1% of that industry's own history. The tile itself is marked with a diagonal hatch.
 ---
 
 # Nonfarm Payrolls by Industry: Anomaly Detector
@@ -30,9 +30,25 @@ Hover any industry and the tool answers the question the number leaves open.
 ![The treemap with a tooltip open on local government education, showing an increase of 41,900 jobs scored as unusual at a robust z of 2.95 and the 96th percentile of twenty years of comparable monthly changes, above a sparkline of the industry's history since 1955.](charts/anomaly-tooltip.png)
 *Local government education added 41,900 jobs in a month. The score puts that above 96% of comparable monthly changes in the last twenty years, measured against 212 windows with the pandemic excluded.*
 
-Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly: this is bigger than 96% of comparable changes. Underneath, the sparkline shows the whole series since 1955 with recessions shaded, so you can see the shape the number came out of.
+Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly. Underneath, the sparkline shows the whole series with recessions shaded, so you can see the shape the number came out of.
 
-Run that across every industry at once and the reading changes. The biggest tiles are not always the interesting ones. A large industry moving within its normal range is noise dressed as news, and a small industry breaking its own record is a story that the headline will never surface.
+Run that across every industry at once and the reading changes. The biggest tiles are not always the interesting ones. A large industry moving within its normal range is noise dressed as news, and a small industry breaking its own record is a story the headline will never surface.
+
+**You do not have to hover to find them.** Where a change clears the bar set out below, the tile itself is marked with a diagonal hatch, so the flagged industries are visible the moment the chart draws. The marker is deliberately rare. Across every month from 2013 to 2026 it lands on about one industry per view at display level 4 and two or three at level 5, and never more than ten. If a third of the screen were hatched it would be decoration rather than information.
+
+## What counts as an anomaly
+
+A change is flagged when it passes two independent tests at the same time.
+
+**It is rare in that industry's own record.** At most 1% of the industry's comparable changes sit at least as far from its median as this one does. This is a rank, not a curve: we count how many of its own months were this extreme. That matters because payroll changes are heavy-tailed. Measured across 2013 to 2026, a robust z of 3 or more shows up roughly ten times as often as a normal distribution predicts, so any p-value read off a bell curve would badly overstate how surprising a move is. Counting cannot make that mistake. The measure also has a floor of one over the sample size, so it never claims more precision than the history actually supports.
+
+**It is large on the industry's own scale.** The robust z-score, built from the median and the median absolute deviation, must reach 3. This is the guard against the first test alone. An industry whose history barely moves sets a record every time it twitches, and the rarest 1% of a flat series is still a trivial change.
+
+Both have to hold, and neither is redundant. Rarity alone would flag the flat industries. Magnitude alone fires on ordinary months in volatile ones.
+
+Underneath both sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history instead of a score.
+
+One thing the flag is not is a hypothesis test. With 241 industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why these two are set where they are and why the rate was checked against thirteen years of real months rather than assumed. Treat a hatched tile as a place to look, not as a finding.
 
 ## Why this matters more now
 
@@ -172,6 +188,10 @@ An anomaly score is not a verdict. It says a move is large relative to the indus
 ### How do you know if a jobs number is unusual?
 
 Compare it against the same industry's own history of changes over the same length of time, rather than against other industries or against a single headline figure. This tool does that automatically, reporting a robust z-score, a percentile rank and a plain-language label for every industry it shows. A change of 8,000 jobs is enormous for an industry that normally moves by a few hundred and unremarkable for one that routinely swings by tens of thousands, and only the industry's own record can tell the two apart.
+
+### What does the hatched tile mean?
+
+The diagonal hatch marks an industry whose change is flagged as an anomaly, so you can see them without hovering over every tile. A change earns it by passing two tests at once: at most 1% of that industry's own comparable changes sit as far from its median, and its robust z-score reaches 3. Both are required, because rarity alone would flag industries whose history barely moves, and magnitude alone fires too often on heavy-tailed data. A separate hatch, in grey and leaning the other way, means no data was published rather than an anomaly.
 
 ### What does the anomaly score mean?
 

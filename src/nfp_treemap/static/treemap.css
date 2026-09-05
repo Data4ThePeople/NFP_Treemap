@@ -190,7 +190,11 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 .legend .cap { font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; }
 .legend .bar { height: 14px; border-radius: 3px; border: 1px solid var(--border); }
 .legend .ends { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 3px; }
-.legend .nodatakey { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-top: 7px; }
+/* Both keys share one row wherever there is width for them. Stacking them
+   added a line to the legend, and the embedded chart is sized from the space
+   the legend leaves, so it cost the chart 18px in every fixed-height frame. */
+.legend .keys { display: flex; flex-wrap: wrap; gap: 2px 16px; margin-top: 7px; }
+.legend .nodatakey { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
 .legend .nodatakey .swatch {
   width: 22px; height: 12px; border: 1px solid var(--border); border-radius: 2px;
   background-color: var(--nodata);
@@ -288,3 +292,21 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
    so the embedded layout hides it along with the other footnotes. */
 .credit a { color: var(--focus); }
 .credit a:hover { text-decoration: none; }
+
+
+/* --- anomaly marker ------------------------------------------------------ */
+/* The dot on a flagged tile takes the label's ink so it contrasts with
+   whatever the tile is filled with; these are the legend and tooltip echoes of
+   it, which sit on the page background instead and can use a fixed colour. */
+.legend .anomkey .dot,
+#tip .flagged .dot {
+  width: 14px; height: 11px; display: inline-block; flex: none;
+  border: 1px solid var(--border); border-radius: 2px;
+  background-color: var(--gain-2, #cfe0f7);
+  background-image: repeating-linear-gradient(
+    45deg, var(--text-primary) 0 1.5px, transparent 1.5px 6px);
+}
+#tip .flagged {
+  margin-top: 6px; display: flex; align-items: baseline; gap: 6px;
+  font-weight: 600; color: var(--text-primary);
+}

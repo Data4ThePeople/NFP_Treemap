@@ -69,6 +69,7 @@ addEventListener('load', () => {
       frameHeight: %(h)d,
       embed: de.classList.contains('embed'),
       theme: de.dataset.theme || null,
+      prefersDark: w.matchMedia('(prefers-color-scheme: dark)').matches,
       bodyBg: w.getComputedStyle(d.body).backgroundColor,
       level: d.getElementById('level').value,
       tiles: d.querySelectorAll('.tile').length,
@@ -260,4 +261,9 @@ def test_embedded_defaults_to_light_and_can_still_be_pinned():
     assert light["theme"] == "light"
     # The pin must actually repaint, not just set an attribute.
     assert dark["bodyBg"] != light["bodyBg"]
-    assert standalone["bodyBg"] == light["bodyBg"]   # harness runs in light mode
+    # Standalone follows the viewer's OS setting, so what it should equal
+    # depends on the machine running the suite. Asserting light here made the
+    # test a coin flip on a Mac in dark mode; ask the browser what it prefers
+    # and assert the page agreed with it.
+    expected = dark["bodyBg"] if standalone["prefersDark"] else light["bodyBg"]
+    assert standalone["bodyBg"] == expected
