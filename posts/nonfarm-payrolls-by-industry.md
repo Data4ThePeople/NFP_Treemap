@@ -19,7 +19,7 @@ hero_alt: The treemap with a tooltip open on computing infrastructure and data p
 
 # Nonfarm Payrolls by Industry: Anomaly Detector
 
-A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. That gap matters more every year, because the monthly print gets revised twice before it settles and the revisions are not small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
+A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. The monthly print is also revised twice before it settles, and the revisions are not always small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
 
 <iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="Interactive treemap of US nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
 
@@ -32,9 +32,27 @@ Hover any industry and the tool answers the question the number leaves open.
 
 Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly. Underneath, the sparkline shows the whole series with recessions shaded, so you can see the shape the number came out of.
 
-Run that across every industry at once and the reading changes. The biggest tiles are not always the interesting ones. A large industry moving within its normal range is noise dressed as news, and a small industry breaking its own record is a story the headline will never surface.
+Run that across every industry at once and the biggest tiles stop being the only ones worth reading. A large industry moving inside its normal range may matter less than a small one setting a record, and tile size alone will not separate them.
 
 **You do not have to hover to find them.** Marked industries carry a diagonal hatch on the tile itself, so they are visible the moment the chart draws. There are two strengths of mark: a light hatch for a month that is unusual for that industry, and a heavier one for a change with almost no precedent in its record. Across 2013 to 2026 the light mark lands on about 8% of the industries on screen and the heavy one on about 1%.
+
+## Why revisions make this worth doing
+
+The payroll survey revises. Every release restates the two preceding months as
+more responses arrive, and each annual benchmark can restate up to five years of
+seasonally adjusted history. The changes are not always small: one food services
+month in this data read −32,900 when we first captured it and −12,100 in the next
+vintage, a swing of more than 20,000 jobs on a single series.
+
+So a first print is a provisional reading, and a single month is weaker evidence
+than it looks. Scoring a move against twenty years of the same industry's
+behaviour holds up better. A change that is unremarkable for an industry stays
+unremarkable whichever way the revision lands, and a change at the far end of two
+decades is worth a look even if the exact figure moves.
+
+The score also reports when it cannot judge. Where an industry has too little
+independent history for the horizon you picked, it says so rather than producing
+a number.
 
 ## What counts as unusual, and what counts as an anomaly
 
@@ -77,9 +95,9 @@ Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Eve
 
 The monthly payroll figure is an aggregate of an economy that is not moving in one direction. In a typical month some industries hire hard while others shed staff, and the headline is the arithmetic left over. Two months with an identical total can be completely different events underneath.
 
-We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey. It is the kind of thing that is invisible in the headline and obvious the moment you can see every industry side by side.
+We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey, and it is easier to see with every industry side by side than in the monthly total.
 
-The detail has always been public. Reaching it was the problem. It exists as hundreds of separate time series behind a query interface built for people who already know the series identifier they want, and nothing in that interface tells you whether a number is normal.
+The detail is public. It is published as hundreds of separate time series, retrieved by series identifier, which suits someone who already knows which series they want and is harder going if you are looking for what moved.
 
 ## What you can do with it
 
@@ -122,13 +140,13 @@ Four things fix it.
 
 **The z-score is robust**, built on the median and the median absolute deviation rather than the mean and standard deviation, which a handful of pandemic-scale outliers otherwise dominate. Mean and standard deviation had food services sitting at a "typical" −0.81 while it was at the 5th percentile of its own history.
 
-The same episode produced a wording bug worth mentioning, because it shows how easily a score misleads. Rank direction is not the sign of the change, and a gain of 2.81 million was being described as a larger drop than 100% of comparable windows. The tooltip now states the value and where it ranks, and never calls a gain a drop.
+The same episode produced a wording bug worth mentioning. Rank direction is not the sign of the change, and a gain of 2.81 million was being described as a larger drop than 100% of comparable windows. The tooltip now states the value and where it ranks, and never calls a gain a drop.
 
 ### The industry hierarchy is derived from the codes, not read off the file
 
-This is the part that looks solved and is not. The obvious rule is that an industry's parent is the nearest preceding row with a smaller display level. It reports zero orphans, which is exactly what makes it dangerous. It is quietly wrong.
+The obvious rule is that an industry's parent is the nearest preceding row with a smaller display level. It reports zero orphans, which is what makes it easy to trust, and it is wrong.
 
-CES interleaves its residential and nonresidential part-splits at the same level as the total those parts split. Under the obvious rule, all fifty-two specialty trade contractor rows attach to nonresidential specialty trade contractors instead of to specialty trade contractors. Every one of them lands under the wrong parent and nothing complains.
+CES interleaves its residential and nonresidential part-splits at the same level as the total those parts split. Under the obvious rule, all fifty-two specialty trade contractor rows attach to nonresidential specialty trade contractors instead of to specialty trade contractors. Every one of them lands under the wrong parent, with no error to signal it.
 
 So we derive parents from the industry code instead, walking trailing digits off until a published ancestor appears. The aggregates above the supersectors get an explicit map, because their relationships are encoded nowhere and are not a tree. Total nonfarm is total private plus government, and also goods-producing plus service-providing, while private service-providing sits inside both total private and service-providing. That shape is a lattice. We state it rather than infer it.
 
@@ -169,9 +187,9 @@ It also separates the two reasons a tile can be empty, because blaming the wrong
 
 ### It is a single file
 
-The whole visualization is one self-contained HTML file. No server, no external requests, no build step when it loads. The browser receives raw monthly levels only and computes every change, percentage and anomaly score on demand, because precomputing them was never viable: every combination of base period, horizon and display level would dwarf the underlying data and still would not cover click-to-drill. The levels ship delta-encoded, which roughly halves the payload.
+The whole visualization is one self-contained HTML file. No server, no external requests, no build step when it loads. The browser receives raw monthly levels only and computes every change, percentage and anomaly score on demand, because precomputing them was not practical: every combination of base period, horizon and display level would dwarf the underlying data and still would not cover click-to-drill. The levels ship delta-encoded, which roughly halves the payload.
 
-That is why the chart can be embedded anywhere, exported, and read offline.
+That is what makes the chart straightforward to embed, export and read offline.
 
 ## What this data cannot tell you
 
