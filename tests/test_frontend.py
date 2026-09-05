@@ -535,3 +535,68 @@ def test_nothing_rescales_tile_values_to_match_the_parent():
     assert result["matches"] is True, "tile labels must show the raw reported change"
     # The children genuinely do not sum to the parent, and that is left alone.
     assert abs(result["sum"] - result["parent"]) > 0.01, result
+
+
+def test_anomaly_flag_needs_both_rarity_and_magnitude():
+    """The marker is a stronger claim than the score, so it takes two tests.
+
+    Rarity alone would flag any record set by an industry whose history is
+    nearly flat; magnitude alone fires far too often, because monthly payroll
+    changes are heavy-tailed and |z| >= 3 is roughly ten times more common here
+    than a normal distribution predicts.
+    """
+    result = run_js(
+        """
+        const t = window.__treemap;
+        const idx = t.labelToIdx.get('2026-08');
+        const s = t.anomaly(t.byCode.get('50518000'), idx, 1, 'abs');
+        // every level-4 industry, to check each condition is load-bearing
+        let zOnly = 0, pOnly = 0, both = 0, scored = 0;
+        for (const it of t.byCode.values()) {
+          if (it.l !== 4) continue;
+          const a = t.anomaly(it, idx, 1, 'abs');
+          if (!a || a.z === undefined) continue;
+          scored++;
+          const z = Math.abs(a.z) >= 3, p = a.p <= 0.01;
+          if (z && !p) zOnly++;
+          if (p && !z) pOnly++;
+          if (a.anomalous) both++;
+        }
+        out = {flagged: s.anomalous, z: s.z, p: s.p, label: s.label,
+               scored, zOnly, pOnly, both};
+        """
+    )
+    # The example the post uses: an extreme drop that clears both bars.
+    assert result["flagged"] is True
+    assert result["z"] < -3
+    assert result["p"] <= 0.01
+
+    # Both conditions must actually bind, or one of them is decoration.
+    assert result["zOnly"] > 0, "magnitude alone never over-fires: rarity is doing nothing"
+    assert result["both"] < result["scored"] * 0.1, "flagging a tenth of the view is noise"
+
+
+def test_flagged_tiles_carry_the_hatch_and_say_so_to_a_screen_reader():
+    result = run_js(
+        """
+        const t = window.__treemap;
+        t.state.base = '2026-08'; t.state.level = 4; t.state.drill = null;
+        t.state.horizon = '1mo'; t.render();
+        const tiles = [...document.querySelectorAll('.tile')];
+        const marked = tiles.filter(n => n.querySelector('.anomhatch'));
+        const flaggedByScore = tiles.filter(n => {
+          const it = t.byCode.get(n.dataset.code);
+          const s = t.anomaly(it, t.labelToIdx.get('2026-08'), 1, 'abs');
+          return !!(s && s.anomalous);
+        });
+        out = {tiles: tiles.length, marked: marked.length,
+               expected: flaggedByScore.length,
+               labelled: marked.every(n => /flagged as an anomaly/i.test(n.getAttribute('aria-label'))),
+               patternDefined: !!document.querySelector('#anom-hatch-dark'),
+               distinctFromNodata: !!document.querySelector('#nodata-hatch')};
+        """
+    )
+    assert result["marked"] == result["expected"] > 0
+    # The hatch is visual only, so the accessible name has to carry it too.
+    assert result["labelled"] is True
+    assert result["patternDefined"] and result["distinctFromNodata"]

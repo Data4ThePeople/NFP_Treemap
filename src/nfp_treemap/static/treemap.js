@@ -146,8 +146,27 @@
     const pct = (below / sorted.length) * 100;
     const a = Math.abs(z);
     const label = a < 1 ? "typical" : a < 2 ? "notable" : a < 3 ? "unusual" : "extreme";
+
+    /* Two tests have to agree before a change is called an anomaly, because
+       each one alone fails in a way the other catches.
+
+       RARITY is rank-based and distribution free: what share of this
+       industry's own history sits at least this far from its median? Monthly
+       payroll changes are heavy-tailed - |z| >= 3 fires about ten times more
+       often than a normal distribution predicts - so a p-value read off a
+       normal curve would be badly wrong. Counting is not. `samples` already
+       contains the current window, so p has a floor of 1/n and cannot claim
+       more resolution than the sample has.
+
+       MAGNITUDE guards the other direction. An industry whose history is
+       nearly flat sets a record every time it twitches; without a scale test
+       the rarest 1% of a flat series is still a trivial move. */
+    const dev = Math.abs(current - med);
+    const asFar = samples.filter((v) => Math.abs(v - med) >= dev).length;
+    const p = asFar / samples.length;
+    const anomalous = p <= ANOM.flagP && a >= ANOM.flagZ;
     return {
-      current, median: med, mad, z, pct, label,
+      current, median: med, mad, z, pct, label, p, anomalous,
       n: samples.length, independent, lookback, spanMonths,
     };
   }
@@ -193,12 +212,24 @@
   function ensureHatch() {
     if (svg.querySelector("#nodata-hatch")) return;
     const defs = document.createElementNS(SVG_NS, "defs");
+    /* Two hatches with different jobs, so they have to be told apart at a
+       glance. No-data fills the whole tile over a flat grey and leans right.
+       The anomaly hatch leans LEFT, is finer and more widely spaced, and lays
+       over the tile's own colour rather than replacing it - so a flagged tile
+       still reads as blue or red at its proper intensity. Two ink variants,
+       because the line has to contrast with whatever it covers. */
     defs.innerHTML =
       `<pattern id="nodata-hatch" patternUnits="userSpaceOnUse" width="6" height="6" ` +
       `patternTransform="rotate(45)">` +
       `<rect width="6" height="6" fill="${cssVar("--nodata")}"/>` +
       `<line x1="0" y1="0" x2="0" y2="6" stroke="${cssVar("--muted")}" stroke-width="2"/>` +
-      `</pattern>`;
+      `</pattern>` +
+      ["dark", "light"].map((k) =>
+        `<pattern id="anom-hatch-${k}" patternUnits="userSpaceOnUse" width="7" height="7" ` +
+        `patternTransform="rotate(-45)">` +
+        `<line x1="0" y1="0" x2="0" y2="7" ` +
+        `stroke="${k === "dark" ? "#0b0b0b" : "#ffffff"}" stroke-width="1.6" ` +
+        `stroke-opacity="0.42"/></pattern>`).join("");
     svg.appendChild(defs);
   }
 
@@ -561,6 +592,12 @@
     const zeroGroups = [...groups.values()].filter((g) => g.value <= 0);
     for (const g of zeroGroups) { g.value = 1e-9; groupList.push(g); }
 
+    /* Which industries carry the anomaly marker. Computed once per render for
+       the rows on screen, and memoised, because anomaly() walks up to 360
+       months per industry and render() also runs on every keystroke in the
+       highlight box. */
+    const flagged = flagSet(rows);
+
     const placed = squarify(groupList, 0, 0, width, height);
 
     for (const cell of placed) {
@@ -601,7 +638,7 @@
         value: Math.abs(r.value ?? 0) || 1e-9,
       }));
       for (const t of squarify(tiles, cell.x + 2, innerY, cell.w - 4, innerH)) {
-        g.appendChild(tileNode(t, maxAbs, pal, q));
+        g.appendChild(tileNode(t, maxAbs, pal, q, flagged));
       }
       svg.appendChild(g);
     }
@@ -672,7 +709,26 @@
     } catch { /* cross-origin parents may refuse; nothing to do */ }
   }
 
-  function tileNode(cell, maxAbs, pal, query) {
+  const flagCache = new Map();
+  function flagSet(rows) {
+    const idx = labelToIdx.get(state.base);
+    const h = HORIZONS[state.horizon];
+    const out = new Set();
+    for (const row of rows) {
+      if (row.value === null) continue;
+      const key = `${row.item.c}|${idx}|${h}|${state.metric}`;
+      let hit = flagCache.get(key);
+      if (hit === undefined) {
+        const s = anomaly(row.item, idx, h, state.metric);
+        hit = !!(s && s.anomalous);
+        flagCache.set(key, hit);
+      }
+      if (hit) out.add(row.item.c);
+    }
+    return out;
+  }
+
+  function tileNode(cell, maxAbs, pal, query, flagged) {
     const { row } = cell.node;
     const item = row.item;
     const drillable = hasChildren(item.c);
@@ -685,9 +741,12 @@
     const changeText = row.value === null
       ? "no data for this period"
       : fmtValue(row.value, state.metric);
+    const isFlagged = flagged && flagged.has(item.c);
     g.setAttribute(
       "aria-label",
-      `${item.n}, ${item.ssn}, ${changeText}${drillable ? ", has sub-industries" : ""}`
+      `${item.n}, ${item.ssn}, ${changeText}` +
+      `${isFlagged ? ", flagged as an anomaly for this industry" : ""}` +
+      `${drillable ? ", has sub-industries" : ""}`
     );
 
     if (query) {
@@ -699,8 +758,29 @@
     rect.setAttribute("x", cell.x); rect.setAttribute("y", cell.y);
     rect.setAttribute("width", Math.max(0, cell.w));
     rect.setAttribute("height", Math.max(0, cell.h));
-    rect.setAttribute("fill", colorFor(row.value, maxAbs, pal));
+    const tileFill = colorFor(row.value, maxAbs, pal);
+    rect.setAttribute("fill", tileFill);
     g.appendChild(rect);
+
+    /* The anomaly marker. Deliberately not a dot, an outline or red. A dot
+       needs ~22px of tile and most flagged industries at the finer levels are
+       smaller than that; an outline is already the search-highlight state; red
+       already means a loss, so it would vanish on the tiles that lose most.
+       A hatch works at any size, and laid over the fill rather than replacing
+       it the tile keeps its colour. */
+    const showDot = isFlagged;
+    if (showDot) {
+      const over = document.createElementNS(SVG_NS, "rect");
+      over.setAttribute("class", "anomhatch");
+      over.setAttribute("x", cell.x); over.setAttribute("y", cell.y);
+      over.setAttribute("width", Math.max(0, cell.w));
+      over.setAttribute("height", Math.max(0, cell.h));
+      over.setAttribute("fill",
+        labelInk(row.value, maxAbs) === "#ffffff"
+          ? "url(#anom-hatch-light)" : "url(#anom-hatch-dark)");
+      over.setAttribute("pointer-events", "none");
+      g.appendChild(over);
+    }
 
     // Label sizing scales with the tile; anything that cannot fit a whole word
     // gets no label rather than a clipped one.
@@ -833,7 +913,15 @@
         `<span class="note">${fmtValue(stat.current, state.metric)} is ` +
         `${above ? "higher" : "lower"} than ${share}% of ${state.horizon} changes over ` +
         `the last ${Math.round(stat.spanMonths / 12)} years ` +
-        `(n=${stat.n}, pandemic windows excluded)</span></div>`
+        `(n=${stat.n}, pandemic windows excluded)</span>` +
+        (stat.anomalous
+          ? `<div class="flagged"><span class="dot" aria-hidden="true"></span> ` +
+            `Flagged: inside the most extreme ` +
+            `${(ANOM.flagP * 100).toFixed(0)}% of this industry's own history ` +
+            `(${(stat.p * 100).toFixed(1)}%) and past the magnitude floor of ` +
+            `z = ${ANOM.flagZ.toFixed(1)}.</div>`
+          : "") +
+        `</div>`
       );
     } else if (stat) {
       parts.push(

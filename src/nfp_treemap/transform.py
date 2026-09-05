@@ -15,6 +15,8 @@ from . import industries as industries_mod
 from .config import (
     ANOMALY_LOOKBACK_MONTHS,
     ANOMALY_LOOKBACK_PER_HORIZON,
+    ANOMALY_FLAG_P,
+    ANOMALY_FLAG_Z,
     ANOMALY_MIN_INDEPENDENT,
     ANOMALY_MIN_SAMPLES,
     DISTORTED_END,
@@ -105,6 +107,8 @@ def build_payload() -> dict:
             "lookbackPerHorizon": ANOMALY_LOOKBACK_PER_HORIZON,
             "minSamples": ANOMALY_MIN_SAMPLES,
             "minIndependent": ANOMALY_MIN_INDEPENDENT,
+            "flagP": ANOMALY_FLAG_P,
+            "flagZ": ANOMALY_FLAG_Z,
             "distortedStart": month_index(
                 int(DISTORTED_START[:4]), int(DISTORTED_START[5:])
             ),
