@@ -34,29 +34,30 @@ Two things in that tooltip do the work. The **robust z-score** says how far the 
 
 Run that across every industry at once and the reading changes. The biggest tiles are not always the interesting ones. A large industry moving within its normal range is noise dressed as news, and a small industry breaking its own record is a story the headline will never surface.
 
-**You do not have to hover to find them.** Where a change clears the bar set out below, the tile itself is marked with a diagonal hatch, so the flagged industries are visible the moment the chart draws. The marker is deliberately rare. Across every month from 2013 to 2026 it lands on about one industry per view at display level 4 and two or three at level 5, and never more than ten. If a third of the screen were hatched it would be decoration rather than information.
+**You do not have to hover to find them.** Marked industries carry a diagonal hatch on the tile itself, so they are visible the moment the chart draws. There are two strengths of mark: a light hatch for a month that is unusual for that industry, and a heavier one for a change with almost no precedent in its record. Across 2013 to 2026 the light mark lands on about 8% of the industries on screen and the heavy one on about 1%.
 
-## What counts as an anomaly
+## What counts as unusual, and what counts as an anomaly
 
-A change is flagged when it passes two independent tests at the same time.
+Two different messages deserve two different marks, because most months that are
+worth a second look are not unprecedented.
 
-**It is rare in that industry's own record.** At most 1% of the industry's comparable changes sit at least as far from its median as this one does. This is a rank, not a curve: we count how many of its own months were this extreme. That matters because payroll changes are heavy-tailed. Measured across 2013 to 2026, a robust z of 3 or more shows up roughly ten times as often as a normal distribution predicts, so any p-value read off a bell curve would badly overstate how surprising a move is. Counting cannot make that mistake. The measure also has a floor of one over the sample size, so it never claims more precision than the history actually supports.
+Each tier is a **rarity test with a magnitude guard**, and the rarity test is the one
+that defines it.
 
-**It is large on the industry's own scale.** The robust z-score, built from the median and the median absolute deviation, must reach 3. This is the guard against the first test alone. An industry whose history barely moves sets a record every time it twitches, and the rarest 1% of a flat series is still a trivial change.
+| | rarity: share of the industry's own history at least this far from its median | magnitude: robust standard deviations | how often it fires |
+|---|---|---|---|
+| **Unusual** | top 10% | 2 | about a month a year, per industry |
+| **Anomaly** | top 1% | 3 | about once a decade, per industry |
 
-Both have to hold, and neither is redundant. Rarity alone would flag the flat industries. Magnitude alone fires on ordinary months in volatile ones.
+The tiers nest, so nothing is an anomaly without also being unusual.
 
-Underneath both sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history instead of a score.
+**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust standard deviations catch about 9% of industries rather than the 5% a normal distribution implies, and three standard deviations turn up roughly ten times more often than they should. A rank does not drift like that, and it can be held in the head. The top tenth of an industry's own record is about one month in ten. The top hundredth is about one in a hundred.
 
-One thing the flag is not is a hypothesis test. With 241 industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why these two are set where they are and why the rate was checked against thirteen years of real months rather than assumed. Treat a hatched tile as a place to look, not as a finding.
+**Why the magnitude test is still there.** CES reports to the nearest hundred jobs. An industry whose whole history sits close to that floor would set a record every time it twitched, and rarity alone would mark it. With the guard in place the marked changes are real ones: at display level 5 the median marked change is 3,400 jobs, and only 3% are under 1,000.
 
-## Why this matters more now
+Underneath both tiers sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history rather than a score.
 
-The payroll survey revises. Every release restates the two preceding months, and each annual benchmark can restate up to five years of seasonally adjusted history. These are not rounding adjustments. One food services month in this data read −32,900 when it was first captured and −12,100 in the next vintage, a swing of more than 20,000 jobs on a single series.
-
-So a first print is a provisional reading of a noisy process, and treating any one month as a fact is the mistake the data invites. Scoring a move against twenty years of that same industry's behaviour is a defence against it. A change that is unremarkable for an industry stays unremarkable whichever way the revision lands. A change at the 99th percentile of two decades is worth attention even if the exact figure moves.
-
-The score is also honest about its own limits. Where an industry has too little independent history for the horizon you picked, it says so rather than producing a confident number.
+None of this is a hypothesis test. With hundreds of industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why the rates were checked against thirteen years of real months rather than assumed. Treat a marked tile as a place to look, not as a finding.
 
 ## What you are looking at
 
@@ -191,11 +192,11 @@ Compare it against the same industry's own history of changes over the same leng
 
 ### What does the hatched tile mean?
 
-The diagonal hatch marks an industry whose change is flagged as an anomaly, so you can see them without hovering over every tile. A change earns it by passing two tests at once: at most 1% of that industry's own comparable changes sit as far from its median, and its robust z-score reaches 3. Both are required, because rarity alone would flag industries whose history barely moves, and magnitude alone fires too often on heavy-tailed data. A separate hatch, in grey and leaning the other way, means no data was published rather than an anomaly.
+A diagonal hatch marks an industry whose change stands out against its own history, so you can find them without hovering over every tile. A light hatch means unusual: the change is in the most extreme 10% of that industry's own record and clears two robust standard deviations. A heavier hatch means an anomaly: the most extreme 1%, and three standard deviations. A third hatch, in grey and leaning the other way, means no data was published for that period rather than anything about the size of the change.
 
 ### What does the anomaly score mean?
 
-It compares the change you are looking at against the same industry's own history of changes over the same length of time. It uses at least twenty years of history, requires at least six non-overlapping comparison windows before it will report anything, and excludes March 2020 through June 2022 so the pandemic collapse and recovery do not define what counts as normal. It is a robust z-score, built on the median and median absolute deviation, so a few extreme months cannot flatten the scale.
+It compares the change you are looking at against the same industry's own history of changes over the same length of time. It uses at least twenty years of history, requires at least six non-overlapping comparison windows before it will report anything, and excludes March 2020 through June 2022 so the pandemic collapse and recovery do not define what counts as normal. It is a robust z-score, built on the median and median absolute deviation, so a few extreme months cannot flatten the scale. Where a change is rare as well as large it is marked on the tile, as unusual or as an anomaly.
 
 ### Why are nonfarm payroll numbers revised so much?
 

@@ -17,6 +17,8 @@ from .config import (
     ANOMALY_LOOKBACK_PER_HORIZON,
     ANOMALY_FLAG_P,
     ANOMALY_FLAG_Z,
+    ANOMALY_WATCH_P,
+    ANOMALY_WATCH_Z,
     ANOMALY_MIN_INDEPENDENT,
     ANOMALY_MIN_SAMPLES,
     DISTORTED_END,
@@ -109,6 +111,8 @@ def build_payload() -> dict:
             "minIndependent": ANOMALY_MIN_INDEPENDENT,
             "flagP": ANOMALY_FLAG_P,
             "flagZ": ANOMALY_FLAG_Z,
+            "watchP": ANOMALY_WATCH_P,
+            "watchZ": ANOMALY_WATCH_Z,
             "distortedStart": month_index(
                 int(DISTORTED_START[:4]), int(DISTORTED_START[5:])
             ),

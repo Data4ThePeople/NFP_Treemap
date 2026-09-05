@@ -298,13 +298,20 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 /* The dot on a flagged tile takes the label's ink so it contrasts with
    whatever the tile is filled with; these are the legend and tooltip echoes of
    it, which sit on the page background instead and can use a fixed colour. */
+/* The two marker tiers, echoed as swatches. Same angle, different density,
+   so they read as strengths of one thing rather than two different things. */
 .legend .anomkey .dot,
 #tip .flagged .dot {
   width: 14px; height: 11px; display: inline-block; flex: none;
   border: 1px solid var(--border); border-radius: 2px;
   background-color: var(--gain-2, #cfe0f7);
   background-image: repeating-linear-gradient(
-    45deg, var(--text-primary) 0 1.5px, transparent 1.5px 6px);
+    45deg, var(--text-primary) 0 1.5px, transparent 1.5px 5px);
+}
+.legend .anomkey.watch .dot,
+#tip .flagged.tier1 .dot {
+  background-image: repeating-linear-gradient(
+    45deg, var(--text-primary) 0 1px, transparent 1px 7px);
 }
 #tip .flagged {
   margin-top: 6px; display: flex; align-items: baseline; gap: 6px;
