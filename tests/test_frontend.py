@@ -584,19 +584,23 @@ def test_flagged_tiles_carry_the_hatch_and_say_so_to_a_screen_reader():
         t.state.horizon = '1mo'; t.render();
         const tiles = [...document.querySelectorAll('.tile')];
         const marked = tiles.filter(n => n.querySelector('.anomhatch'));
-        const flaggedByScore = tiles.filter(n => {
-          const it = t.byCode.get(n.dataset.code);
-          const s = t.anomaly(it, t.labelToIdx.get('2026-08'), 1, 'abs');
-          return !!(s && s.anomalous);
-        });
+        const scored = c => t.anomaly(t.byCode.get(c), t.labelToIdx.get('2026-08'), 1, 'abs');
+        const byTier = tiles.filter(n => (scored(n.dataset.code) || {}).tier);
+        // the two tiers must be drawn with different patterns
+        const fills = new Set(marked.map(n => n.querySelector('.anomhatch').getAttribute('fill')));
         out = {tiles: tiles.length, marked: marked.length,
-               expected: flaggedByScore.length,
-               labelled: marked.every(n => /flagged as an anomaly/i.test(n.getAttribute('aria-label'))),
-               patternDefined: !!document.querySelector('#anom-hatch-dark'),
-               distinctFromNodata: !!document.querySelector('#nodata-hatch')};
+               expected: byTier.length,
+               labelled: marked.every(n => /flagged as (an anomaly|unusual)/i.test(n.getAttribute('aria-label'))),
+               anomalyPattern: !!document.querySelector('#anom-hatch-dark'),
+               watchPattern: !!document.querySelector('#anom-hatch-soft-dark'),
+               distinctFromNodata: !!document.querySelector('#nodata-hatch'),
+               softUsed: [...fills].some(f => f.includes('soft'))};
         """
     )
     assert result["marked"] == result["expected"] > 0
     # The hatch is visual only, so the accessible name has to carry it too.
     assert result["labelled"] is True
-    assert result["patternDefined"] and result["distinctFromNodata"]
+    assert result["anomalyPattern"] and result["watchPattern"]
+    assert result["distinctFromNodata"]
+    # The watch tier is the common one; if it never renders, the tiers collapsed.
+    assert result["softUsed"] is True

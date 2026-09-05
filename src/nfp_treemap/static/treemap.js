@@ -164,9 +164,13 @@
     const dev = Math.abs(current - med);
     const asFar = samples.filter((v) => Math.abs(v - med) >= dev).length;
     const p = asFar / samples.length;
-    const anomalous = p <= ANOM.flagP && a >= ANOM.flagZ;
+    /* Two nested tiers. tier 2 is a strict subset of tier 1, so a tile can
+       never be an anomaly without also being unusual. */
+    const tier = p <= ANOM.flagP && a >= ANOM.flagZ ? 2
+      : p <= ANOM.watchP && a >= ANOM.watchZ ? 1 : 0;
+    const anomalous = tier === 2;
     return {
-      current, median: med, mad, z, pct, label, p, anomalous,
+      current, median: med, mad, z, pct, label, p, tier, anomalous,
       n: samples.length, independent, lookback, spanMonths,
     };
   }
@@ -224,12 +228,13 @@
       `<rect width="6" height="6" fill="${cssVar("--nodata")}"/>` +
       `<line x1="0" y1="0" x2="0" y2="6" stroke="${cssVar("--muted")}" stroke-width="2"/>` +
       `</pattern>` +
-      ["dark", "light"].map((k) =>
-        `<pattern id="anom-hatch-${k}" patternUnits="userSpaceOnUse" width="7" height="7" ` +
-        `patternTransform="rotate(-45)">` +
-        `<line x1="0" y1="0" x2="0" y2="7" ` +
-        `stroke="${k === "dark" ? "#0b0b0b" : "#ffffff"}" stroke-width="1.6" ` +
-        `stroke-opacity="0.42"/></pattern>`).join("");
+      [["", 7, 1.6, 0.42], ["soft-", 11, 1.2, 0.30]].flatMap(([pre, w, sw, op]) =>
+        ["dark", "light"].map((k) =>
+          `<pattern id="anom-hatch-${pre}${k}" patternUnits="userSpaceOnUse" ` +
+          `width="${w}" height="${w}" patternTransform="rotate(-45)">` +
+          `<line x1="0" y1="0" x2="0" y2="${w}" ` +
+          `stroke="${k === "dark" ? "#0b0b0b" : "#ffffff"}" stroke-width="${sw}" ` +
+          `stroke-opacity="${op}"/></pattern>`)).join("");
     svg.appendChild(defs);
   }
 
@@ -713,17 +718,17 @@
   function flagSet(rows) {
     const idx = labelToIdx.get(state.base);
     const h = HORIZONS[state.horizon];
-    const out = new Set();
+    const out = new Map();
     for (const row of rows) {
       if (row.value === null) continue;
       const key = `${row.item.c}|${idx}|${h}|${state.metric}`;
-      let hit = flagCache.get(key);
-      if (hit === undefined) {
+      let tier = flagCache.get(key);
+      if (tier === undefined) {
         const s = anomaly(row.item, idx, h, state.metric);
-        hit = !!(s && s.anomalous);
-        flagCache.set(key, hit);
+        tier = (s && s.tier) || 0;
+        flagCache.set(key, tier);
       }
-      if (hit) out.add(row.item.c);
+      if (tier) out.set(row.item.c, tier);
     }
     return out;
   }
@@ -741,11 +746,13 @@
     const changeText = row.value === null
       ? "no data for this period"
       : fmtValue(row.value, state.metric);
-    const isFlagged = flagged && flagged.has(item.c);
+    const tier = (flagged && flagged.get(item.c)) || 0;
+    const isFlagged = tier > 0;
+    const tierWord = tier === 2 ? "an anomaly" : "unusual";
     g.setAttribute(
       "aria-label",
       `${item.n}, ${item.ssn}, ${changeText}` +
-      `${isFlagged ? ", flagged as an anomaly for this industry" : ""}` +
+      `${isFlagged ? `, flagged as ${tierWord} for this industry` : ""}` +
       `${drillable ? ", has sub-industries" : ""}`
     );
 
@@ -775,9 +782,8 @@
       over.setAttribute("x", cell.x); over.setAttribute("y", cell.y);
       over.setAttribute("width", Math.max(0, cell.w));
       over.setAttribute("height", Math.max(0, cell.h));
-      over.setAttribute("fill",
-        labelInk(row.value, maxAbs) === "#ffffff"
-          ? "url(#anom-hatch-light)" : "url(#anom-hatch-dark)");
+      const ink = labelInk(row.value, maxAbs) === "#ffffff" ? "light" : "dark";
+      over.setAttribute("fill", `url(#anom-hatch-${tier === 2 ? "" : "soft-"}${ink})`);
       over.setAttribute("pointer-events", "none");
       g.appendChild(over);
     }
@@ -914,12 +920,18 @@
         `${above ? "higher" : "lower"} than ${share}% of ${state.horizon} changes over ` +
         `the last ${Math.round(stat.spanMonths / 12)} years ` +
         `(n=${stat.n}, pandemic windows excluded)</span>` +
-        (stat.anomalous
-          ? `<div class="flagged"><span class="dot" aria-hidden="true"></span> ` +
-            `Flagged: inside the most extreme ` +
-            `${(ANOM.flagP * 100).toFixed(0)}% of this industry's own history ` +
-            `(${(stat.p * 100).toFixed(1)}%) and past the magnitude floor of ` +
-            `z = ${ANOM.flagZ.toFixed(1)}.</div>`
+        (stat.tier
+          ? `<div class="flagged tier${stat.tier}">` +
+            `<span class="dot" aria-hidden="true"></span> ` +
+            (stat.tier === 2
+              ? `Anomaly: inside the most extreme ` +
+                `${(ANOM.flagP * 100).toFixed(0)}% of this industry's own history ` +
+                `(${(stat.p * 100).toFixed(1)}%), and past z = ${ANOM.flagZ.toFixed(1)}.`
+              : `Unusual: inside the most extreme ` +
+                `${(ANOM.watchP * 100).toFixed(0)}% of this industry's own history ` +
+                `(${(stat.p * 100).toFixed(1)}%), and past ${ANOM.watchZ.toFixed(0)} ` +
+                `standard deviations.`) +
+            `</div>`
           : "") +
         `</div>`
       );

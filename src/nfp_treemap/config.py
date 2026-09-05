@@ -118,25 +118,35 @@ ANOMALY_MIN_SAMPLES = 24
 # that the score means something, and say "insufficient history" otherwise.
 ANOMALY_MIN_INDEPENDENT = 6
 
-# Flagging an anomaly on the tile itself, rather than only in the tooltip, is a
-# stronger claim than scoring one, so it takes two tests that must both pass.
+# Two tiers, because "unusual" and "almost unprecedented" are different
+# messages and collapsing them loses the more common one.
 #
-# ANOMALY_FLAG_P is rank-based: the share of this industry's own history lying
-# at least as far from its median as the current change. Distribution free,
-# which matters because monthly payroll changes are heavy-tailed - measured
-# over 2013-2026, |z| >= 3 fires roughly ten times more often than a normal
-# distribution predicts, so a normal-theory p-value would badly overstate how
-# surprising a move is. The floor is 1/n, so the test never claims more
-# resolution than the sample holds.
+# Each tier is a rarity test with a magnitude guard, and the RARITY test is the
+# one that defines the tier. It is rank-based: what share of this industry's
+# own comparable changes sit at least as far from its median as this one? That
+# is deliberate. A pure standard-deviation cut has no stable meaning here,
+# because payroll changes are heavy-tailed - measured over 2013-2026, 2 robust
+# standard deviations catches about 9% of industries rather than the 5% normal
+# theory implies, and 3 catches ten times what it should. A rank does not drift
+# like that, and it can be held in the head: the watch tier is a month in the
+# top tenth of that industry's own record, which happens about once a year, and
+# the anomaly tier is the top hundredth, roughly once a decade.
 #
-# ANOMALY_FLAG_Z is the scale guard. An industry with a nearly flat history
-# sets a record whenever it twitches, and the rarest 1% of a flat series is
-# still a trivial move. Rarity alone would flag those; magnitude alone would
-# flag ordinary months in heavy-tailed industries.
+# The z-test is the guard, not the definition. Without it, an industry whose
+# history sits inside the rounding floor - CES reports to the nearest hundred
+# jobs - sets a record every time it twitches. With it, the marked changes are
+# real: at level 5 the median is 3,400 jobs and only 3% are under 1,000.
 #
-# Calibrated against every month from 2013 to 2026 so the marker stays rare
-# enough to mean something: about 1 flagged industry per view at level 4 and
-# 2 to 3 at level 5, never a wall of dots.
+# The anomaly thresholds are tighter on both tests, so the tiers nest: nothing
+# is an anomaly without also being unusual.
+#
+# Marks per view, calibrated against every month from 2013 to 2026:
+#
+#            level 3   level 4   level 5      share of tiles
+#   watch        1.5       6.6      18.7                ~8%
+#   anomaly      0.1       0.9       2.1                ~0.9%
+ANOMALY_WATCH_P = 0.10
+ANOMALY_WATCH_Z = 2.0
 ANOMALY_FLAG_P = 0.01
 ANOMALY_FLAG_Z = 3.0
 
