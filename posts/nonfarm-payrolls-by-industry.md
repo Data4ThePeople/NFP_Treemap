@@ -54,6 +54,14 @@ The score also reports when it cannot judge. Where an industry has too little
 independent history for the horizon you picked, it says so rather than producing
 a number.
 
+## Why the headline number hides so much
+
+The monthly payroll figure is an aggregate of an economy that is not moving in one direction. In a typical month some industries hire hard while others shed staff, and the headline is the arithmetic left over. Two months with an identical total can be completely different events underneath.
+
+We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey, and it is easier to see with every industry side by side than in the monthly total.
+
+The detail is public. It is published as hundreds of separate time series, retrieved by series identifier, which suits someone who already knows which series they want and is harder going if you are looking for what moved.
+
 ## What counts as unusual, and what counts as an anomaly
 
 Two different messages deserve two different marks, because most months that are
@@ -91,28 +99,98 @@ Grouping is the hierarchy itself. Tiles are grouped into their supersector, or i
 
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
 
-## Why the headline number hides so much
+## How to use it
 
-The monthly payroll figure is an aggregate of an economy that is not moving in one direction. In a typical month some industries hire hard while others shed staff, and the headline is the arithmetic left over. Two months with an identical total can be completely different events underneath.
+Every control sits in the bar above the chart. Nothing here needs an account and
+nothing is saved, so you can change anything and change it back.
 
-We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey, and it is easier to see with every industry side by side than in the monthly total.
+### Pick the month you want to look at
 
-The detail is public. It is published as hundreds of separate time series, retrieved by series identifier, which suits someone who already knows which series they want and is harder going if you are looking for what moved.
+**Base period** is the month being measured. It opens on the most recent release
+and it goes back as far as the data does, to 1939 for the broad aggregates and
+1990 for most individual industries.
 
-## What you can do with it
+**Comparison period** is what that month is measured against. Leave it on 1mo for
+the jobs report reading: this month versus last. Change it to 1yr, 2yr, 3yr, 5yr,
+10yr or 20yr to measure the same base month against a point further back.
 
-Click a tile to descend into that industry's own children. The breadcrumb above the chart shows where you are and every step in it is clickable. The Up button and the Escape key both go up one level, and if you navigate by keyboard you can Tab between tiles and press Enter to drill in.
+Together these two are the tool's main use. Set the base to March 2007 and the
+comparison to 1mo and you are reading a jobs report from eighteen years ago,
+scored against what was normal at the time.
 
-The display level controls how fine the breakdown is. Level 2 is the eleven supersectors. Level 3 is nineteen sectors, and it is where the page opens, because every industry at that level publishes with the headline. Levels 4 through 7 go progressively finer, ending in 166 six-digit industries.
+### Choose how much detail you want
 
-The base period is any month in the record and the comparison period is the horizon: one month, or one, two, three, five, ten or twenty years. One month is the jobs report. The longer horizons are where structural change separates from noise. Setting the base month is what turns this into a historical instrument. You can ask what the labor market looked like in March 2007, what was moving then, and whether it was unusual at the time.
+**Display level** sets how finely industries are broken up. Each step down splits
+the level above it into its published parts.
 
-Switch the color metric to Percent for proportional change instead of absolute. A small industry losing a tenth of its workforce is a real event that the absolute view draws as a sliver. Tile area stays absolute in both modes, so you see size and rate at the same time.
+- **Level 2** is the eleven supersectors, the broadest useful view.
+- **Level 3** is nineteen sectors. The page opens here because every industry at
+  this level is published with the headline, so the view is complete on the
+  morning of a release.
+- **Level 4** is 84 industries and is the first level where some detail may not
+  be published yet on release day.
+- **Levels 5, 6 and 7** go finer still, ending in 166 industries at six-digit
+  NAICS detail.
 
-Hover any tile for the employment level, the change over your horizon, the anomaly score, the official NAICS definition of that industry, and its full history as a sparkline. Type in the highlight box to find an industry by name instead of hunting for it. CSV downloads the view you are looking at, PNG saves the chart as an image, and Copy link writes the whole state into the URL, so a specific industry at a specific level over a specific horizon is a link you can send or cite.
+### Drill into an industry
+
+**Click any tile** to go inside it and see the industries it is made of.
+
+**To go back up**, click any step in the breadcrumb trail above the chart, press
+the Up button, or press Escape.
+
+**Using a keyboard**, press Tab to move between tiles and Enter to drill into the
+one you have selected.
+
+### See everything about one industry
+
+**Hover a tile**, or select it with the keyboard, and a panel opens with five
+things: the industry's total employment, its change over the comparison period
+you chose, the anomaly score, the official Census definition of what the industry
+contains, and a small chart of its whole history with recessions shaded.
+
+### Find an industry by name
+
+**Type into the highlight box.** Matching tiles stay bright and the rest dim, so
+you can locate an industry without hunting for it. Clear the box to bring
+everything back.
+
+### Switch between size and rate
+
+**Colour metric** has two settings.
+
+- **Absolute** colours each tile by the number of jobs gained or lost. This is
+  the default and it answers "what moved the labour market most".
+- **Percent** colours by proportional change instead. It answers "what moved most
+  relative to its own size", which is how you find a small industry losing a
+  tenth of its workforce.
+
+Tile area stays the absolute job change in both settings, so size and rate are
+readable at the same time.
 
 ![Percent-change view over a one-year horizon at level 4, showing proportional employment change across 84 industries.](charts/percent-change-one-year.png)
 *The percent view over one year. Tile area is still the absolute job change, so a big industry moving slightly and a small industry moving sharply are both legible.*
+
+### Take the data with you
+
+**CSV** downloads exactly the view on screen, including whatever you have drilled
+into, with the same numbers the tiles show.
+
+**PNG** saves the chart as an image.
+
+**Copy link** puts the whole state of the page into a URL. Send that link and the
+other person opens the same industry, at the same level, over the same horizon.
+It is also how to cite a specific view.
+
+### If a tile is empty or hatched
+
+**A grey hatched tile** means BLS has not published a value for that industry in
+that month. On release day this is normal at level 4 and below, because most
+industry detail follows about a month behind the headline. The page says how many
+industries are affected and which month covers all of them.
+
+**A coloured hatched tile** is the anomaly marker described above: a light hatch
+for unusual, a heavier one for an anomaly.
 
 ## How we built it
 
