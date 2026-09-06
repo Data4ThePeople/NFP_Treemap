@@ -71,6 +71,44 @@ hero drawn for the page is usually the wrong shape for a link preview; set it as
 
 ---
 
+## 1c. Editing notes
+
+The Markdown file is the source of truth. Re-running the importer **overwrites
+the whole document**, so edits made in the Prismic editor are lost on the next
+import. Edit `posts/nonfarm-payrolls-by-industry.md` and re-import; do not edit
+both.
+
+Things that behave in ways the Markdown does not make obvious:
+
+- **The first paragraph becomes the drop cap.** If a new first paragraph is
+  added, that one becomes the drop cap instead.
+- **`### Any heading ending in a question mark` is harvested into the FAQ
+  schema**, wherever it sits in the document. The manual's subheadings are
+  deliberately statements for this reason. Turning one into a question silently
+  adds it to the structured data.
+- **Markdown tables do not survive.** Rich Text has no table block, so a table
+  converts to preformatted lines and reads as monospace mid-argument. Write it
+  as prose or a list.
+- **An italic line immediately after an image becomes that image's caption**,
+  inside the image slice rather than a paragraph of its own.
+- **Every link opens in a new tab.** The converter sets that; the checkbox in
+  the Prismic editor does not survive a re-import.
+- **`::: blurb Title` … `:::`** makes a callout box, if one is wanted.
+
+Two cross-references to keep intact if sections move:
+
+- The manual's "If a tile is empty or hatched" refers to the tier definitions,
+  which now live under "How we built it".
+- "What this data cannot tell you" links to the CPS explorer post.
+
+The four figures in the opening paragraph are each sourced to a specific page
+and were checked individually. If any of them is reworded, the numbers to keep
+exact are: 43.3% overall unit response rate against about 60% before 2020, a
+confidence interval of plus or minus 122,000, the 911,000 benchmark cut for the
+year through March 2025, and about 20% off BLS headcount in two years.
+
+---
+
 ## 2. Structured data for the `schema` field
 
 The importer already emits a `@graph` of Dataset, WebPage, FAQPage and
