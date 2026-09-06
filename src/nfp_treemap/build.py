@@ -25,7 +25,7 @@ from .config import (
 )
 from .transform import build_payload
 
-TITLE = "U.S. Employment Data Treemap"
+TITLE = "U.S. Jobs Data Explorer"
 TEMPLATES = Path(__file__).parent / "templates"
 STATIC = Path(__file__).parent / "static"
 

@@ -58,7 +58,8 @@ CES_HISTORY_START = 1939  # supersectors reach back this far; most detail starts
 # between URLs that are not equivalent. The levers exist for a future
 # consolidation, not for this one.
 META_DESCRIPTION = (
-    "Free interactive treemap of US nonfarm payroll employment by industry. "
+    "U.S. Jobs Data Explorer: a free interactive treemap of US nonfarm payroll "
+    "employment by industry. "
     "Every industry the BLS Current Employment Statistics survey publishes, "
     "from total nonfarm down to six-digit NAICS detail, with any base month "
     "and horizons from one month to twenty years."

@@ -12,7 +12,7 @@ rather than leaving it empty. Nothing to paste.
 
 ```html
 <iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html"
-    title="Interactive treemap of US nonfarm payroll employment change by industry"
+    title="U.S. Jobs Data Explorer: nonfarm payroll employment change by industry"
     width="100%" height="780" style="border:0" loading="lazy"></iframe>
 ```
 

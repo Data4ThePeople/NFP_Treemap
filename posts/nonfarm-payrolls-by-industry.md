@@ -1,6 +1,7 @@
 ---
-title: "Nonfarm Payrolls by Industry: Anomaly Detector"
-subtitle: A free interactive treemap of every industry the BLS payroll survey publishes, which scores each month's move against that industry's own twenty-year history and tells you whether it is actually unusual.
+title: U.S. Jobs Data Explorer
+meta_title: "Nonfarm Payrolls by Industry: Which Months Are Unusual"
+subtitle: Drill into US nonfarm payrolls by industry, from the headline number down to six-digit detail, and see which months are unusual for the industry rather than merely large.
 slug: nonfarm-payrolls-by-industry
 date: 2026-09-04
 description: Free interactive treemap of US nonfarm payrolls by industry that scores every move against the industry's own history, so you can tell a signal from a noisy month.
@@ -17,11 +18,11 @@ hero: charts/anomaly-tooltip.png
 hero_alt: The treemap with a tooltip open on computing infrastructure and data processing, which lost 7,700 jobs in a month. The tooltip reports a robust z of -5.53 at the 0th percentile and flags it as inside the most extreme 1% of that industry's own history. The tile itself is marked with a diagonal hatch.
 ---
 
-# Nonfarm Payrolls by Industry: Anomaly Detector
+# U.S. Jobs Data Explorer
 
 A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. The monthly print is also revised twice before it settles, and the revisions are not always small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
 
-<iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="Interactive treemap of US nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
+<iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="U.S. Jobs Data Explorer: nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
 
 ## Why a raw number is not enough
 

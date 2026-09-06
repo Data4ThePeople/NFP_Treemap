@@ -1,4 +1,4 @@
-# U.S. Employment Data Treemap
+# U.S. Jobs Data Explorer
 
 A self-contained HTML treemap of BLS Current Employment Statistics: one tile per
 industry, **area = absolute change in employees**, **colour = signed change**,
@@ -140,7 +140,7 @@ sized to whatever height is left so a fixed-height iframe does not scroll.
 
 ```html
 <iframe src="…/index.html" width="100%" height="620" style="border:0"
-        title="U.S. Employment Data Treemap"></iframe>
+        title="U.S. Jobs Data Explorer"></iframe>
 ```
 
 ### Prismic (Data 4 The People)
