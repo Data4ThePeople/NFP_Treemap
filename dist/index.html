@@ -1375,7 +1375,17 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
         `<span class="note">${fmtValue(stat.current, state.metric)} is ` +
         `${above ? "higher" : "lower"} than ${share}% of ${state.horizon} changes over ` +
         `the last ${Math.round(stat.spanMonths / 12)} years ` +
-        `(n=${stat.n}, pandemic windows excluded)</span>` +
+        /* n counts OVERLAPPING windows, and consecutive ones share all but
+           one month of their span, so a big n at a long horizon is far weaker
+           evidence than the same n at one month: 305 three-year windows are
+           about 8 independent observations, while 212 one-month changes are
+           212. Showing only n inverted the reader's sense of which score to
+           trust, so both are reported whenever they differ. */
+        `(n=${stat.n}` +
+        (stat.independent < stat.n - 0.5
+          ? `, about ${Math.round(stat.independent)} independent`
+          : "") +
+        `, pandemic windows excluded)</span>` +
         /* The percentile above is ONE-sided (share of months below this one);
            the rarity test is TWO-sided (share at least this far from the
            median in either direction). Saying "most extreme 10%" next to a

@@ -190,11 +190,13 @@ changes over the same length of time, assembled under three rules.
   shorter window with the pandemic removed can contain no downturn at all, which
   leaves every sample an expansion-year change and makes an ordinary slowdown
   look extreme.
-- **Overlapping windows are not independent.** Twenty years holds 240 one-month
-  changes but only about six independent three-year windows. At least six
-  non-overlapping windows are required, and below that the tool says it has
-  insufficient history rather than guessing. This is why the tooltip names the
-  span it actually covered, which is not always the span it asked for.
+- **Overlapping windows are not independent.** Every month starts a new
+  three-year window, and consecutive ones share 35 of their 36 months, so they
+  are nearly the same observation counted again. This is why a longer horizon
+  can cite a bigger sample and mean less by it: 305 three-year windows are about
+  8 independent observations, where 212 one-month changes are 212. The tooltip
+  reports both. At least six non-overlapping windows are required, and below
+  that the tool says it has insufficient history rather than guessing.
 - **The pandemic is excluded**, March 2020 through June 2022, from the collapse
   until payrolls regained their February 2020 peak. A window is dropped if either
   endpoint falls inside it, not only if it begins there, because a three-year
