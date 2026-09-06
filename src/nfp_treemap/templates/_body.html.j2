@@ -24,8 +24,8 @@
       <select id="level"></select>
     </div>
     <div class="field">
-      <label for="metric">Colour metric</label>
-      <div class="seg" id="metric" role="group" aria-label="Colour metric">
+      <label for="metric">Color metric</label>
+      <div class="seg" id="metric" role="group" aria-label="Color metric">
         <button type="button" data-metric="abs" aria-pressed="true">Absolute</button>
         <button type="button" data-metric="pct" aria-pressed="false">Percent</button>
       </div>
@@ -57,7 +57,7 @@
   <p class="lagnote" id="levelnote" hidden></p>
 
   <div class="chart-wrap">
-    <svg id="treemap" role="img" aria-label="Treemap of employment change by industry. Tile area is the absolute change; colour is the signed change. Use Tab to move between industries, Enter to drill in, Escape to go up."></svg>
+    <svg id="treemap" role="img" aria-label="Treemap of employment change by industry. Tile area is the absolute change; color is the signed change. Use Tab to move between industries, Enter to drill in, Escape to go up."></svg>
     <p class="empty" id="empty" hidden></p>
   </div>
 
@@ -78,8 +78,8 @@
   </div>
 
   <p class="stamp footnote" style="text-align:left;margin-top:14px">
-    Tile area is the <strong>absolute</strong> change in employees in both colour modes — sizing by
-    percent would let a very small industry outweigh Food Services. Colour is symmetric around zero,
+    Tile area is the <strong>absolute</strong> change in employees in both color modes — sizing by
+    percent would let a very small industry outweigh Food Services. Color is symmetric around zero,
     so a loss and a gain of equal size read at equal intensity.{{ export_note }}
     CES publishes only some children for many parents, so the tiles at a level are not a complete
     partition of it — every tile is the value CES actually reports, never scaled or padded to make

@@ -9,7 +9,7 @@ keywords: nonfarm payrolls by industry, jobs report anomaly, is this jobs number
 section: Visualization
 schema_type: dataset
 dataset_name: US nonfarm payroll employment by industry, monthly
-dataset_description: Monthly seasonally adjusted payroll employment for every industry published by the US Bureau of Labor Statistics Current Employment Statistics (CES) survey, with each month's change scored against that industry's own history of comparable changes. 842 series covering the full published industry hierarchy, from total nonfarm payrolls down to six-digit NAICS industry detail, from January 1939 to the present month. Values are all employees in thousands, exactly as reported by BLS, with no modelling, smoothing or rescaling applied.
+dataset_description: Monthly seasonally adjusted payroll employment for every industry published by the US Bureau of Labor Statistics Current Employment Statistics (CES) survey, with each month's change scored against that industry's own history of comparable changes. 842 series covering the full published industry hierarchy, from total nonfarm payrolls down to six-digit NAICS industry detail, from January 1939 to the present month. Values are all employees in thousands, exactly as reported by BLS, with no modeling, smoothing or rescaling applied.
 temporal: 1939-01/..
 spatial: United States
 measured: All employees, thousands of jobs|NUM
@@ -103,11 +103,11 @@ everything back.
 
 ### Switch between size and rate
 
-**Colour metric** has two settings.
+**Color metric** has two settings.
 
-- **Absolute** colours each tile by the number of jobs gained or lost. This is
-  the default and it answers "what moved the labour market most".
-- **Percent** colours by proportional change instead. It answers "what moved most
+- **Absolute** colors each tile by the number of jobs gained or lost. This is
+  the default and it answers "what moved the labor market most".
+- **Percent** colors by proportional change instead. It answers "what moved most
   relative to its own size", which is how you find a small industry losing a
   tenth of its workforce.
 
@@ -127,12 +127,12 @@ It is also how to cite a specific view.
 
 ### If a tile is empty or hatched
 
-**A grey hatched tile** means BLS has not published a value for that industry in
+**A gray hatched tile** means BLS has not published a value for that industry in
 that month. On release day this is normal at level 4 and below, because most
 industry detail follows about a month behind the headline. The page says how many
 industries are affected and which month covers all of them.
 
-**A coloured hatched tile** is the anomaly marker described above: a light hatch
+**A colored hatched tile** is the anomaly marker described above: a light hatch
 for unusual, a heavier one for an anomaly.
 
 ## How we built it
@@ -249,7 +249,7 @@ Compare it against the same industry's own history of changes over the same leng
 
 ### What does the hatched tile mean?
 
-A diagonal hatch marks an industry whose change stands out against its own history, so you can find them without hovering over every tile. A light hatch means unusual: the change is in the most extreme 10% of that industry's own record and clears two robust standard deviations. A heavier hatch means an anomaly: the most extreme 1%, and three standard deviations. A third hatch, in grey and leaning the other way, means no data was published for that period rather than anything about the size of the change.
+A diagonal hatch marks an industry whose change stands out against its own history, so you can find them without hovering over every tile. A light hatch means unusual: the change is in the most extreme 10% of that industry's own record and clears two robust standard deviations. A heavier hatch means an anomaly: the most extreme 1%, and three standard deviations. A third hatch, in gray and leaning the other way, means no data was published for that period rather than anything about the size of the change.
 
 ### What does the anomaly score mean?
 
@@ -257,7 +257,7 @@ It compares the change you are looking at against the same industry's own histor
 
 ### Why are nonfarm payroll numbers revised so much?
 
-The Current Employment Statistics survey publishes a first estimate before all responses are in, then restates the two preceding months at every release as more arrive. Each annual benchmark can restate up to five years of seasonally adjusted history. The revisions are often larger than people expect: one food services month in this data moved by more than 20,000 jobs between vintages. Scoring a change against decades of the same industry's behaviour is more durable than treating any single print as settled.
+The Current Employment Statistics survey publishes a first estimate before all responses are in, then restates the two preceding months at every release as more arrive. Each annual benchmark can restate up to five years of seasonally adjusted history. The revisions are often larger than people expect: one food services month in this data moved by more than 20,000 jobs between vintages. Scoring a change against decades of the same industry's behavior is more durable than treating any single print as settled.
 
 ### What is the Current Employment Statistics survey?
 
@@ -314,4 +314,4 @@ The full pipeline is public, including the fetch, the hierarchy derivation, the 
 - BLS `ce.industry` reference file, for the industry hierarchy, display levels and NAICS mappings.
 - [US Census Bureau, 2022 NAICS Descriptions](https://www.census.gov/naics/), for the official industry definitions shown on hover.
 
-Every figure in this visualization is the value BLS published. Nothing is modelled, interpolated, smoothed or rescaled.
+Every figure in this visualization is the value BLS published. Nothing is modeled, interpolated, smoothed or rescaled.

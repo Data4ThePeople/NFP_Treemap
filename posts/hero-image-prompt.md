@@ -22,9 +22,9 @@ data is a dark place you go into, and that you would want a light.
 >
 > Overcast late-afternoon daylight outside, cool and even, contrasting hard with
 > the black of the tunnel. Shot on a 35mm lens at f/2.8, sharp on the woman and
-> the sign, the darkness behind falling off entirely. Muted natural colour, dust
+> the sign, the darkness behind falling off entirely. Muted natural color, dust
 > in the air, no lens flare. Composed for a 3:2 crop, with the woman left of
-> centre and the entrance opening to the right. Keep the sign and her head well
+> center and the entrance opening to the right. Keep the sign and her head well
 > inside the upper half of the frame, with margin at both sides.
 
 ## Shorter variant, for models that do better with less
@@ -34,7 +34,7 @@ data is a dark place you go into, and that you would want a light.
 > mine, looking into the darkness. A
 > weathered metal sign above the entrance reads "NONFARM PAYROLL DATA / BUREAU OF
 > LABOR STATISTICS". Overcast daylight outside, pitch black inside. Documentary
-> photography, 35mm, shallow depth of field, muted colour, 3:2.
+> photography, 35mm, shallow depth of field, muted color, 3:2.
 
 ## Negative prompt
 
@@ -96,7 +96,7 @@ instructions worth keeping if it is ever regenerated:
   picking out dust in the air is what made it read.
 - **"Opaque hard hat" fixed the helmet.** The first attempt rendered something
   closer to a translucent novelty dome.
-- **The tunnel is genuinely black** rather than a dim grey suggestion of depth.
+- **The tunnel is genuinely black** rather than a dim gray suggestion of depth.
   The contrast is the point.
 - **The mood stays documentary rather than glossy.** Overcast, muted, dust on
   the coveralls, no dramatic lighting.
