@@ -145,7 +145,6 @@
     const below = sorted.filter((v) => v < current).length;
     const pct = (below / sorted.length) * 100;
     const a = Math.abs(z);
-    const label = a < 1 ? "typical" : a < 2 ? "notable" : a < 3 ? "unusual" : "extreme";
 
     /* Two tests have to agree before a change is called an anomaly, because
        each one alone fails in a way the other catches.
@@ -169,6 +168,15 @@
     const tier = p <= ANOM.flagP && a >= ANOM.flagZ ? 2
       : p <= ANOM.watchP && a >= ANOM.watchZ ? 1 : 0;
     const anomalous = tier === 2;
+    /* One vocabulary, not two. The label used to come off a z-only ladder
+       (typical/notable/unusual/extreme) while the marker used the tier
+       (unusual/anomaly), so "unusual" meant two different things: a z between
+       2 and 3 in one place, and a change that passed both tests in the other.
+       A tile could be badged UNUSUAL and carry no hatch. The label is the tier
+       now, and the two words below the flag threshold describe magnitude
+       without borrowing either tier's name. */
+    const label = tier === 2 ? "anomaly" : tier === 1 ? "unusual"
+      : a < 1 ? "typical" : "notable";
     return {
       current, median: med, mad, z, pct, label, p, tier, anomalous,
       n: samples.length, independent, lookback, spanMonths,
@@ -847,6 +855,23 @@
   }
 
   // Dark tile fills need light ink; the pale inner steps need dark ink.
+  /* A change can clear one bar and miss the other, and from the tooltip alone
+     that looked arbitrary - a tile at the 97th percentile with no hatch. Say
+     which test it failed, but only when it passed the other one; for a month
+     that is neither rare nor large there is nothing to explain. */
+  function nearMiss(stat) {
+    const rare = stat.p <= ANOM.watchP;
+    const big = Math.abs(stat.z) >= ANOM.watchZ;
+    if (rare === big) return "";
+    const why = rare
+      ? `rare for this industry, but the move is small on its own scale ` +
+        `(z = ${stat.z.toFixed(2)}, needs ${ANOM.watchZ.toFixed(1)})`
+      : `a large move, but not rare for this industry ` +
+        `(${(stat.p * 100).toFixed(0)}% of its months are this far from normal, ` +
+        `needs ${(ANOM.watchP * 100).toFixed(0)}%)`;
+    return `<div class="notmarked">Not marked: ${why}.</div>`;
+  }
+
   function labelInk(value, maxAbs) {
     if (value === null || maxAbs <= 0) return cssVar("--text-primary");
     const t = Math.min(1, Math.abs(value) / maxAbs);
@@ -920,19 +945,26 @@
         `${above ? "higher" : "lower"} than ${share}% of ${state.horizon} changes over ` +
         `the last ${Math.round(stat.spanMonths / 12)} years ` +
         `(n=${stat.n}, pandemic windows excluded)</span>` +
+        /* The percentile above is ONE-sided (share of months below this one);
+           the rarity test is TWO-sided (share at least this far from the
+           median in either direction). Saying "most extreme 10%" next to a
+           97th percentile invited the obvious question of why that tile was
+           not marked, so the wording names the direction and the near-miss
+           line below says which of the two tests actually failed. */
         (stat.tier
           ? `<div class="flagged tier${stat.tier}">` +
             `<span class="dot" aria-hidden="true"></span> ` +
             (stat.tier === 2
-              ? `Anomaly: inside the most extreme ` +
-                `${(ANOM.flagP * 100).toFixed(0)}% of this industry's own history ` +
-                `(${(stat.p * 100).toFixed(1)}%), and past z = ${ANOM.flagZ.toFixed(1)}.`
-              : `Unusual: inside the most extreme ` +
-                `${(ANOM.watchP * 100).toFixed(0)}% of this industry's own history ` +
+              ? `Anomaly: among this industry's most extreme ` +
+                `${(ANOM.flagP * 100).toFixed(0)}% of months in either direction ` +
+                `(${(stat.p * 100).toFixed(1)}%), and past ${ANOM.flagZ.toFixed(0)} ` +
+                `standard deviations.`
+              : `Unusual: among this industry's most extreme ` +
+                `${(ANOM.watchP * 100).toFixed(0)}% of months in either direction ` +
                 `(${(stat.p * 100).toFixed(1)}%), and past ${ANOM.watchZ.toFixed(0)} ` +
                 `standard deviations.`) +
             `</div>`
-          : "") +
+          : nearMiss(stat)) +
         `</div>`
       );
     } else if (stat) {

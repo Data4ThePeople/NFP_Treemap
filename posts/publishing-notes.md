@@ -97,7 +97,7 @@ Things that behave in ways the Markdown does not make obvious:
 
 Two cross-references to keep intact if sections move:
 
-- The manual's "If a tile is empty or hatched" refers to the tier definitions,
+- The manual's "What a hatched tile means" refers to the tier definitions,
   which now live under "How we built it".
 - "What this data cannot tell you" links to the CPS explorer post.
 
