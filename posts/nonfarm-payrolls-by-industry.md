@@ -14,8 +14,8 @@ temporal: 1939-01/..
 spatial: United States
 measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
-hero: charts/anomaly-tooltip.png
-hero_alt: The treemap with a tooltip open on computing infrastructure and data processing, which lost 7,700 jobs in a month. The tooltip reports a robust z of -5.53 at the 0th percentile and flags it as inside the most extreme 1% of that industry's own history. The tile itself is marked with a diagonal hatch.
+hero: charts/hero-mine-entrance.jpg
+hero_alt: Illustration of a miner in a hard hat and high-visibility jacket standing at the timber-framed entrance of a coal mine, her headlamp throwing a beam into the darkness. A weathered sign above the entrance reads Nonfarm Payroll Data, Bureau of Labor Statistics.
 ---
 
 # Exploring U.S. Jobs Data
@@ -28,8 +28,8 @@ A single month's payroll number tells you what changed. It does not tell you whe
 
 Hover any industry and the tool answers the question the number leaves open.
 
-![The treemap with a tooltip open on local government education, showing an increase of 41,900 jobs scored as unusual at a robust z of 2.95 and the 96th percentile of twenty years of comparable monthly changes, above a sparkline of the industry's history since 1955.](charts/anomaly-tooltip.png)
-*Local government education added 41,900 jobs in a month. The score puts that above 96% of comparable monthly changes in the last twenty years, measured against 212 windows with the pandemic excluded.*
+![The treemap with a tooltip open on computing infrastructure, data processing and web hosting, showing a fall of 7,700 jobs scored as extreme at a robust z of −5.53 and the 0th percentile, flagged as inside the most extreme 1% of that industry's own history, above a sparkline running from 1990.](charts/anomaly-tooltip.png)
+*Computing infrastructure, data processing and web hosting lost 7,700 jobs in a month. Small next to the headline, and the most extreme month in that industry's record: lower than every one of the 212 comparable changes over twenty years, with the pandemic excluded. The tile carries the heavier hatch.*
 
 Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly. Underneath, the sparkline shows the whole series with recessions shaded, so you can see the shape the number came out of.
 
