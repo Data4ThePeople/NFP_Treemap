@@ -41,7 +41,7 @@ That is why we built this tool. It is the map and the high-beam headlamp you nee
 
 <iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="U.S. Jobs Data Explorer: nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
 
-## How to use it
+## How to explore payroll data by industry
 
 ### How to read a tile
 
@@ -59,7 +59,7 @@ Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Eve
 
 This is one of the most important features of this tool. A colored hatch tells you the change stands out against that industry's own record, and indicates one of two things: the change is unusual, or the change is anomalous. Hatched industries, in our view, are the ones we want to look at with a skeptical eye, especially in the initial data release. Over longer time periods, hatched industries indicate real shifts in the labor market.
 
-The types of hatch patterns: **gray** means BLS has not published a value for that industry in that month. **Colored** is the anomaly marker, a light hatch for a month that is unusual for that industry, a heavier one for a change with almost no precedent in its record. What earns a tile each mark is set out further down, under how we built it.
+The types of hatch patterns: **gray** means BLS has not published a value for that industry in that month. **Colored** is the anomaly marker, a light hatch for a month that is unusual for that industry, a heavier one for a change with almost no precedent in its record. What earns a tile each mark is set out further down, in the section on how we built this.
 
 ### The controls
 
@@ -157,7 +157,7 @@ into, with the same numbers the tiles show.
 other person opens the same industry, at the same level, over the same horizon.
 It is also how to cite a specific view.
 
-## How we built it
+## How we built it from BLS payroll data
 
 ### Every number comes from the BLS API
 
@@ -308,7 +308,7 @@ The whole visualization is one self-contained HTML file. No server, no external 
 
 That is what makes the chart straightforward to embed, export and read offline.
 
-## What this data cannot tell you
+## What nonfarm payroll data cannot tell you
 
 It counts payroll jobs, not people. CES asks employers how many people are on their payrolls, so somebody with two jobs is counted twice and the self-employed are not counted at all. The unemployment rate comes from the household survey, called the CPS, which is a different survey with a different frame. We built [a separate tool](https://www.data4thepeople.com/p/beyond-the-unemployment-rate/) for that one.
 
