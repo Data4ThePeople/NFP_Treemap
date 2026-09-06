@@ -20,72 +20,19 @@ hero_alt: Illustration of a miner in a hard hat and high-visibility jacket stand
 
 # Exploring U.S. Jobs Data
 
-A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. The monthly print is also revised twice before it settles, and the revisions are not always small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
+Every month the Bureau of Labor Statistics (BLS) issues its estimate of how many jobs the U.S. gained or lost. It is called Nonfarm Payroll (NFP) data, and it takes survey responses from U.S. businesses, cranks them through a model, and outputs them for policy makers, the stock market, and the public to blindly trust.
+
+But warning signs are growing on this data. The [survey response rate](https://www.bls.gov/osmr/response-rates/establishment-survey-response-rates.htm) is in structural decline, from about 60% before 2020 to 43.3% now. The [confidence interval](https://www.bls.gov/news.release/empsit.tn.htm) on the monthly change is plus or minus 122,000, which is larger than the change itself in most recent months. The [benchmark revision](https://www.cnbc.com/2025/09/09/jobs-report-revisions-september-2025-.html) for the year through March 2025 cut 911,000 jobs, the largest on record in level terms. And [BLS headcount](https://www.amstat.org/docs/default-source/amstat-documents/FedStatHealth_MidYearUpdate.pdf) is down about 20% in two years.
+
+Nonfarm payroll data has always been a complex web of underground tunnels. Most people see the headline number and treat that as gospel, but there are hundreds of numbers buried underneath it, begging to be explored. This used to be easier when the data was less volatile. The tunnels were lit up, so to speak. Now they are dark. We do not know what to trust, or where to direct our skepticism.
+
+That is why we built this tool. It is the map and the high-beam headlamp you need to responsibly explore this critical data set. The tool is embedded below and, like everything else at Data 4 The People, it is free to use. Please at least skim the rest of this report. It is the instruction manual for using this visualization responsibly.
 
 <iframe src="https://data4thepeople.github.io/NFP_Treemap/dist/index.html" title="U.S. Jobs Data Explorer: nonfarm payroll employment change by industry" width="100%" height="780" style="border:0" loading="lazy"></iframe>
 
-## Why a raw number is not enough
+## How to use it
 
-Hover any industry and the tool answers the question the number leaves open.
-
-![The treemap with a tooltip open on computing infrastructure, data processing and web hosting, showing a fall of 7,700 jobs scored as extreme at a robust z of −5.53 and the 0th percentile, flagged as inside the most extreme 1% of that industry's own history, above a sparkline running from 1990.](charts/anomaly-tooltip.png)
-*Computing infrastructure, data processing and web hosting lost 7,700 jobs in a month. Small next to the headline, and the most extreme month in that industry's record: lower than every one of the 212 comparable changes over twenty years, with the pandemic excluded. The tile carries the heavier hatch.*
-
-Two things in that tooltip do the work. The **robust z-score** says how far the move sits from that industry's typical month, measured in a way a handful of extreme months cannot distort. The **percentile** says it plainly. Underneath, the sparkline shows the whole series with recessions shaded, so you can see the shape the number came out of.
-
-Run that across every industry at once and the biggest tiles stop being the only ones worth reading. A large industry moving inside its normal range may matter less than a small one setting a record, and tile size alone will not separate them.
-
-**You do not have to hover to find them.** Marked industries carry a diagonal hatch on the tile itself, so they are visible the moment the chart draws. There are two strengths of mark: a light hatch for a month that is unusual for that industry, and a heavier one for a change with almost no precedent in its record. Across 2013 to 2026 the light mark lands on about 8% of the industries on screen and the heavy one on about 1%.
-
-## Why revisions make this worth doing
-
-The payroll survey revises. Every release restates the two preceding months as
-more responses arrive, and each annual benchmark can restate up to five years of
-seasonally adjusted history. The changes are not always small: one food services
-month in this data read −32,900 when we first captured it and −12,100 in the next
-vintage, a swing of more than 20,000 jobs on a single series.
-
-So a first print is a provisional reading, and a single month is weaker evidence
-than it looks. Scoring a move against twenty years of the same industry's
-behaviour holds up better. A change that is unremarkable for an industry stays
-unremarkable whichever way the revision lands, and a change at the far end of two
-decades is worth a look even if the exact figure moves.
-
-The score also reports when it cannot judge. Where an industry has too little
-independent history for the horizon you picked, it says so rather than producing
-a number.
-
-## Why the headline number hides so much
-
-The monthly payroll figure is an aggregate of an economy that is not moving in one direction. In a typical month some industries hire hard while others shed staff, and the headline is the arithmetic left over. Two months with an identical total can be completely different events underneath.
-
-We have written about one version of this before. In [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/) we found that nearly nine in ten new American jobs since 2024 came from a single place: health care and social assistance. That finding came out of this same survey, and it is easier to see with every industry side by side than in the monthly total.
-
-The detail is public. It is published as hundreds of separate time series, retrieved by series identifier, which suits someone who already knows which series they want and is harder going if you are looking for what moved.
-
-## What counts as unusual, and what counts as an anomaly
-
-Two different messages deserve two different marks, because most months that are
-worth a second look are not unprecedented.
-
-Each tier is a **rarity test with a magnitude guard**, and the rarity test is the one
-that defines it.
-
-**Unusual** is the lighter mark. The change sits in the most extreme 10% of that industry's own comparable changes, and clears two robust standard deviations. For any given industry that is roughly one month a year.
-
-**Anomaly** is the heavier one. The most extreme 1%, and three robust standard deviations. Roughly one month a decade.
-
-The tiers nest, so nothing is an anomaly without also being unusual.
-
-**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust standard deviations catch about 9% of industries rather than the 5% a normal distribution implies, and three standard deviations turn up roughly ten times more often than they should. A rank does not drift like that, and it can be held in the head. The top tenth of an industry's own record is about one month in ten. The top hundredth is about one in a hundred.
-
-**Why the magnitude test is still there.** CES reports to the nearest hundred jobs. An industry whose whole history sits close to that floor would set a record every time it twitched, and rarity alone would mark it. With the guard in place the marked changes are real ones: at display level 5 the median marked change is 3,400 jobs, and only 3% are under 1,000.
-
-Underneath both tiers sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history rather than a score.
-
-None of this is a hypothesis test. With hundreds of industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why the rates were checked against thirteen years of real months rather than assumed. Treat a marked tile as a place to look, not as a finding.
-
-## What you are looking at
+### First, what the chart is showing you
 
 The chart is a treemap, which shows quantity as area. Each rectangle is one industry that the BLS publishes separately.
 
@@ -95,12 +42,10 @@ Color is direction and scale. Blue is a gain, red is a loss, and the scale is sy
 
 Grouping is the hierarchy itself. Tiles are grouped into their supersector, or into the direct children of whatever you drilled into. Those labeled bands are the level of the tree you are standing on.
 
-![Treemap of payroll employment change across 249 industries in a single month, each sized by the jobs it added or lost.](charts/hero-treemap-level5-july.png)
-*The full surface at display level 5: 249 industries in one month. Restaurants and other eating places is the dark red block on the left, down 80,800.*
 
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
 
-## How to use it
+### The controls
 
 Every control sits in the bar above the chart. Nothing here needs an account and
 nothing is saved, so you can change anything and change it back.
@@ -169,9 +114,6 @@ everything back.
 Tile area stays the absolute job change in both settings, so size and rate are
 readable at the same time.
 
-![Percent-change view over a one-year horizon at level 4, showing proportional employment change across 84 industries.](charts/percent-change-one-year.png)
-*The percent view over one year. Tile area is still the absolute job change, so a big industry moving slightly and a small industry moving sharply are both legible.*
-
 ### Take the data with you
 
 **CSV** downloads exactly the view on screen, including whatever you have drilled
@@ -200,6 +142,28 @@ for unusual, a heavier one for an anomaly.
 We pull the monthly values directly from the BLS Public Data API rather than the flat text files, which means the whole thing refreshes in seventeen requests when a jobs report lands. Twenty-six series reach back to January 1939. Most industry detail begins in 1990, which is when CES started publishing it separately.
 
 Two things the API cannot give us are fetched once and cached. The `ce.industry` reference file carries each industry's display level, sort order and NAICS code, and the API has no metadata endpoint to serve them. The Census NAICS descriptions supply the definition text you see on hover.
+
+### What counts as unusual, and what counts as an anomaly
+
+Two different messages deserve two different marks, because most months that are
+worth a second look are not unprecedented.
+
+Each tier is a **rarity test with a magnitude guard**, and the rarity test is the one
+that defines it.
+
+**Unusual** is the lighter mark. The change sits in the most extreme 10% of that industry's own comparable changes, and clears two robust standard deviations. For any given industry that is roughly one month a year.
+
+**Anomaly** is the heavier one. The most extreme 1%, and three robust standard deviations. Roughly one month a decade.
+
+The tiers nest, so nothing is an anomaly without also being unusual.
+
+**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust standard deviations catch about 9% of industries rather than the 5% a normal distribution implies, and three standard deviations turn up roughly ten times more often than they should. A rank does not drift like that, and it can be held in the head. The top tenth of an industry's own record is about one month in ten. The top hundredth is about one in a hundred.
+
+**Why the magnitude test is still there.** CES reports to the nearest hundred jobs. An industry whose whole history sits close to that floor would set a record every time it twitched, and rarity alone would mark it. With the guard in place the marked changes are real ones: at display level 5 the median marked change is 3,400 jobs, and only 3% are under 1,000.
+
+Underneath both tiers sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history rather than a score.
+
+None of this is a hypothesis test. With hundreds of industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why the rates were checked against thirteen years of real months rather than assumed. Treat a marked tile as a place to look, not as a finding.
 
 ### The anomaly sample has to scale with the horizon
 
@@ -246,9 +210,6 @@ Three rows do it: health care, specialty trade contractors, and motor vehicles a
 CES publishes only some children for many parents. The tiles at a level frequently do not sum to the parent above them, and we do not scale or pad anything to make them.
 
 That is deliberate, because the alternative is worse. Forcing a sum means inventing a residual category and putting a number in it that BLS never published. Instead every tile is the reported value, and where the shortfall matters the page says so: drill into a parent whose published children cover three quarters of it and you are told it is three quarters. The top level carries the opposite warning, because those four aggregates overlap and sum to more than the total.
-
-![Drill-down view showing the industries inside health care and social assistance, with breadcrumb navigation and notes stating how much of the parent industry the published children cover.](charts/drill-health-care-social-assistance.png)
-*Drill into a sector and you get its published sub-industries, a breadcrumb trail back up, and a plain statement of how much of the parent those children actually cover.*
 
 ### Revisions overwrite, because a jobs number is a moving target
 
@@ -304,7 +265,7 @@ The Current Employment Statistics survey, also called the establishment survey o
 
 ### Which industries added the most jobs last month?
 
-That changes every month, which is what this treemap is for. Open it on the most recent month with a one-month comparison and the largest blue tiles are the industries that added the most jobs, while the largest red tiles are the ones that lost the most. Hovering any tile also tells you whether that move was unusual for the industry, which the size alone will not.
+That changes every month, which is what this treemap is for. Open it on the most recent month with a one-month comparison and the largest blue tiles are the industries that added the most jobs, while the largest red tiles are the ones that lost the most. Hovering any tile also tells you whether that move was unusual for the industry, which the size alone will not. For a longer look at how concentrated recent job growth has become, see [Giants Walk Among Us](https://www.data4thepeople.com/p/giants-walk-among-us/).
 
 ### How often is this data updated?
 
