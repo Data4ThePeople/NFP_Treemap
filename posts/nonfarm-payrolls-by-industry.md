@@ -163,28 +163,40 @@ month. The number on its own cannot tell you.
 
 To answer it you first need to know how much that industry normally moves. Take
 food services and drinking places. Over the last twenty years its employment has
-changed by about 19,000 in a typical month, and a *usual swing* away from that
-is about 21,000. Those two numbers describe what normal looks like for
-restaurants.
+changed by about 19,000 in a typical month, and a *usual swing* away from that is
+about 21,000. Those two numbers describe what normal looks like for restaurants.
 
 Now you can judge any month against them. In August 2026 food services added
 59,200 jobs. That is 40,500 above its typical month, which is 1.9 usual swings.
-
-That ratio is the **z-score**: how many usual swings away from normal a month
-is.
-
-- **z = 1** is about as far from normal as this industry usually gets.
-- **z = 2** is twice that.
-- **z = 3** is three times, and rare.
-
-Because the answer is in usual swings rather than jobs, an industry employing
-twelve million people and one employing nine thousand can be compared directly.
+That ratio is the **z-score**: how many usual swings from normal a month sits. A
+z of 1 is about as far as that industry usually gets, a z of 2 is twice that, a z
+of 3 is three times and rare. Because the answer is in usual swings rather than
+jobs, an industry employing twelve million people and one employing nine thousand
+can be compared directly.
 
 One refinement, and it matters here. If you measure the usual swing with a plain
-average, a few enormous months drag it upward and everything afterward looks
-calm by comparison. The pandemic would do exactly that. So we use the middle
-value instead of the average, which a handful of extreme months cannot move.
-That is what *robust* means when the tooltip says "robust z".
+average, a few enormous months drag it upward and everything afterward looks calm
+by comparison. The pandemic would do exactly that. So we use the middle value
+instead of the average, which a handful of extreme months cannot move. That is
+what *robust* means when the tooltip says "robust z".
+
+**What the month is compared against** is the same industry's own history of
+changes over the same length of time, assembled under three rules.
+
+- **The lookback scales with the horizon**, ten months of history for every month
+  of comparison, with a floor of twenty years. The floor is not padding: a
+  shorter window with the pandemic removed can contain no downturn at all, which
+  leaves every sample an expansion-year change and makes an ordinary slowdown
+  look extreme.
+- **Overlapping windows are not independent.** Twenty years holds 240 one-month
+  changes but only about six independent three-year windows. At least six
+  non-overlapping windows are required, and below that the tool says it has
+  insufficient history rather than guessing. This is why the tooltip names the
+  span it actually covered, which is not always the span it asked for.
+- **The pandemic is excluded**, March 2020 through June 2022, from the collapse
+  until payrolls regained their February 2020 peak. A window is dropped if either
+  endpoint falls inside it, not only if it begins there, because a three-year
+  window starting in late 2020 still measures from deep in the hole.
 
 Hover any tile and you get one of four labels:
 
@@ -198,52 +210,35 @@ large on its own scale. What exactly that takes is next.
 
 ### What counts as unusual, and what counts as an anomaly
 
-Two different messages deserve two different marks, because most months that are
-worth a second look are not unprecedented.
+Two different messages deserve two different marks, because most months worth a
+second look are not unprecedented. Each tier is a **rarity test with a magnitude
+guard**, and the rarity test is the one that defines it.
 
-Each tier is a **rarity test with a magnitude guard**, and the rarity test is the one
-that defines it.
+**Unusual** is the lighter mark: the change sits in the most extreme 10% of that
+industry's own comparable changes and clears two robust standard deviations. For
+any given industry that is roughly one month a year.
 
-**Unusual** is the lighter mark. The change sits in the most extreme 10% of that industry's own comparable changes, and clears two robust standard deviations. For any given industry that is roughly one month a year.
+**Anomaly** is the heavier one: the most extreme 1%, and three standard
+deviations. Roughly one month a decade. The tiers nest, so nothing is an anomaly
+without also being unusual.
 
-**Anomaly** is the heavier one. The most extreme 1%, and three robust standard deviations. Roughly one month a decade.
+**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this
+data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust
+standard deviations catch about 9% of industries rather than the 5% a normal
+distribution implies, and three turn up roughly ten times more often than they
+should. A rank does not drift like that, and it can be held in the head. The top
+tenth of an industry's own record is about one month in ten.
 
-The tiers nest, so nothing is an anomaly without also being unusual.
+**Why the magnitude test is still there.** BLS reports to the nearest hundred
+jobs. An industry whose whole history sits close to that floor would set a record
+every time it twitched, and rarity alone would mark it. With the guard in place
+the marked changes are real ones: at display level 5 the median marked change is
+3,400 jobs, and only 3% are under 1,000.
 
-**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust standard deviations catch about 9% of industries rather than the 5% a normal distribution implies, and three standard deviations turn up roughly ten times more often than they should. A rank does not drift like that, and it can be held in the head. The top tenth of an industry's own record is about one month in ten. The top hundredth is about one in a hundred.
-
-**Why the magnitude test is still there.** CES reports to the nearest hundred jobs. An industry whose whole history sits close to that floor would set a record every time it twitched, and rarity alone would mark it. With the guard in place the marked changes are real ones: at display level 5 the median marked change is 3,400 jobs, and only 3% are under 1,000.
-
-Underneath both tiers sits the requirement that there is enough history to judge at all: at least 24 comparable changes, at least six of them non-overlapping, with March 2020 to June 2022 excluded so the pandemic does not define normal. Where an industry cannot meet that, the tool reports insufficient history rather than a score.
-
-None of this is a hypothesis test. With hundreds of industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why the rates were checked against thirteen years of real months rather than assumed. Treat a marked tile as a place to look, not as a finding.
-
-### How the comparison window is built
-
-A change is scored against the same industry's own history of changes over the
-same length of time. Four rules govern how that sample is assembled.
-
-**The lookback scales with the horizon**, at ten months of history for every
-month of comparison, with a floor of twenty years. A one-month change is scored
-against twenty years of one-month changes; a three-year change asks for thirty
-years of three-year changes. The floor is not padding. A shorter window with the
-pandemic removed can contain no downturn at all, which leaves every sample an
-expansion-year change and makes an ordinary slowdown look extreme.
-
-**Overlapping windows are not independent observations.** Twenty years holds 240
-one-month changes but only about six independent three-year windows. At least six
-non-overlapping windows are required, and below that the tool reports
-insufficient history rather than a number. This is why the tooltip names the span
-it actually covered, which is not always the span it asked for.
-
-**The pandemic is excluded**, March 2020 through June 2022, from the collapse
-until payrolls regained their February 2020 peak. A window is dropped if either
-endpoint falls inside it, not only if it begins there, because a three-year
-window starting in late 2020 still measures from deep in the hole.
-
-**The z-score is robust**, built on the median and the median absolute deviation
-rather than the mean and standard deviation, so a handful of pandemic-scale
-months cannot stretch the scale that everything else is measured against.
+None of this is a hypothesis test. With hundreds of industries on screen, a
+threshold loose enough to fire often would fire by chance often too, which is why
+the rates were checked against thirteen years of real months rather than assumed.
+Treat a marked tile as a place to look, not as a finding.
 
 ### The hierarchy comes from the codes, not the row order
 
