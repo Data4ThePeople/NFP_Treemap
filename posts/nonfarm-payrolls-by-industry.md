@@ -46,25 +46,40 @@ Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Eve
 
 ### What the score means
 
-Industries differ enormously in size and in how much they normally bounce
-around. A gain of 8,000 jobs is huge for an industry that usually moves by a few
-hundred, and unremarkable for one that regularly swings by tens of thousands. So
-a raw number cannot tell you whether a month was strange.
+Say an industry added 8,000 jobs last month. Is that a lot? It depends entirely
+on which industry. For one that usually moves by a few hundred, 8,000 is
+enormous. For one that routinely swings by tens of thousands, it is a quiet
+month. The number on its own cannot tell you.
 
-A **z-score** fixes that by measuring each change in units of that industry's own
-typical monthly swing. A z of 1 means this month moved about as much as that
-industry usually moves. A z of 3 means it moved about three times its usual
-amount. Same scale for every industry, whether it employs twelve million people
-or nine thousand.
+To answer it you first need to know how much that industry normally moves. Take
+food services and drinking places. Over the last twenty years its employment has
+changed by about 19,000 in a typical month, and a *usual swing* away from that
+is about 21,000. Those two numbers describe what normal looks like for
+restaurants.
 
-Ours is a *robust* z-score, which means the yardstick is built from the median
-rather than the average, so a handful of pandemic-scale months cannot stretch it
-and make everything since look calm by comparison.
+Now you can judge any month against them. In August 2026 food services added
+59,200 jobs. That is 40,500 above its typical month, which is 1.9 usual swings.
+
+That ratio is the **z-score**: how many usual swings away from normal a month
+is.
+
+- **z = 1** is about as far from normal as this industry usually gets.
+- **z = 2** is twice that.
+- **z = 3** is three times, and rare.
+
+Because the answer is in usual swings rather than jobs, an industry employing
+twelve million people and one employing nine thousand can be compared directly.
+
+One refinement, and it matters here. If you measure the usual swing with a plain
+average, a few enormous months drag it upward and everything afterward looks
+calm by comparison. The pandemic would do exactly that. So we use the middle
+value instead of the average, which a handful of extreme months cannot move.
+That is what *robust* means when the tooltip says "robust z".
 
 Hover any tile and you get one of four labels:
 
-- **Typical** — the change is smaller than one of that industry's usual swings.
-- **Notable** — bigger than that, but it did not clear the bar for a mark.
+- **Typical** — less than one usual swing from normal.
+- **Notable** — further than that, but not enough to be marked.
 - **Unusual** — marked with a light hatch.
 - **Anomaly** — marked with a heavy hatch.
 
