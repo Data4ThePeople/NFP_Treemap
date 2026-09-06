@@ -1,4 +1,4 @@
-/* U.S. Employment Data Treemap.
+/* U.S. Jobs Data Explorer.
    PAYLOAD is injected by build.py as a global before this script runs. */
 (() => {
   "use strict";
