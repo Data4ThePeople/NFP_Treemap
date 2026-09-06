@@ -376,7 +376,43 @@ footer pointing back to the article. The link is worth more than the meta tag.
 
 ---
 
-## 5. Unrelated but worth knowing
+## 5. The robots.txt sitemap line
+
+Not editable from this repository. `robots.txt` is served by the website app,
+not by anything here. Its current contents are 24 bytes:
+
+```
+User-agent: *
+Disallow:
+```
+
+That allows everything, which is right, but it never names the sitemap. The
+sitemap itself works and is complete, at
+`https://www.data4thepeople.com/sitemap.xml`. The whole change is one line:
+
+```
+User-agent: *
+Disallow:
+
+Sitemap: https://www.data4thepeople.com/sitemap.xml
+```
+
+**Where it goes.** The sitemap carries an `/__sitemap__/style.xsl` stylesheet
+reference, which is the signature of the Nuxt sitemap module. That module adds
+the `Sitemap:` line automatically when the matching robots module is installed;
+since the line is absent, `robots.txt` is almost certainly a static file at
+`public/robots.txt` in the site repository. Editing it there is safe and nothing
+regenerates over it.
+
+**Worth keeping in proportion.** This is hygiene, not a ranking lever. Google
+discovers the sitemap from Search Console regardless, and submitting the new
+post's URL there the day it goes live does more than this line ever will. It is
+still worth fixing, because it costs one line and helps every other crawler that
+does not have a Search Console account.
+
+---
+
+## 6. Unrelated but worth knowing
 
 `data4thepeople.com` is on a one-year registration expiring 2026-10-29. Domain
 expiry is not a confirmed ranking factor, but an eight-week runway is avoidable
