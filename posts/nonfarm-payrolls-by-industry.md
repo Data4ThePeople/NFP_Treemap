@@ -12,8 +12,17 @@ dataset_name: US nonfarm payroll employment by industry, monthly
 dataset_description: Monthly seasonally adjusted payroll employment for every industry published by the US Bureau of Labor Statistics Current Employment Statistics (CES) survey, with each month's change scored against that industry's own history of comparable changes. 842 series covering the full published industry hierarchy, from total nonfarm payrolls down to six-digit NAICS industry detail, from January 1939 to the present month. Values are all employees in thousands, exactly as reported by BLS, with no modeling, smoothing or rescaling applied.
 temporal: 1939-01/..
 spatial: United States
-measured: All employees, thousands of jobs|NUM
+measured: All employees|thousands of jobs;Net employment change over the selected horizon|thousands of jobs;Percent employment change over the selected horizon|percent
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
+same_as: https://www.bls.gov/ces/
+credit: US Bureau of Labor Statistics, Current Employment Statistics
+catalog: BLS Public Data API|https://www.bls.gov/developers/
+measurement_technique: Monthly establishment survey of approximately 121,000 businesses and government agencies, seasonally adjusted, benchmarked annually to the Quarterly Census of Employment and Wages
+distribution: text/csv|https://data4thepeople.github.io/NFP_Treemap/dist/index.html
+app_url: https://data4thepeople.github.io/NFP_Treemap/dist/index.html
+app_name: U.S. Jobs Data Explorer
+app_description: A free interactive treemap of US nonfarm payroll employment by industry. Drill from total nonfarm down to six-digit NAICS detail, set any base month back to 1939, compare horizons from one month to twenty years, and see which changes are unusual for the industry rather than merely large.
+app_features: Drill down through eight levels of the BLS industry hierarchy|Select any base month from January 1939|Compare one month against up to twenty years|Absolute and percent change views|Official Census NAICS definitions on hover|Anomaly scoring against each industry's own history|CSV and PNG export|Deep-linkable views and an embeddable iframe
 hero: charts/hero-mine-entrance.jpg
 hero_alt: Illustration of a miner in a hard hat and high-visibility jacket standing at the timber-framed entrance of a coal mine, her headlamp throwing a beam into the darkness. A weathered sign above the entrance reads Nonfarm Payroll Data, Bureau of Labor Statistics.
 meta_image: charts/social-card.jpg
