@@ -16,6 +16,8 @@ measured: All employees, thousands of jobs|NUM
 sources: https://www.bls.gov/ces/|https://www.bls.gov/news.release/empsit.toc.htm|https://www.census.gov/naics/
 hero: charts/hero-mine-entrance.jpg
 hero_alt: Illustration of a miner in a hard hat and high-visibility jacket standing at the timber-framed entrance of a coal mine, her headlamp throwing a beam into the darkness. A weathered sign above the entrance reads Nonfarm Payroll Data, Bureau of Labor Statistics.
+meta_image: charts/social-card.jpg
+meta_image_alt: Illustration of a miner in a hard hat at the entrance of a coal mine, her headlamp lit, beneath a sign reading Nonfarm Payroll Data, Bureau of Labor Statistics.
 ---
 
 # Exploring U.S. Jobs Data
