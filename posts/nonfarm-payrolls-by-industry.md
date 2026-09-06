@@ -210,35 +210,41 @@ large on its own scale. What exactly that takes is next.
 
 ### What counts as unusual, and what counts as an anomaly
 
-Two different messages deserve two different marks, because most months worth a
-second look are not unprecedented. Each tier is a **rarity test with a magnitude
-guard**, and the rarity test is the one that defines it.
+A change gets a mark only if it passes two tests at once. They ask different
+questions, and a month can pass one and fail the other.
 
-**Unusual** is the lighter mark: the change sits in the most extreme 10% of that
-industry's own comparable changes and clears two robust standard deviations. For
-any given industry that is roughly one month a year.
+**Is it big for this industry?** This is the z-score from above. To be marked
+unusual, the month has to be at least 2 usual swings from normal. To be marked an
+anomaly, at least 3.
 
-**Anomaly** is the heavier one: the most extreme 1%, and three standard
-deviations. Roughly one month a decade. The tiers nest, so nothing is an anomaly
-without also being unusual.
+**Is it rare for this industry?** Count how many of that industry's own months
+landed at least this far from normal, in either direction. To be marked unusual,
+this month has to be among its most extreme 10%. To be marked an anomaly, its
+most extreme 1%.
 
-**Why rarity leads.** A pure standard-deviation cut has no stable meaning on this
-data. Payroll changes are heavy-tailed: measured across 2013 to 2026, two robust
-standard deviations catch about 9% of industries rather than the 5% a normal
-distribution implies, and three turn up roughly ten times more often than they
-should. A rank does not drift like that, and it can be held in the head. The top
-tenth of an industry's own record is about one month in ten.
+Pass both and the tile is marked. The two tiers nest, so nothing is an anomaly
+without also being unusual. For any given industry an unusual month comes up
+roughly once a year, and an anomaly roughly once a decade.
 
-**Why the magnitude test is still there.** BLS reports to the nearest hundred
-jobs. An industry whose whole history sits close to that floor would set a record
-every time it twitched, and rarity alone would mark it. With the guard in place
-the marked changes are real ones: at display level 5 the median marked change is
-3,400 jobs, and only 3% are under 1,000.
+**Why not just the z-score?** Because on this data it does not mean what a
+textbook says it means. A textbook assumes changes cluster tidily around normal,
+and payroll changes do not: they have long tails, with far more extreme months
+than that assumption predicts. Measured across 2013 to 2026, a z of 2 turns up in
+about 9% of industries rather than the 5% the textbook implies, and a z of 3
+about ten times more often than it should. Counting an industry's actual months
+does not drift like that, and the answer is easier to hold on to. Its most
+extreme tenth is one month in ten. That is just true.
 
-None of this is a hypothesis test. With hundreds of industries on screen, a
-threshold loose enough to fire often would fire by chance often too, which is why
-the rates were checked against thirteen years of real months rather than assumed.
-Treat a marked tile as a place to look, not as a finding.
+**Why not just the count?** Because BLS reports employment to the nearest hundred
+jobs. An industry whose entire history sits close to that rounding floor would
+set a record almost every month, and counting alone would mark it every time.
+Requiring real size as well keeps the marks meaningful: at display level 5 the
+median marked change is 3,400 jobs, and only 3% are under 1,000.
+
+None of this is a formal statistical test. With hundreds of industries on screen,
+a threshold loose enough to fire often would fire by chance often too, which is
+why both rates were checked against thirteen years of real months rather than
+assumed. Treat a marked tile as a place to look, not as a finding.
 
 ### The hierarchy comes from the codes, not the row order
 
@@ -307,7 +313,7 @@ Compare it against the same industry's own history of changes over the same leng
 
 ### What does the hatched tile mean?
 
-A diagonal hatch marks an industry whose change stands out against its own history, so you can find them without hovering over every tile. A light hatch means unusual: the change is in the most extreme 10% of that industry's own record and clears two robust standard deviations. A heavier hatch means an anomaly: the most extreme 1%, and three standard deviations. A third hatch, in gray and leaning the other way, means no data was published for that period rather than anything about the size of the change.
+A diagonal hatch marks an industry whose change stands out against its own history, so you can find them without hovering over every tile. A light hatch means unusual: the month is at least 2 usual swings from normal for that industry, and among the most extreme 10% of its own record. A heavier hatch means an anomaly: at least 3 usual swings, and the most extreme 1%. A third hatch, in gray and leaning the other way, means no data was published for that period rather than anything about the size of the change.
 
 ### What does the anomaly score mean?
 
