@@ -203,31 +203,34 @@ window starting in late 2020 still measures from deep in the hole.
 rather than the mean and standard deviation, so a handful of pandemic-scale
 months cannot stretch the scale that everything else is measured against.
 
-### The industry hierarchy is derived from the codes, not read off the file
+### The hierarchy comes from the codes, not the row order
 
-The obvious rule is that an industry's parent is the nearest preceding row with a smaller display level. It reports zero orphans, which is what makes it easy to trust, and it is wrong.
+Each industry's parent is derived from its industry code rather than from where
+it sits in the file, because the file's ordering puts whole branches under the
+wrong parent. The handful of aggregates above the supersectors are mapped
+explicitly, since they overlap rather than nest.
 
-CES interleaves its residential and nonresidential part-splits at the same level as the total those parts split. Under the obvious rule, all fifty-two specialty trade contractor rows attach to nonresidential specialty trade contractors instead of to specialty trade contractors. Every one of them lands under the wrong parent, with no error to signal it.
+### Every industry carries its official definition
 
-So we derive parents from the industry code instead, walking trailing digits off until a published ancestor appears. The aggregates above the supersectors get an explicit map, because their relationships are encoded nowhere and are not a tree. Total nonfarm is total private plus government, and also goods-producing plus service-providing, while private service-providing sits inside both total private and service-providing. That shape is a lattice. We state it rather than infer it.
+The NAICS field in the BLS reference file is a compressed notation rather than a
+plain code, with several syntaxes that have to be parsed. All 813 non-aggregate
+industries resolve, which is what puts the official Census definition on every
+tile that has one.
 
-### NAICS codes are written in five undocumented syntaxes
+### Three roll-ups are hidden, because they double-count
 
-The NAICS field in the BLS reference file is not a code. It is a compressed notation with at least five forms: a plain code, comma shorthand where `21221,3,9` means three separate industries, semicolon groups, numeric ranges, and "part" qualifiers.
+A few CES roll-ups sit at the same display level as the components they are made
+of, so a flat view of that level counts those jobs twice. Health care, specialty
+trade contractors, and motor vehicles and parts are hidden by default for that
+reason, and you can switch them back on.
 
-The rule that makes them resolve is not obvious. Each fragment replaces the trailing digits of the previous code in the list, not of the first one. Expand against the base instead and `332200;991,9` resolves to `332209` when the right answer is `332999`. All 813 non-aggregate industries resolve, which is what puts an official definition on every tile that has one.
+### The tiles do not add up to the total, and we leave it that way
 
-### Three roll-ups double-count their own siblings
-
-Some CES roll-ups sit at the same display level as the components they are made of. Health care, at level 4, is exactly ambulatory plus hospitals plus nursing, and all four are published at level 4. A flat view of that level counts those jobs twice. In the month we caught this, the children of health care and social assistance summed to 61,300 against a true 41,000.
-
-Three rows do it: health care, specialty trade contractors, and motor vehicles and parts. We find them structurally, by detecting a row whose NAICS set is exactly the union of its same-level siblings, rather than hard-coding three names that would rot silently the next time BLS revises the hierarchy. They are hidden by default and you can switch them on.
-
-### Levels are not partitions, and we do not pad them
-
-CES publishes only some children for many parents. The tiles at a level frequently do not sum to the parent above them, and we do not scale or pad anything to make them.
-
-That is deliberate, because the alternative is worse. Forcing a sum means inventing a residual category and putting a number in it that BLS never published. Instead every tile is the reported value, and where the shortfall matters the page says so: drill into a parent whose published children cover three quarters of it and you are told it is three quarters. The top level carries the opposite warning, because those four aggregates overlap and sum to more than the total.
+BLS publishes only some children for many parent industries, so the tiles at a
+level frequently do not sum to the parent above them. Forcing a sum would mean
+inventing a residual category and putting a number in it that BLS never
+published, so instead every tile is the reported value and the page tells you
+when the published children cover materially less than the whole.
 
 ### Revisions overwrite, because a jobs number is a moving target
 
