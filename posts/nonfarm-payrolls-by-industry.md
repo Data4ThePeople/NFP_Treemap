@@ -32,18 +32,23 @@ That is why we built this tool. It is the map and the high-beam headlamp you nee
 
 ## How to use it
 
-### First, what the chart is showing you
+### How to read a tile
 
 The chart is a treemap, which shows quantity as area. Each rectangle is one industry that the BLS publishes separately.
 
-Size is the number of jobs. A tile's area is the absolute change in employees over the period you picked, so the industries that moved the labor market most are the biggest shapes on the screen. That stays true in both color modes, deliberately. Sizing by percent would let a three-thousand-person industry with a good month outweigh food services.
+The size of each tile corresponds to the number of jobs gained or lost in one industry. A tile's area is the absolute change in employees over the period you picked, so the industries that moved the labor market most are the biggest shapes on the screen. That stays true in both color modes, deliberately. Sizing by percent would let a three-thousand-person industry with a good month outweigh food services.
 
-Color is direction and scale. Blue is a gain, red is a loss, and the scale is symmetric around zero, so a loss and a gain of equal size read at equal strength. We computed the palette rather than picking it, and validated it against the standard color-vision-deficiency transforms, so the two directions stay apart for readers who cannot separate them by hue.
+The color of each tile shows you the direction and scale. Blue is a gain, red is a loss, and the scale is symmetric around zero, so a loss and a gain of equal size read at equal strength. We computed the palette rather than picking it, and validated it against the standard color-vision-deficiency transforms, so the two directions stay apart for readers who cannot separate them by hue.
 
-Grouping is the hierarchy itself. Tiles are grouped into their supersector, or into the direct children of whatever you drilled into. Those labeled bands are the level of the tree you are standing on.
-
+The industry tiles are grouped by what BLS calls a "supersector." There are eleven of them, and every industry lives inside one. "Restaurants and other eating places," for example, lives inside "Leisure and hospitality." Once you drill into an industry, the bands regroup around whatever you opened.
 
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
+
+### What a hatched tile means
+
+This is one of the most important features of this tool. A colored hatch tells you the change stands out against that industry's own record, and indicates one of two things: the change is unusual, or the change is anomalous. Hatched industries, in our view, are the ones we want to look at with a skeptical eye, especially in the initial data release. Over longer time periods, hatched industries indicate real shifts in the labor market.
+
+The types of hatch patterns: **gray** means BLS has not published a value for that industry in that month. **Colored** is the anomaly marker, a light hatch for a month that is unusual for that industry, a heavier one for a change with almost no precedent in its record. What earns a tile each mark is set out further down, under how we built it.
 
 ### The controls
 
@@ -56,18 +61,28 @@ nothing is saved, so you can change anything and change it back.
 and it goes back as far as the data does, to 1939 for the broad aggregates and
 1990 for most individual industries.
 
-**Comparison period** is what that month is measured against. Leave it on 1mo for
-the jobs report reading: this month versus last. Change it to 1yr, 2yr, 3yr, 5yr,
-10yr or 20yr to measure the same base month against a point further back.
+**Comparison period** is what that month is measured against. Leave it on 1mo to
+drill into the government's jobs report and see what is driving it. Change it to
+1yr, 2yr, 3yr, 5yr, 10yr or 20yr to see longer term trends and learn more about
+how America's job landscape has been shaped over time.
 
 Together these two are the tool's main use. Set the base to March 2007 and the
-comparison to 1mo and you are reading a jobs report from eighteen years ago,
+comparison to 1mo and you are reading a jobs report from nineteen years ago,
 scored against what was normal at the time.
+
+Note that this chart always shows the BLS's current vintage of the data. So
+March 2007 is not the figure that was initially reported that month; it is the
+settled number after every revision since. The most recent months on the chart
+have not been through that process yet.
 
 ### Choose how much detail you want
 
-**Display level** sets how finely industries are broken up. Each step down splits
-the level above it into its published parts.
+Let's go back to our underground mine analogy. Think of **display level** as how
+deep you are travelling into the mine. Level 0 has only one "industry," total
+nonfarm payrolls. Travel down to level 7 and you will find industries as niche
+as "Floor covering retailers." In other words, display level sets how finely
+industries are broken up. Each step down splits the level above it into its
+published parts.
 
 - **Level 2** is the eleven supersectors, the broadest useful view.
 - **Level 3** is nineteen sectors. The page opens here because every industry at
@@ -77,6 +92,12 @@ the level above it into its published parts.
   be published yet on release day.
 - **Levels 5, 6 and 7** go finer still, ending in 166 industries at six-digit
   NAICS detail.
+
+Note that not every industry is published in the latest month. A message right
+above the treemap tells you how many are missing data and names the most recent
+month that covers all of them. Those industries still get a tile,
+hatched in gray rather than colored, so you can see where the gaps are. Check
+back after the next release, when BLS publishes them.
 
 ### Drill into an industry
 
@@ -125,16 +146,6 @@ into, with the same numbers the tiles show.
 other person opens the same industry, at the same level, over the same horizon.
 It is also how to cite a specific view.
 
-### If a tile is empty or hatched
-
-**A gray hatched tile** means BLS has not published a value for that industry in
-that month. On release day this is normal at level 4 and below, because most
-industry detail follows about a month behind the headline. The page says how many
-industries are affected and which month covers all of them.
-
-**A colored hatched tile** is the anomaly marker described above: a light hatch
-for unusual, a heavier one for an anomaly.
-
 ## How we built it
 
 ### Every number comes from the BLS API
@@ -165,25 +176,32 @@ Underneath both tiers sits the requirement that there is enough history to judge
 
 None of this is a hypothesis test. With hundreds of industries on screen, a threshold loose enough to fire often would fire by chance often too, which is why the rates were checked against thirteen years of real months rather than assumed. Treat a marked tile as a place to look, not as a finding.
 
-### The anomaly sample has to scale with the horizon
+### How the comparison window is built
 
-This is the part that took the most work to get right, and the first version was confidently wrong.
+A change is scored against the same industry's own history of changes over the
+same length of time. Four rules govern how that sample is assembled.
 
-It used a fixed 120-month lookback. That holds 120 independent one-month changes but only about three independent three-year windows, so at long horizons the score was driven by whatever single episode all the overlapping windows happened to share.
+**The lookback scales with the horizon**, at ten months of history for every
+month of comparison, with a floor of twenty years. A one-month change is scored
+against twenty years of one-month changes; a three-year change asks for thirty
+years of three-year changes. The floor is not padding. A shorter window with the
+pandemic removed can contain no downturn at all, which leaves every sample an
+expansion-year change and makes an ordinary slowdown look extreme.
 
-The result was an absurdity delivered with total confidence. Total nonfarm's three-year change scored −3.66, "extreme", 0th percentile, on a gain of 2.81 million jobs. All seventy-nine comparison windows had been measured off the 2020 trough, so every one of them was an enormous gain, and an ordinary large gain looked catastrophic beside them.
+**Overlapping windows are not independent observations.** Twenty years holds 240
+one-month changes but only about six independent three-year windows. At least six
+non-overlapping windows are required, and below that the tool reports
+insufficient history rather than a number. This is why the tooltip names the span
+it actually covered, which is not always the span it asked for.
 
-Four things fix it.
+**The pandemic is excluded**, March 2020 through June 2022, from the collapse
+until payrolls regained their February 2020 peak. A window is dropped if either
+endpoint falls inside it, not only if it begins there, because a three-year
+window starting in late 2020 still measures from deep in the hole.
 
-**The lookback scales with the horizon**, at ten months of history per month of comparison, with a twenty-year floor. That floor is not padding. A ten-year window with the pandemic removed contains no downturn at all, so every sample in it is an expansion-year change, and an ordinary year of +403,000 for total nonfarm scored −4.05, "extreme". At twenty years the sample reaches back through 2008 and the same year reads −2.31, "unusual".
-
-**Overlapping windows are not independent**, so we require at least six non-overlapping ones. Below that the tool reports insufficient history rather than a number. This is why the tooltip names the span it actually covered, which is not always the span it asked for.
-
-**The pandemic distortion is excluded**, from March 2020 to June 2022, which is the collapse through to payrolls regaining their February 2020 peak. A window is dropped if either endpoint falls inside it. Excluding only the acute months left three-year windows still starting from deep in the hole.
-
-**The z-score is robust**, built on the median and the median absolute deviation rather than the mean and standard deviation, which a handful of pandemic-scale outliers otherwise dominate. Mean and standard deviation had food services sitting at a "typical" −0.81 while it was at the 5th percentile of its own history.
-
-The same episode produced a wording bug worth mentioning. Rank direction is not the sign of the change, and a gain of 2.81 million was being described as a larger drop than 100% of comparable windows. The tooltip now states the value and where it ranks, and never calls a gain a drop.
+**The z-score is robust**, built on the median and the median absolute deviation
+rather than the mean and standard deviation, so a handful of pandemic-scale
+months cannot stretch the scale that everything else is measured against.
 
 ### The industry hierarchy is derived from the codes, not read off the file
 
