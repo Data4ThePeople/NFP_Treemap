@@ -44,49 +44,6 @@ The industry tiles are grouped by what BLS calls a "supersector." There are elev
 
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
 
-### What the score means
-
-Say an industry added 8,000 jobs last month. Is that a lot? It depends entirely
-on which industry. For one that usually moves by a few hundred, 8,000 is
-enormous. For one that routinely swings by tens of thousands, it is a quiet
-month. The number on its own cannot tell you.
-
-To answer it you first need to know how much that industry normally moves. Take
-food services and drinking places. Over the last twenty years its employment has
-changed by about 19,000 in a typical month, and a *usual swing* away from that
-is about 21,000. Those two numbers describe what normal looks like for
-restaurants.
-
-Now you can judge any month against them. In August 2026 food services added
-59,200 jobs. That is 40,500 above its typical month, which is 1.9 usual swings.
-
-That ratio is the **z-score**: how many usual swings away from normal a month
-is.
-
-- **z = 1** is about as far from normal as this industry usually gets.
-- **z = 2** is twice that.
-- **z = 3** is three times, and rare.
-
-Because the answer is in usual swings rather than jobs, an industry employing
-twelve million people and one employing nine thousand can be compared directly.
-
-One refinement, and it matters here. If you measure the usual swing with a plain
-average, a few enormous months drag it upward and everything afterward looks
-calm by comparison. The pandemic would do exactly that. So we use the middle
-value instead of the average, which a handful of extreme months cannot move.
-That is what *robust* means when the tooltip says "robust z".
-
-Hover any tile and you get one of four labels:
-
-- **Typical** — less than one usual swing from normal.
-- **Notable** — further than that, but not enough to be marked.
-- **Unusual** — marked with a light hatch.
-- **Anomaly** — marked with a heavy hatch.
-
-The last two require the change to be both rare in that industry's own record and
-large on its own scale. What exactly that takes is set out further down, under
-how we built it.
-
 ### What a hatched tile means
 
 This is one of the most important features of this tool. A colored hatch tells you the change stands out against that industry's own record, and indicates one of two things: the change is unusual, or the change is anomalous. Hatched industries, in our view, are the ones we want to look at with a skeptical eye, especially in the initial data release. Over longer time periods, hatched industries indicate real shifts in the labor market.
@@ -196,6 +153,48 @@ It is also how to cite a specific view.
 We pull the monthly values directly from the BLS Public Data API rather than the flat text files, which means the whole thing refreshes in seventeen requests when a jobs report lands. Twenty-six series reach back to January 1939. Most industry detail begins in 1990, which is when CES started publishing it separately.
 
 Two things the API cannot give us are fetched once and cached. The `ce.industry` reference file carries each industry's display level, sort order and NAICS code, and the API has no metadata endpoint to serve them. The Census NAICS descriptions supply the definition text you see on hover.
+
+### Constructing the anomaly score
+
+Say an industry added 8,000 jobs last month. Is that a lot? It depends entirely
+on which industry. For one that usually moves by a few hundred, 8,000 is
+enormous. For one that routinely swings by tens of thousands, it is a quiet
+month. The number on its own cannot tell you.
+
+To answer it you first need to know how much that industry normally moves. Take
+food services and drinking places. Over the last twenty years its employment has
+changed by about 19,000 in a typical month, and a *usual swing* away from that
+is about 21,000. Those two numbers describe what normal looks like for
+restaurants.
+
+Now you can judge any month against them. In August 2026 food services added
+59,200 jobs. That is 40,500 above its typical month, which is 1.9 usual swings.
+
+That ratio is the **z-score**: how many usual swings away from normal a month
+is.
+
+- **z = 1** is about as far from normal as this industry usually gets.
+- **z = 2** is twice that.
+- **z = 3** is three times, and rare.
+
+Because the answer is in usual swings rather than jobs, an industry employing
+twelve million people and one employing nine thousand can be compared directly.
+
+One refinement, and it matters here. If you measure the usual swing with a plain
+average, a few enormous months drag it upward and everything afterward looks
+calm by comparison. The pandemic would do exactly that. So we use the middle
+value instead of the average, which a handful of extreme months cannot move.
+That is what *robust* means when the tooltip says "robust z".
+
+Hover any tile and you get one of four labels:
+
+- **Typical** — less than one usual swing from normal.
+- **Notable** — further than that, but not enough to be marked.
+- **Unusual** — marked with a light hatch.
+- **Anomaly** — marked with a heavy hatch.
+
+The last two require the change to be both rare in that industry's own record and
+large on its own scale. What exactly that takes is next.
 
 ### What counts as unusual, and what counts as an anomaly
 
