@@ -47,12 +47,16 @@ data is a dark place you go into, and that you would want a light.
 
 **The hero has to end up 1680 x 1080**, a ratio of about 1.56. Compose for that.
 
-**Expect the generator to hand back a different shape.** The first attempt came
-back as a 4:3 photograph pillarboxed inside a 16:9 file, with 343px of white
-down each side. Crop the white off before doing anything else, then take the
-1680 x 1080 out of the remaining 4:3 anchored to the top, which is what keeps
-the sign. `posts/charts/hero-mine-entrance-1680x1080.png` is that crop of the
-first generation, if it is useful as a reference.
+**Check the shape you actually got.** The first attempt came back as a 4:3
+photograph pillarboxed inside a 16:9 file, with 343px of white down each side,
+which would have shipped as white bars. The second came back full-bleed 16:9
+with no padding. Measure before cropping rather than trusting the file
+dimensions.
+
+From a full 16:9 frame, the 1680 x 1080 comes out at full height, losing about
+360px of width. Anchor it to the left so the whole figure is kept; the sign sits
+far enough inside the right edge to survive. `posts/charts/hero-mine-entrance.jpg`
+is that crop of the second generation.
 
 **Keep the sign and her head in the upper half.** Everything below her waist is
 what a crop eats first, and none of it carries meaning.
@@ -80,24 +84,21 @@ illustration rather than left to read as documentary. Something as short as
 "Illustration" under the image is enough.
 
 
-## What the first generation got right, and what to fix
+## What the two generations settled
 
-Worth keeping, because these were not guaranteed:
+The second pass fixed everything the first one missed, so these are the
+instructions worth keeping if it is ever regenerated:
 
-- **Both lines of the sign rendered correctly.** This is the part that usually
-  fails. Whatever wording produced it is worth leaving alone.
-- **The tunnel is genuinely black**, not a dim grey suggestion of depth. The
-  analogy depends on that contrast and it landed.
-- **The mood is documentary rather than glossy.** Overcast, muted, dust on the
-  coveralls, no dramatic lighting.
-- **The pose reads as about to enter**, hand on the timber, looking in rather
-  than at the camera.
+- **Both lines of the sign render correctly.** This is the part that usually
+  fails, and it has now worked twice. Leave that wording alone.
+- **Naming the beam is what produced it.** The first attempt had a lit lamp with
+  almost no visible light, which loses the whole analogy. Asking for a beam
+  picking out dust in the air is what made it read.
+- **"Opaque hard hat" fixed the helmet.** The first attempt rendered something
+  closer to a translucent novelty dome.
+- **The tunnel is genuinely black** rather than a dim grey suggestion of depth.
+  The contrast is the point.
+- **The mood stays documentary rather than glossy.** Overcast, muted, dust on
+  the coveralls, no dramatic lighting.
 
-Worth changing on the next pass:
-
-- **The headlamp beam is barely there.** It is the whole metaphor and it should
-  be unmistakable. Ask for a visible beam cutting into the dust.
-- **The hard hat looks translucent**, closer to a novelty dome than mining kit.
-  Specify an opaque helmet.
-- **The left third is a flat wooden wall.** Dead space. Cropping to 1680 x 1080
-  fixes most of it, but a tighter composition would be better.
+The remaining judgement call is the caption, below.
