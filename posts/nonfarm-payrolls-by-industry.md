@@ -1,5 +1,5 @@
 ---
-title: U.S. Jobs Data Explorer
+title: Exploring U.S. Jobs Data
 meta_title: "Nonfarm Payrolls by Industry: Which Months Are Unusual"
 subtitle: Drill into US nonfarm payrolls by industry, from the headline number down to six-digit detail, and see which months are unusual for the industry rather than merely large.
 slug: nonfarm-payrolls-by-industry
@@ -18,7 +18,7 @@ hero: charts/anomaly-tooltip.png
 hero_alt: The treemap with a tooltip open on computing infrastructure and data processing, which lost 7,700 jobs in a month. The tooltip reports a robust z of -5.53 at the 0th percentile and flags it as inside the most extreme 1% of that industry's own history. The tile itself is marked with a diagonal hatch.
 ---
 
-# U.S. Jobs Data Explorer
+# Exploring U.S. Jobs Data
 
 A single month's payroll number tells you what changed. It does not tell you whether the change means anything. An industry that added 8,000 jobs might be having its best month in a decade or a completely ordinary one, and the figure alone cannot tell you which. The monthly print is also revised twice before it settles, and the revisions are not always small. This is a free tool for closing it. It draws every industry the BLS employer survey publishes, sized by the jobs it added or lost, and scores each move against that industry's own twenty-year history so you can see which ones are actually unusual.
 
