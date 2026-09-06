@@ -94,6 +94,10 @@ Things that behave in ways the Markdown does not make obvious:
 - **Every link opens in a new tab.** The converter sets that; the checkbox in
   the Prismic editor does not survive a re-import.
 - **`::: blurb Title` … `:::`** makes a callout box, if one is wanted.
+- **Divider dots appear automatically between top-level sections.** Every
+  `##` heading after the first gets one, and it replaces the spacer that
+  would otherwise sit there. Nothing to write; adding or moving a `##`
+  moves the divider with it.
 
 Two cross-references to keep intact if sections move:
 
