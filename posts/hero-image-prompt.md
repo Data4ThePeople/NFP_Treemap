@@ -5,9 +5,9 @@ data is a dark place you go into, and that you would want a light.
 
 ## Primary prompt
 
-> Documentary photograph of a woman standing at the mouth of an underground coal
-> mine, about to go in. She is in her thirties, wearing a scuffed hard hat with a
-> headlamp switched on, safety glasses pushed up on the brim, a high-visibility
+> Documentary photograph of a Hispanic woman standing at the mouth of an
+> underground coal mine, about to go in. She is in her thirties, wearing a
+> scuffed opaque hard hat with a headlamp switched on and throwing a visible beam, safety glasses pushed up on the brim, a high-visibility
 > jacket over dusty coveralls, and work gloves. She is turned three-quarters
 > toward the mine entrance, looking into it rather than at the camera, one hand
 > resting on the timber frame of the portal. The tunnel behind her falls away
@@ -28,25 +28,33 @@ data is a dark place you go into, and that you would want a light.
 
 ## Shorter variant, for models that do better with less
 
-> A woman in a hard hat with a lit headlamp and high-visibility jacket stands at
-> the timber-framed entrance of a coal mine, looking into the darkness. A
+> A Hispanic woman in a hard hat with a lit headlamp throwing a visible beam,
+> wearing a high-visibility jacket, stands at the timber-framed entrance of a coal
+> mine, looking into the darkness. A
 > weathered metal sign above the entrance reads "NONFARM PAYROLL DATA / BUREAU OF
 > LABOR STATISTICS". Overcast daylight outside, pitch black inside. Documentary
-> photography, 35mm, shallow depth of field, muted colour, 16:9.
+> photography, 35mm, shallow depth of field, muted colour, 3:2.
 
 ## Negative prompt
 
-> cartoon, illustration, 3d render, cgi, oversaturated, hdr, dramatic sunset,
+> cartoon, illustration, 3d render, clear or translucent helmet, unlit headlamp, cgi, oversaturated, hdr, dramatic sunset,
 > lens flare, glamour lighting, posed smiling, text watermark, extra fingers,
 > distorted hands, illegible or garbled lettering, modern corporate signage,
 > cluttered background
 
 ## Practical notes
 
-**Composition for the crop.** Render at 16:9 and keep the woman and the sign well
-inside the frame. The hero gets cropped for the listing card and again for the
-link preview, and anything near an edge is what gets cut. Same lesson as the
-current hero.
+**The hero has to end up 1680 x 1080**, a ratio of about 1.56. Compose for that.
+
+**Expect the generator to hand back a different shape.** The first attempt came
+back as a 4:3 photograph pillarboxed inside a 16:9 file, with 343px of white
+down each side. Crop the white off before doing anything else, then take the
+1680 x 1080 out of the remaining 4:3 anchored to the top, which is what keeps
+the sign. `posts/charts/hero-mine-entrance-1680x1080.png` is that crop of the
+first generation, if it is useful as a reference.
+
+**Keep the sign and her head in the upper half.** Everything below her waist is
+what a crop eats first, and none of it carries meaning.
 
 **Text is the weak point.** Most image models still garble lettering, especially
 two lines of it. Three ways to handle it, in order of reliability:
@@ -69,3 +77,26 @@ keeps rendering it unlit, say "headlamp beam visible in the dust".
 sources, so an AI-generated photograph of a person should be captioned as an
 illustration rather than left to read as documentary. Something as short as
 "Illustration" under the image is enough.
+
+
+## What the first generation got right, and what to fix
+
+Worth keeping, because these were not guaranteed:
+
+- **Both lines of the sign rendered correctly.** This is the part that usually
+  fails. Whatever wording produced it is worth leaving alone.
+- **The tunnel is genuinely black**, not a dim grey suggestion of depth. The
+  analogy depends on that contrast and it landed.
+- **The mood is documentary rather than glossy.** Overcast, muted, dust on the
+  coveralls, no dramatic lighting.
+- **The pose reads as about to enter**, hand on the timber, looking in rather
+  than at the camera.
+
+Worth changing on the next pass:
+
+- **The headlamp beam is barely there.** It is the whole metaphor and it should
+  be unmistakable. Ask for a visible beam cutting into the dust.
+- **The hard hat looks translucent**, closer to a novelty dome than mining kit.
+  Specify an opaque helmet.
+- **The left third is a flat wooden wall.** Dead space. Cropping to 1680 x 1080
+  fixes most of it, but a tighter composition would be better.
