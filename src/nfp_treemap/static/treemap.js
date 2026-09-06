@@ -205,11 +205,11 @@
     };
   }
 
-  /* Colour is symmetric around zero. Scaling across the raw min..max - as the
+  /* Color is symmetric around zero. Scaling across the raw min..max - as the
      Tableau version does - puts zero off the midpoint, so a -20k loss and a
      +20k gain render at different intensities and the eye reads a bias that
      is not in the data. */
-  /* "No data" gets a hatch, not a flat grey. A flat grey sits a hair away from
+  /* "No data" gets a hatch, not a flat gray. A flat gray sits a hair away from
      the neutral midpoint - especially in dark mode, where #2c2c2a and #383835
      are indistinguishable - so a missing observation reads as a real zero
      change, which is a different and much more interesting claim. */
@@ -217,9 +217,9 @@
     if (svg.querySelector("#nodata-hatch")) return;
     const defs = document.createElementNS(SVG_NS, "defs");
     /* Two hatches with different jobs, so they have to be told apart at a
-       glance. No-data fills the whole tile over a flat grey and leans right.
+       glance. No-data fills the whole tile over a flat gray and leans right.
        The anomaly hatch leans LEFT, is finer and more widely spaced, and lays
-       over the tile's own colour rather than replacing it - so a flagged tile
+       over the tile's own color rather than replacing it - so a flagged tile
        still reads as blue or red at its proper intensity. Two ink variants,
        because the line has to contrast with whatever it covers. */
     defs.innerHTML =
@@ -774,7 +774,7 @@
        smaller than that; an outline is already the search-highlight state; red
        already means a loss, so it would vanish on the tiles that lose most.
        A hatch works at any size, and laid over the fill rather than replacing
-       it the tile keeps its colour. */
+       it the tile keeps its color. */
     const showDot = isFlagged;
     if (showDot) {
       const over = document.createElementNS(SVG_NS, "rect");
@@ -1019,8 +1019,8 @@
     $("#legendhi").textContent = fmtValue(maxAbs, state.metric);
     $("#legendcap").textContent =
       state.metric === "pct"
-        ? "Percent change in employees (colour); tile area = absolute change"
-        : "Change in employees, thousands (colour and tile area)";
+        ? "Percent change in employees (color); tile area = absolute change"
+        : "Change in employees, thousands (color and tile area)";
 
     const scope = state.drill ? byCode.get(state.drill).n : "all industries";
     $("#charttitle").textContent =

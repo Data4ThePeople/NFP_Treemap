@@ -163,7 +163,7 @@ gets revised by 3,000 on average.
 1. **Settled at +3 months or post-benchmark?** My recommendation is +3 months
    primary, benchmark as robustness.
 2. **Scope.** Whatever ALFRED covers, or restrict to levels 2 to 4 where the BLS
-   archives give a clean fallback and the industries are ones readers recognise?
+   archives give a clean fallback and the industries are ones readers recognize?
 3. **Is a thin anomaly tier acceptable**, with the study framed on the watch
    tier, or should phase 0 stop the work if the anomaly sample is under about
    100?
@@ -176,7 +176,7 @@ gets revised by 3,000 on average.
   at the cost of more work and fewer industries.
 - **Series ID mapping.** CES industry codes to FRED IDs is not a clean
   transformation and may need a hand-built map for the industries that matter.
-- **Regime change.** Revision behaviour after 2020 is not the same as before.
+- **Regime change.** Revision behavior after 2020 is not the same as before.
   Report pre-2020 and post-2022 separately rather than pooling.
 - **Multiple testing.** Three questions across two tiers and several outcomes.
   Pre-register the primary comparison — survival rate of the anomaly tier at +3

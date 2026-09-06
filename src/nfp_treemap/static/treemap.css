@@ -1,6 +1,6 @@
 /* Palette tokens come from tools/palette.py, which validates them against the
    OKLab/Machado checks. Do not hand-edit the ramps here - change them there and
-   re-run, so the colours stay computed rather than eyeballed. */
+   re-run, so the colors stay computed rather than eyeballed. */
 :root {
   color-scheme: light;
   --surface-1: #fcfcfb;
@@ -98,7 +98,7 @@ header.masthead h1 { font-size: 26px; font-weight: 700; margin: 0 0 2px; letter-
 header.masthead p { margin: 0; color: var(--text-secondary); font-size: 13px; }
 
 /* The logo is a JPEG with black type on white - no transparency, and it must
-   not be recoloured. Sitting it on its own light plate keeps it legible and
+   not be recolored. Sitting it on its own light plate keeps it legible and
    deliberate-looking on the dark surface instead of a floating white box. */
 .brand {
   display: block; height: 40px; width: auto; flex: none;
@@ -297,7 +297,7 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 /* --- anomaly marker ------------------------------------------------------ */
 /* The dot on a flagged tile takes the label's ink so it contrasts with
    whatever the tile is filled with; these are the legend and tooltip echoes of
-   it, which sit on the page background instead and can use a fixed colour. */
+   it, which sit on the page background instead and can use a fixed color. */
 /* The two marker tiers, echoed as swatches. Same angle, different density,
    so they read as strengths of one thing rather than two different things. */
 .legend .anomkey .dot,

@@ -1,7 +1,7 @@
 # U.S. Jobs Data Explorer
 
 A self-contained HTML treemap of BLS Current Employment Statistics: one tile per
-industry, **area = absolute change in employees**, **colour = signed change**,
+industry, **area = absolute change in employees**, **color = signed change**,
 grouped by supersector, with click-to-drill, an anomaly score, and official NAICS
 definitions in the tooltip.
 
@@ -234,9 +234,9 @@ where the masthead is hidden but the branding should still travel. It is a
 single element relocated by JS, not two copies: duplicating it would inline the
 whole data URI twice and add ~140KB for nothing. A logo with black type on an
 opaque background sits on its own light plate so it stays legible in dark mode
-without being recoloured.
+without being recolored.
 
-## Colour
+## Color
 
 The palette is computed, not chosen. `tools/palette.py` builds the diverging ramp
 and validates it with OKLab and the Machado (2009) CVD transforms:
@@ -251,13 +251,13 @@ Two deliberate departures from the Tableau original:
   CVD ΔE of **5.1** against a target of 8 — under deuteranopia gains and losses
   collapse toward the same olive, so the sign of the change stops being legible.
   Red↔blue measures 17.9. The original palette is still available in the Palette
-  dropdown, labelled as such.
+  dropdown, labeled as such.
 - **The scale is symmetric around zero.** The original spans the raw min→max
-  (−32.90 → 25.10), which puts zero off the colour midpoint so a −20k loss and a
+  (−32.90 → 25.10), which puts zero off the color midpoint so a −20k loss and a
   +20k gain render at different intensities — a bias the eye reads as data.
 
-Missing observations render as a **hatch**, not a flat grey: BLS publishes
-detailed industries a month behind the headline aggregates, and a grey tile sits
+Missing observations render as a **hatch**, not a flat gray: BLS publishes
+detailed industries a month behind the headline aggregates, and a gray tile sits
 close enough to the neutral midpoint (indistinguishable in dark mode) that a
 missing value would read as a real zero change.
 

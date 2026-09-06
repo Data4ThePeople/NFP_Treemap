@@ -7,7 +7,7 @@
 <meta name="description" content="U.S. Jobs Data Explorer: a free interactive treemap of US nonfarm payroll employment by industry. Every industry the BLS Current Employment Statistics survey publishes, from total nonfarm down to six-digit NAICS detail, with any base month and horizons from one month to twenty years.">
 <style>/* Palette tokens come from tools/palette.py, which validates them against the
    OKLab/Machado checks. Do not hand-edit the ramps here - change them there and
-   re-run, so the colours stay computed rather than eyeballed. */
+   re-run, so the colors stay computed rather than eyeballed. */
 :root {
   color-scheme: light;
   --surface-1: #fcfcfb;
@@ -105,7 +105,7 @@ header.masthead h1 { font-size: 26px; font-weight: 700; margin: 0 0 2px; letter-
 header.masthead p { margin: 0; color: var(--text-secondary); font-size: 13px; }
 
 /* The logo is a JPEG with black type on white - no transparency, and it must
-   not be recoloured. Sitting it on its own light plate keeps it legible and
+   not be recolored. Sitting it on its own light plate keeps it legible and
    deliberate-looking on the dark surface instead of a floating white box. */
 .brand {
   display: block; height: 40px; width: auto; flex: none;
@@ -304,7 +304,7 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
 /* --- anomaly marker ------------------------------------------------------ */
 /* The dot on a flagged tile takes the label's ink so it contrasts with
    whatever the tile is filled with; these are the legend and tooltip echoes of
-   it, which sit on the page background instead and can use a fixed colour. */
+   it, which sit on the page background instead and can use a fixed color. */
 /* The two marker tiers, echoed as swatches. Same angle, different density,
    so they read as strengths of one thing rather than two different things. */
 .legend .anomkey .dot,
@@ -352,8 +352,8 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
       <select id="level"></select>
     </div>
     <div class="field">
-      <label for="metric">Colour metric</label>
-      <div class="seg" id="metric" role="group" aria-label="Colour metric">
+      <label for="metric">Color metric</label>
+      <div class="seg" id="metric" role="group" aria-label="Color metric">
         <button type="button" data-metric="abs" aria-pressed="true">Absolute</button>
         <button type="button" data-metric="pct" aria-pressed="false">Percent</button>
       </div>
@@ -385,7 +385,7 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
   <p class="lagnote" id="levelnote" hidden></p>
 
   <div class="chart-wrap">
-    <svg id="treemap" role="img" aria-label="Treemap of employment change by industry. Tile area is the absolute change; colour is the signed change. Use Tab to move between industries, Enter to drill in, Escape to go up."></svg>
+    <svg id="treemap" role="img" aria-label="Treemap of employment change by industry. Tile area is the absolute change; color is the signed change. Use Tab to move between industries, Enter to drill in, Escape to go up."></svg>
     <p class="empty" id="empty" hidden></p>
   </div>
 
@@ -406,8 +406,8 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
   </div>
 
   <p class="stamp footnote" style="text-align:left;margin-top:14px">
-    Tile area is the <strong>absolute</strong> change in employees in both colour modes — sizing by
-    percent would let a very small industry outweigh Food Services. Colour is symmetric around zero,
+    Tile area is the <strong>absolute</strong> change in employees in both color modes — sizing by
+    percent would let a very small industry outweigh Food Services. Color is symmetric around zero,
     so a loss and a gain of equal size read at equal intensity.
     CES publishes only some children for many parents, so the tiles at a level are not a complete
     partition of it — every tile is the value CES actually reports, never scaled or padded to make
@@ -632,11 +632,11 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
     };
   }
 
-  /* Colour is symmetric around zero. Scaling across the raw min..max - as the
+  /* Color is symmetric around zero. Scaling across the raw min..max - as the
      Tableau version does - puts zero off the midpoint, so a -20k loss and a
      +20k gain render at different intensities and the eye reads a bias that
      is not in the data. */
-  /* "No data" gets a hatch, not a flat grey. A flat grey sits a hair away from
+  /* "No data" gets a hatch, not a flat gray. A flat gray sits a hair away from
      the neutral midpoint - especially in dark mode, where #2c2c2a and #383835
      are indistinguishable - so a missing observation reads as a real zero
      change, which is a different and much more interesting claim. */
@@ -644,9 +644,9 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
     if (svg.querySelector("#nodata-hatch")) return;
     const defs = document.createElementNS(SVG_NS, "defs");
     /* Two hatches with different jobs, so they have to be told apart at a
-       glance. No-data fills the whole tile over a flat grey and leans right.
+       glance. No-data fills the whole tile over a flat gray and leans right.
        The anomaly hatch leans LEFT, is finer and more widely spaced, and lays
-       over the tile's own colour rather than replacing it - so a flagged tile
+       over the tile's own color rather than replacing it - so a flagged tile
        still reads as blue or red at its proper intensity. Two ink variants,
        because the line has to contrast with whatever it covers. */
     defs.innerHTML =
@@ -1201,7 +1201,7 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
        smaller than that; an outline is already the search-highlight state; red
        already means a loss, so it would vanish on the tiles that lose most.
        A hatch works at any size, and laid over the fill rather than replacing
-       it the tile keeps its colour. */
+       it the tile keeps its color. */
     const showDot = isFlagged;
     if (showDot) {
       const over = document.createElementNS(SVG_NS, "rect");
@@ -1446,8 +1446,8 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
     $("#legendhi").textContent = fmtValue(maxAbs, state.metric);
     $("#legendcap").textContent =
       state.metric === "pct"
-        ? "Percent change in employees (colour); tile area = absolute change"
-        : "Change in employees, thousands (colour and tile area)";
+        ? "Percent change in employees (color); tile area = absolute change"
+        : "Change in employees, thousands (color and tile area)";
 
     const scope = state.drill ? byCode.get(state.drill).n : "all industries";
     $("#charttitle").textContent =
