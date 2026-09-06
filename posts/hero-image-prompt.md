@@ -7,12 +7,13 @@ data is a dark place you go into, and that you would want a light.
 
 > Documentary photograph of a Hispanic woman standing at the mouth of an
 > underground coal mine, about to go in. She is in her thirties, wearing a
-> scuffed opaque hard hat with a headlamp switched on and throwing a visible beam, safety glasses pushed up on the brim, a high-visibility
-> jacket over dusty coveralls, and work gloves. She is turned three-quarters
-> toward the mine entrance, looking into it rather than at the camera, one hand
-> resting on the timber frame of the portal. The tunnel behind her falls away
-> into complete darkness within a few feet, and her headlamp throws a single
-> narrow cone into it.
+> scuffed opaque hard hat with a headlamp switched on and throwing a visible
+> beam, safety glasses pushed up on the brim, a high-visibility jacket over
+> dusty coveralls, and work gloves. She is turned three-quarters toward the mine
+> entrance, looking into it rather than at the camera, one hand resting on the
+> timber frame of the portal. The tunnel behind her falls away into complete
+> darkness within a few feet, and her headlamp throws a single narrow cone into
+> it, the beam picking out dust in the air.
 >
 > Mounted on the timber frame above the entrance is a weathered enamel sign with
 > two lines of plain capital lettering: "NONFARM PAYROLL DATA" on the first line
@@ -22,9 +23,9 @@ data is a dark place you go into, and that you would want a light.
 > Overcast late-afternoon daylight outside, cool and even, contrasting hard with
 > the black of the tunnel. Shot on a 35mm lens at f/2.8, sharp on the woman and
 > the sign, the darkness behind falling off entirely. Muted natural colour, dust
-> in the air, no lens flare. Wide 16:9 framing with the woman placed left of
-> centre and the entrance opening to the right, generous headroom above and
-> margin at both sides.
+> in the air, no lens flare. Composed for a 3:2 crop, with the woman left of
+> centre and the entrance opening to the right. Keep the sign and her head well
+> inside the upper half of the frame, with margin at both sides.
 
 ## Shorter variant, for models that do better with less
 
