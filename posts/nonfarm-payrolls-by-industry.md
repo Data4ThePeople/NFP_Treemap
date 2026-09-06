@@ -44,6 +44,34 @@ The industry tiles are grouped by what BLS calls a "supersector." There are elev
 
 Nothing here is scaled, padded or balanced to make the arithmetic look tidy. Every tile is the number BLS reported.
 
+### What the score means
+
+Industries differ enormously in size and in how much they normally bounce
+around. A gain of 8,000 jobs is huge for an industry that usually moves by a few
+hundred, and unremarkable for one that regularly swings by tens of thousands. So
+a raw number cannot tell you whether a month was strange.
+
+A **z-score** fixes that by measuring each change in units of that industry's own
+typical monthly swing. A z of 1 means this month moved about as much as that
+industry usually moves. A z of 3 means it moved about three times its usual
+amount. Same scale for every industry, whether it employs twelve million people
+or nine thousand.
+
+Ours is a *robust* z-score, which means the yardstick is built from the median
+rather than the average, so a handful of pandemic-scale months cannot stretch it
+and make everything since look calm by comparison.
+
+Hover any tile and you get one of four labels:
+
+- **Typical** — the change is smaller than one of that industry's usual swings.
+- **Notable** — bigger than that, but it did not clear the bar for a mark.
+- **Unusual** — marked with a light hatch.
+- **Anomaly** — marked with a heavy hatch.
+
+The last two require the change to be both rare in that industry's own record and
+large on its own scale. What exactly that takes is set out further down, under
+how we built it.
+
 ### What a hatched tile means
 
 This is one of the most important features of this tool. A colored hatch tells you the change stands out against that industry's own record, and indicates one of two things: the change is unusual, or the change is anomalous. Hatched industries, in our view, are the ones we want to look at with a skeptical eye, especially in the initial data release. Over longer time periods, hatched industries indicate real shifts in the labor market.
