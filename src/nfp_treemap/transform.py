@@ -16,6 +16,8 @@ from .config import (
     ANOMALY_LOOKBACK_MONTHS,
     ANOMALY_LOOKBACK_PER_HORIZON,
     ANOMALY_FLAG_P,
+    PUBLISHER_NAME,
+    PUBLISHER_URL,
     ANOMALY_FLAG_Z,
     ANOMALY_WATCH_P,
     ANOMALY_WATCH_Z,
@@ -103,6 +105,7 @@ def build_payload() -> dict:
         "periodEnd": last,
         "defaultBase": index_to_label(default_base),
         "periodLabels": [index_to_label(i) for i in range(first, last + 1)],
+        "publisher": {"name": PUBLISHER_NAME, "url": PUBLISHER_URL},
         "horizons": HORIZONS,
         "anomaly": {
             "lookbackFloor": ANOMALY_LOOKBACK_MONTHS,

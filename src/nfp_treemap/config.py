@@ -43,6 +43,13 @@ DAILY_REQUEST_LIMIT = 500
 
 CES_HISTORY_START = 1939  # supersectors reach back this far; most detail starts 1990
 
+# Who built this. Shown in the provenance stamp, which is the one credit line
+# that survives the embedded layout.
+PUBLISHER_NAME = os.environ.get("NFP_TREEMAP_PUBLISHER", "Data 4 The People")
+PUBLISHER_URL = os.environ.get(
+    "NFP_TREEMAP_PUBLISHER_URL", "https://www.data4thepeople.com"
+)
+
 # --- Hosted page metadata --------------------------------------------------
 # The build is served from GitHub Pages and embedded in articles on more than
 # one site. Both levers below default to EMPTY deliberately.
