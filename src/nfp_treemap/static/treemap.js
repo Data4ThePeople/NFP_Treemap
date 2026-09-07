@@ -855,23 +855,6 @@
   }
 
   // Dark tile fills need light ink; the pale inner steps need dark ink.
-  /* A change can clear one bar and miss the other, and from the tooltip alone
-     that looked arbitrary - a tile at the 97th percentile with no hatch. Say
-     which test it failed, but only when it passed the other one; for a month
-     that is neither rare nor large there is nothing to explain. */
-  function nearMiss(stat) {
-    const rare = stat.p <= ANOM.watchP;
-    const big = Math.abs(stat.z) >= ANOM.watchZ;
-    if (rare === big) return "";
-    const why = rare
-      ? `rare for this industry, but the move is small on its own scale ` +
-        `(z = ${stat.z.toFixed(2)}, needs ${ANOM.watchZ.toFixed(1)})`
-      : `a large move, but not rare for this industry ` +
-        `(${(stat.p * 100).toFixed(0)}% of its months are this far from normal, ` +
-        `needs ${(ANOM.watchP * 100).toFixed(0)}%)`;
-    return `<div class="notmarked">Not marked: ${why}.</div>`;
-  }
-
   function labelInk(value, maxAbs) {
     if (value === null || maxAbs <= 0) return cssVar("--text-primary");
     const t = Math.min(1, Math.abs(value) / maxAbs);
@@ -974,7 +957,7 @@
                 `(${(stat.p * 100).toFixed(1)}%), and past ${ANOM.watchZ.toFixed(0)} ` +
                 `standard deviations.`) +
             `</div>`
-          : nearMiss(stat)) +
+          : "") +
         `</div>`
       );
     } else if (stat) {

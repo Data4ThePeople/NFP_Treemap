@@ -318,10 +318,6 @@ button:focus-visible, .tile:focus-visible, .crumb:focus-visible {
   font-weight: 600; color: var(--text-primary);
 }
 
-#tip .notmarked {
-  margin-top: 6px; font-size: 11.5px; color: var(--muted);
-}
-
 /* The credit sits inside the provenance stamp, so it inherits the muted stamp
    colour; only the link itself takes the accent, and it stays quiet until
    hovered so it does not pull the eye off the chart. */
