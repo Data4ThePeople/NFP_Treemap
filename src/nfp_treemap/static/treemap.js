@@ -1439,14 +1439,23 @@
     byCode, valueAt, labelToIdx, state, render,
   };
 
+  const PUBLISHER = PAYLOAD.publisher?.name || "Data 4 The People";
+  const PUBLISHER_URL = PAYLOAD.publisher?.url || "https://www.data4thepeople.com";
+
   // ---------------------------------------------------------------- boot
   readHash();
   initControls();
   const m = PAYLOAD.meta;
-  $("#stamp").textContent =
+  /* Attribution goes in the provenance stamp rather than the footnotes,
+     because the embedded layout hides the footnotes - so framed inside an
+     article the chart carried no credit at all. Appending to this line costs
+     no height, which matters: the embedded chart is sized from the space the
+     legend row leaves, so a new line would take it from the chart. */
+  $("#stamp").innerHTML =
     `${m.series} seasonally adjusted CES series · ${Number(m.observations).toLocaleString()} observations · ` +
-    `latest published ${prettyMonth(m.latest_period)} · fetched ${m.last_fetch?.slice(0, 10)} · ` +
-    `source: BLS API v2 + Census 2022 NAICS`;
+    `latest published ${prettyMonth(m.latest_period)} · ` +
+    `source: BLS API v2 + Census 2022 NAICS · built by ` +
+    `<a href="${PUBLISHER_URL}" target="_blank" rel="noopener">${PUBLISHER}</a>`;
   render();
   // The first pass sizes the chart against estimated chrome heights. Re-run
   // once after layout settles so the embedded fit uses measured values.
