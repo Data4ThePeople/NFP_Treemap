@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/snap-state-box-whisker/",
+      "url": "https://www.data4thepeople.com/p/snap-state-box-whisker/",
+      "name": "SNAP Coverage of the Poverty Population by State and Party Trifecta",
+      "description": "An interactive box whisker chart data visualization to study SNAP coverage by states controlled by different political parties",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/aTxyyXNYClf9oINL_stateboxwhisker.png?auto=format,compress&rect=0,271,1260,662&w=2400&h=1260"
+      },
+      "datePublished": "2025-12-18",
+      "dateModified": "2025-12-18"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/snap-state-box-whisker/#article",
+      "headline": "SNAP Coverage of the Poverty Population by State and Party Trifecta",
+      "description": "An interactive box whisker chart data visualization to study SNAP coverage by states controlled by different political parties",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/snap-state-box-whisker/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/aTxyyXNYClf9oINL_stateboxwhisker.png?auto=format,compress&rect=0,271,1260,662&w=2400&h=1260",
+      "datePublished": "2025-12-18",
+      "dateModified": "2025-12-18"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/snap-state-box-whisker/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "SNAP Coverage of the Poverty Population by State and Party Trifecta"
+        }
+      ]
+    }
+  ]
+}

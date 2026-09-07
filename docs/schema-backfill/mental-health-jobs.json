@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/mental-health-jobs/",
+      "url": "https://www.data4thepeople.com/p/mental-health-jobs/",
+      "name": "The fastest growing industry in America - and what it tells us",
+      "description": "Mental health practitioner job growth outpaces all other industries in America",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/ahW2LrK9tuLqEKBt_declan-sun-RlrxKreRxpg-unsplash.jpg?auto=format,compress&rect=0,727,7716,4051&w=2400&h=1260"
+      },
+      "datePublished": "2026-05-21",
+      "dateModified": "2026-05-21"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/mental-health-jobs/#article",
+      "headline": "The fastest growing industry in America - and what it tells us",
+      "description": "Mental health practitioner job growth outpaces all other industries in America",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/mental-health-jobs/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/ahW2LrK9tuLqEKBt_declan-sun-RlrxKreRxpg-unsplash.jpg?auto=format,compress&rect=0,727,7716,4051&w=2400&h=1260",
+      "datePublished": "2026-05-21",
+      "dateModified": "2026-05-21"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/mental-health-jobs/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "The fastest growing industry in America - and what it tells us"
+        }
+      ]
+    }
+  ]
+}

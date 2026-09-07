@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/sometimes-you-dont-need-new-data/",
+      "url": "https://www.data4thepeople.com/p/sometimes-you-dont-need-new-data/",
+      "name": "Sometimes you don't need new data. Just a new angle.",
+      "description": "How taking something you can find anywhere, and turning it a few degrees, made the story finally visible.",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/ah71KweQX7-eWkMu_img_split_comparison.png?auto=format,compress&rect=0,285,1200,630&w=2400&h=1260"
+      },
+      "datePublished": "2026-06-02",
+      "dateModified": "2026-06-02"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/sometimes-you-dont-need-new-data/#article",
+      "headline": "Sometimes you don't need new data. Just a new angle.",
+      "description": "How taking something you can find anywhere, and turning it a few degrees, made the story finally visible.",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/sometimes-you-dont-need-new-data/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/ah71KweQX7-eWkMu_img_split_comparison.png?auto=format,compress&rect=0,285,1200,630&w=2400&h=1260",
+      "datePublished": "2026-06-02",
+      "dateModified": "2026-06-02"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/sometimes-you-dont-need-new-data/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sometimes you don't need new data. Just a new angle."
+        }
+      ]
+    }
+  ]
+}
