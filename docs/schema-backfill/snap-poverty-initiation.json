@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/snap-poverty-initiation/",
+      "url": "https://www.data4thepeople.com/p/snap-poverty-initiation/",
+      "name": "Has America given up fighting the War on Poverty?",
+      "description": "Access to food assistance for people in poverty depends more on their zip code than on their income",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/aTxFiHNYClf9oHxY_20251212_1130_1950sSNAPPersonification_simple_compose_01kc9p8vxbe0dvw8qd3v1s2qgf.jpg?auto=format,compress&rect=0,57,800,420&w=2400&h=1260"
+      },
+      "datePublished": "2025-12-18",
+      "dateModified": "2025-12-18"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/snap-poverty-initiation/#article",
+      "headline": "Has America given up fighting the War on Poverty?",
+      "description": "Access to food assistance for people in poverty depends more on their zip code than on their income",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/snap-poverty-initiation/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/aTxFiHNYClf9oHxY_20251212_1130_1950sSNAPPersonification_simple_compose_01kc9p8vxbe0dvw8qd3v1s2qgf.jpg?auto=format,compress&rect=0,57,800,420&w=2400&h=1260",
+      "datePublished": "2025-12-18",
+      "dateModified": "2025-12-18"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/snap-poverty-initiation/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Has America given up fighting the War on Poverty?"
+        }
+      ]
+    }
+  ]
+}

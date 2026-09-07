@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/sharing-feelings-on-talking-billions/",
+      "url": "https://www.data4thepeople.com/p/sharing-feelings-on-talking-billions/",
+      "name": "Data 4 The People joins Talking Billions Podcast",
+      "description": "A wide ranging conversation on the meaning of life, finding purpose in work, and of course - data",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/aiGOIgeQX7-eWvdv_Image6-3-26at8.39AM.png?auto=format,compress&rect=0,34,2086,1095&w=2400&h=1260"
+      },
+      "datePublished": "2026-06-04",
+      "dateModified": "2026-06-04"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/sharing-feelings-on-talking-billions/#article",
+      "headline": "Data 4 The People joins Talking Billions Podcast",
+      "description": "A wide ranging conversation on the meaning of life, finding purpose in work, and of course - data",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/sharing-feelings-on-talking-billions/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/aiGOIgeQX7-eWvdv_Image6-3-26at8.39AM.png?auto=format,compress&rect=0,34,2086,1095&w=2400&h=1260",
+      "datePublished": "2026-06-04",
+      "dateModified": "2026-06-04"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/sharing-feelings-on-talking-billions/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Data 4 The People joins Talking Billions Podcast"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.data4thepeople.com/#organization",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.data4thepeople.com/#website",
+      "name": "Data 4 The People",
+      "url": "https://www.data4thepeople.com",
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.data4thepeople.com/p/back-to-the-future-grid/",
+      "url": "https://www.data4thepeople.com/p/back-to-the-future-grid/",
+      "name": "The Grid Is Quietly Tilting Back to Gas",
+      "description": "Clean energy filled the grid's interconnection queue for a decade. Now it's draining and gas is surging back. A look at what the data reveals.",
+      "isPartOf": {
+        "@id": "https://www.data4thepeople.com/#website"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://images.prismic.io/data4thepeople/ajLZkI1P9HI4UpOB_cover_email_1200x600.png?auto=format,compress&rect=29,0,1143,600&w=2400&h=1260"
+      },
+      "datePublished": "2026-06-17",
+      "dateModified": "2026-06-17"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.data4thepeople.com/p/back-to-the-future-grid/#article",
+      "headline": "The Grid Is Quietly Tilting Back to Gas",
+      "description": "Clean energy filled the grid's interconnection queue for a decade. Now it's draining and gas is surging back. A look at what the data reveals.",
+      "mainEntityOfPage": {
+        "@id": "https://www.data4thepeople.com/p/back-to-the-future-grid/"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.data4thepeople.com/authors/eric-pachman#person",
+        "name": "Eric Pachman",
+        "url": "https://www.data4thepeople.com/authors/eric-pachman"
+      },
+      "publisher": {
+        "@id": "https://www.data4thepeople.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "image": "https://images.prismic.io/data4thepeople/ajLZkI1P9HI4UpOB_cover_email_1200x600.png?auto=format,compress&rect=29,0,1143,600&w=2400&h=1260",
+      "datePublished": "2026-06-17",
+      "dateModified": "2026-06-17"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.data4thepeople.com/p/back-to-the-future-grid/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.data4thepeople.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "The Grid Is Quietly Tilting Back to Gas"
+        }
+      ]
+    }
+  ]
+}
