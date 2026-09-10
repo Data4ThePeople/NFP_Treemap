@@ -15,16 +15,28 @@ CACHE_DIR = DATA_DIR / "raw"
 INDUSTRIES_JSON = DATA_DIR / "industries.json"
 OBSERVATIONS_PARQUET = DATA_DIR / "ces_observations.parquet"
 META_JSON = DATA_DIR / "meta.json"
+# Release-day vintages, kept strictly apart from OBSERVATIONS_PARQUET, which is
+# current-vintage by design and must stay that way for the tool.
+VINTAGES_PARQUET = DATA_DIR / "ces_vintages.parquet"
 
 # --- Source URLs -----------------------------------------------------------
-# ce.industry is the ONLY flat file we touch. The BLS API has no metadata
-# endpoint (catalog=true is disabled), so display_level / sort_sequence /
-# naics_code are unavailable any other way. Every observation comes from the API.
+# Every observation the TOOL ships comes from the API. These flat files cover the
+# two things the API cannot serve: metadata, and prior vintages.
+#
+# ce.industry - the API has no metadata endpoint (catalog=true is disabled), so
+# display_level / sort_sequence / naics_code are unavailable any other way.
 CE_INDUSTRY_URL = "https://download.bls.gov/pub/time.series/ce/ce.industry"
 NAICS_DESCRIPTIONS_URL = (
     "https://www.census.gov/naics/2022NAICS/2022_NAICS_Descriptions.xlsx"
 )
 BLS_API_URL = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
+
+# The CES revision triangle: every value as published in every release back to
+# May 2003. The API serves one vintage only - the current one - so this file is
+# the only way to recover what a number said on the morning it came out.
+# 226 CSVs, 113 industries x {SA, NSA}, no key, one request. Refreshed once a
+# year after the February benchmark, so it always stops the prior winter.
+CES_VINTAGE_ZIP_URL = "https://www.bls.gov/web/empsit/cesvinall.zip"
 
 # download.bls.gov 403s anything without a browser-like prefix (a bare
 # "NFP_Treemap/1.0" or "python-requests/2.32" is rejected), but BLS guidance
@@ -202,6 +214,7 @@ AGGREGATE_PARENTS = {
 def api_key() -> str | None:
     """BLS registration key from the environment or a local .env file."""
     load_dotenv(ROOT / ".env")
+    load_dotenv(Path.home() / ".claude" / "d4tp-process" / ".env")  # central keys
     key = os.environ.get("BLS_API_KEY", "").strip()
     return key or None
 
