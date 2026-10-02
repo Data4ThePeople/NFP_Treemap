@@ -4,6 +4,8 @@ meta_title: "Nonfarm Payrolls by Industry: Which Months Are Unusual"
 subtitle: Drill into US nonfarm payrolls by industry, from the headline number down to six-digit detail, and see which months are unusual for the industry rather than merely large.
 slug: nonfarm-payrolls-by-industry
 date: 2026-09-04
+updated: 2026-10-02
+updated_time: 11:00:00-04:00
 description: Free interactive treemap of US nonfarm payrolls by industry that scores every move against the industry's own history, so you can tell a signal from a noisy month.
 keywords: nonfarm payrolls by industry, jobs report anomaly, is this jobs number unusual, payroll data revisions, jobs by industry, BLS employment data, Current Employment Statistics, CES data visualization, payroll employment treemap, which industries added jobs, employment change by industry, NAICS employment data, jobs report by sector, interactive jobs data, seasonally adjusted employment, BLS jobs data drill down
 section: Visualization
