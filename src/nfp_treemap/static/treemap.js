@@ -1048,8 +1048,15 @@
         : "Change in employees, thousands (color and tile area)";
 
     const scope = state.drill ? byCode.get(state.drill).n : "all industries";
+    /* A narrow embed has no height to spare: 600x560 fits the chrome plus the
+       140px chart floor exactly, with the title on one line. "September" is
+       three characters longer than "August" and wrapped it, which pushed the
+       default view 3px past the frame. Abbreviate the month there instead. */
+    const month = EMBEDDED && containerWidth() < 700
+      ? prettyMonth(state.base).replace(/^(\w{3})\w+/, "$1")
+      : prettyMonth(state.base);
     $("#charttitle").textContent =
-      `Change in Employees by Industry — ${prettyMonth(state.base)} versus ${state.horizon} prior` +
+      `Change in Employees by Industry — ${month} versus ${state.horizon} prior` +
       ` · level ${state.level} · ${scope}`;
     renderCrumbs();
   }
