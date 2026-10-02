@@ -548,28 +548,32 @@ def test_anomaly_flag_needs_both_rarity_and_magnitude():
     result = run_js(
         """
         const t = window.__treemap;
-        const idx = t.labelToIdx.get('2026-08');
-        const s = t.anomaly(t.byCode.get('50518000'), idx, 1, 'abs');
-        // every level-4 industry, to check each condition is load-bearing
-        let zOnly = 0, pOnly = 0, both = 0, scored = 0;
-        for (const it of t.byCode.values()) {
-          if (it.l !== 4) continue;
-          const a = t.anomaly(it, idx, 1, 'abs');
-          if (!a || a.z === undefined) continue;
-          scored++;
-          const z = Math.abs(a.z) >= 3, p = a.p <= 0.01;
-          if (z && !p) zOnly++;
-          if (p && !z) pOnly++;
-          if (a.anomalous) both++;
+        /* No single industry-month is pinned. This used to assert that one
+           August 2026 drop was flagged; the next release revised it from
+           -7,700 to -5,700 and it fell back to "unusual". Any recent month can
+           be restated, so scan every level-4 industry over ten years and
+           check the rule itself. */
+        const last = t.labelToIdx.get('2026-08');
+        let zOnly = 0, pOnly = 0, both = 0, scored = 0, broken = 0;
+        for (let idx = last - 119; idx <= last; idx++) {
+          for (const it of t.byCode.values()) {
+            if (it.l !== 4) continue;
+            const a = t.anomaly(it, idx, 1, 'abs');
+            if (!a || a.z === undefined) continue;
+            scored++;
+            const z = Math.abs(a.z) >= 3, p = a.p <= 0.01;
+            if (z && !p) zOnly++;
+            if (p && !z) pOnly++;
+            if (a.anomalous) both++;
+            if (!!a.anomalous !== (z && p)) broken++;
+          }
         }
-        out = {flagged: s.anomalous, z: s.z, p: s.p, label: s.label,
-               scored, zOnly, pOnly, both};
+        out = {scored, zOnly, pOnly, both, broken};
         """
     )
-    # The example the post uses: an extreme drop that clears both bars.
-    assert result["flagged"] is True
-    assert result["z"] < -3
-    assert result["p"] <= 0.01
+    # Flagged exactly when both bars are cleared, and that does happen.
+    assert result["broken"] == 0
+    assert result["both"] > 0
 
     # Both conditions must actually bind, or one of them is decoration.
     assert result["zOnly"] > 0, "magnitude alone never over-fires: rarity is doing nothing"
