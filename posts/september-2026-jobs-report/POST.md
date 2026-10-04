@@ -32,7 +32,7 @@ Today, we’re going to investigate a few of the findings from prior months data
 
 But before we do, we’re super excited to announce that we finally figured out how to systematically create tutorial videos for our data visualizations. Here’s a quick 45 second video for the nonfarm payroll data treemap visualization. Make sure to bookmark and subscribe to our new YouTube page to get alerts when we drop new visualization tutorials.
 
-[EMBED video: YouTube iframe goes here once the video is uploaded. Needs the video URL, and the channel URL for "subscribe to our new YouTube page".]
+<iframe src="https://www.youtube.com/embed/Pk_GuM4U0c4?si=CXEwns1HKCjaIJsA" title="How to Use the U.S. Jobs Data Explorer" width="100%" height="495" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
 
 OK, now onto the analysis.
 
