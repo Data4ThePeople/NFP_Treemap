@@ -91,16 +91,17 @@ def c1(w):
     t = pd.DataFrame({"month": s.index.strftime("%Y-%m"), "change": s.values,
                       "low": s.values - CI, "high": s.values + CI})
     t["range_includes_zero"] = (t.low < 0) & (t.high > 0)
+    t["range_all_gains"] = t.low > 0
     t.to_csv(NUM / "01-margin-of-error.csv", index=False)
-    n0 = int(t.range_includes_zero.sum())
-    f, top = fig(f"In {n0} of the last 12 months, the margin of error includes zero",
+    n_gain = int(t.range_all_gains.sum())
+    f, top = fig(f"Only {n_gain} of the last 12 months clearly added jobs",
                  "Monthly change in U.S. nonfarm payroll jobs, with the BLS 90% range of plus or minus 122,000.\n"
                  "Current estimates for October 2025 to September 2026; September is the first estimate.",
-                 legend=[("Range includes zero", CORAL), ("Range excludes zero", BLUE)])
+                 legend=[("Range is all gains", BLUE), ("Range includes losses", CORAL)])
     ax = f.add_axes([0.08, 0.13, 0.88, top - 0.13])
     x = np.arange(len(t))
     for i, r in t.iterrows():
-        c = CORAL if r.range_includes_zero else BLUE
+        c = BLUE if r.range_all_gains else CORAL
         ax.vlines(i, r.low, r.high, color=c, lw=6, alpha=0.35, zorder=1)
         ax.scatter(i, r.change, s=120, color=c, zorder=3)
         if r.change >= 0:
