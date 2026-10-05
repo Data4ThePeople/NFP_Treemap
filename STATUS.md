@@ -18,7 +18,7 @@ Since: 2026-10-04
 | 2b | Eric's edit, Claude's look-over | 2026-10-04 | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
 | 2c | Slice markup | 2026-10-04 | 30 slices, 5 images, 1 embed; defaults plus a spacer after the video |
 | 2d | Hero 1680x1080 + alt text | 2026-10-05 | JOBS illustration, O as a magnifying glass; D4TP logo on the handle; alt 483 characters |
-| 2e | SEO | | |
+| 2e | SEO | 2026-10-05 | Meta title 46, description 145, 8 keywords; subtitle (Eric's wording); links to the explorer (2) and Giants Walk Among Us; data line |
 | 2f | Pushed to Prismic (draft) | | |
 | 2g | Mailchimp teaser | | |
 
@@ -51,3 +51,4 @@ None.
 - 2026-10-05 2e: searches from Claude's list (Eric: use those). Meta title 46, description 145, 8 keywords; Article schema checked. Text proposals sent.
 - 2026-10-05 2e: link to Giants Walk Among Us added on '82% of all jobs added in this country' (Eric).
 - 2026-10-05 2e: proposals 2, 3, 5 accepted, 4 rejected; subtitle per Eric's wording (proposal 1 revised).
+- 2026-10-05 Step 2e confirmed by Eric.
