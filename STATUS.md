@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2c
+Step: 2d
 Since: 2026-10-04
 
 ## Steps
@@ -38,3 +38,4 @@ None.
 - 2026-10-04 Step 2b confirmed by Eric.
 - 2026-10-04 Step 2c opened. Defaults kept (drop cap, 20px heading and caption spacers, no dividers; no extras section, so no end divider). Added a 20px spacer after the video embed. Convert-only: 30 slices, 5 images, 1 embed.
 - 2026-10-04 Step 2c confirmed by Eric.
+- 2026-10-04 Step 2d opened.
