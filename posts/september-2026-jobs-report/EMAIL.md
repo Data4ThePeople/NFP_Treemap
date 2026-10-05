@@ -38,7 +38,7 @@ Dot chart of the monthly change in U.S. nonfarm payroll jobs from October 2025 t
 ## 5. Body, part two
 
 ```
-August's revised number, 133,000 jobs, looked strong. But 83,100 of those jobs came from just two industries, Food services and drinking places and Local government, education, and those two industries pay about half of what everyone else earns.
+August's revised single-point estimate, 133,000 jobs, looked strong. But 83,100 of those jobs came from just two industries, Food services and drinking places and Local government, education, and those two industries pay about half of what everyone else earns.
 
 Over the past three years, 82% of all jobs added in this country have been in Health care and social assistance. And it's not the high-paid doctors driving that growth.
 
