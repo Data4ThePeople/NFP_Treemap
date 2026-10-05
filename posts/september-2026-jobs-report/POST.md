@@ -21,7 +21,7 @@ dividers: false
 
 Last Friday, the Bureau of Labor Statistics released data showing the U.S. added 29,000 jobs in September. They also released footnotes telling us that if they were to replicate this survey 10 times, about nine of them would land somewhere between -93,000 and 151,000, and about one would land outside that band.
 
-![Dot chart of the monthly change in U.S. nonfarm payroll jobs from October 2025 to September 2026, each with a bar showing the BLS 90% range of plus or minus 122,000. Only four months, January, March, April and August, have a range that is all gains. In October and February the whole range is losses, and in the other six it crosses zero. September shows +29,000, with a range from -93,000 to +151,000.](images/01-margin-of-error.png)
+![Animated dot chart of the monthly change in U.S. nonfarm payroll jobs from October 2025 to September 2026, each with a bar showing the BLS 90% range of plus or minus 122,000. Only four months, January, March, April and August, have a range that is all gains. In October and February the whole range is losses, and in the other six it crosses zero. September shows +29,000, with a range from -93,000 to +151,000.](images/01-margin-of-error.gif)
 *Source: BLS Current Employment Statistics, seasonally adjusted, as of October 2, 2026. The plus or minus 122,000 range is from the BLS technical note.*
 
 So, why do so many people care about this one number? They shouldn’t. It says very little about how many jobs the U.S. actually added in September. But people care, because enough other people care. We’ve said this many times, but if enough people believe something is true, then others will act like it is true, even if they know it is not.

@@ -41,3 +41,4 @@ None.
 - 2026-10-04 Step 2d opened.
 - 2026-10-04 2d: AI-image path, magnifying-glass concept (Eric). Prompts written to hero-prompt.md.
 - 2026-10-04 2d: magnifying-glass images did not work; switched to a balance scale with work clothes (two sets against one suit jacket, pans level).
+- 2026-10-05 Chart 1 animated (Eric): dots alone, margin-of-error bars grow out, colors resolve, hold, loop. images/01-margin-of-error.gif replaces the PNG in the post; the PNG stays as the still.

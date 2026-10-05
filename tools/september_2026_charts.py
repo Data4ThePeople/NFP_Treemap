@@ -86,28 +86,43 @@ def qcew(naics, own="5"):
 
 
 # 1. The margin of error on the last 12 months
-def c1(w):
+def c1_table(w):
     s = w["00000000"].diff().loc["2025-10-01":"2026-09-01"]
     t = pd.DataFrame({"month": s.index.strftime("%Y-%m"), "change": s.values,
                       "low": s.values - CI, "high": s.values + CI})
     t["range_includes_zero"] = (t.low < 0) & (t.high > 0)
     t["range_all_gains"] = t.low > 0
     t.to_csv(NUM / "01-margin-of-error.csv", index=False)
+    return t
+
+
+def mix(a, b, k):
+    """Blend two hex colors; k=0 gives a, k=1 gives b."""
+    a, b = matplotlib.colors.to_rgb(a), matplotlib.colors.to_rgb(b)
+    return tuple(x + (y - x) * k for x, y in zip(a, b))
+
+
+def c1_draw(t, grow=1.0, color=1.0, dpi=150):
+    """The chart at one moment: bars `grow` of the way out from each dot, colors `color` of the way
+    from neutral gray to blue/orange. grow=1, color=1 is the finished chart."""
     n_gain = int(t.range_all_gains.sum())
     f, top = fig(f"Only {n_gain} of the last 12 months clearly added jobs",
                  "Monthly change in U.S. nonfarm payroll jobs, with the BLS 90% range of plus or minus 122,000.\n"
                  "Current estimates for October 2025 to September 2026; September is the first estimate.",
                  legend=[("Range is all gains", BLUE), ("Range includes losses", CORAL)])
+    f.set_dpi(dpi)
     ax = f.add_axes([0.08, 0.13, 0.88, top - 0.13])
     x = np.arange(len(t))
+    half = CI * grow
     for i, r in t.iterrows():
-        c = BLUE if r.range_all_gains else CORAL
-        ax.vlines(i, r.low, r.high, color=c, lw=6, alpha=0.35, zorder=1)
+        c = mix(MUTED, BLUE if r.range_all_gains else CORAL, color)
+        if half > 0:
+            ax.vlines(i, r.change - half, r.change + half, color=c, lw=6, alpha=0.35, zorder=1)
         ax.scatter(i, r.change, s=120, color=c, zorder=3)
         if r.change >= 0:
-            ax.text(i, r.high + 12, f"{r.change:+,.0f}k", ha="center", va="bottom", fontsize=10.5, color=INK)
+            ax.text(i, r.change + max(half, 18) + 12, f"{r.change:+,.0f}k", ha="center", va="bottom", fontsize=10.5, color=INK)
         else:
-            ax.text(i, r.low - 12, f"{r.change:+,.0f}k", ha="center", va="top", fontsize=10.5, color=INK)
+            ax.text(i, r.change - max(half, 18) - 12, f"{r.change:+,.0f}k", ha="center", va="top", fontsize=10.5, color=INK)
     ax.axhline(0, color=MUTED, lw=1)
     ax.set_xticks(x)
     ax.set_xticklabels(pd.to_datetime(t.month).dt.strftime("%b\n%Y"), fontsize=10.5)
@@ -115,9 +130,47 @@ def c1(w):
     ax.set_yticks([-300, -200, -100, 0, 100, 200, 300])
     ax.set_yticklabels(["-300k", "-200k", "-100k", "0", "+100k", "+200k", "+300k"])
     ax.grid(axis="y", color=GRID)
-    ax.spines["bottom"].set_visible(False)
-    finish(f, ax, "01-margin-of-error.png", CES_SOURCE + "; margin of error from the BLS technical note")
+    for sp in ("top", "right", "left", "bottom"):
+        ax.spines[sp].set_visible(False)
+    ax.tick_params(length=0)
+    f.text(0.04, 0.02, CES_SOURCE + "; margin of error from the BLS technical note", fontsize=10, color=MUTED)
+    return f
+
+
+def c1(w):
+    t = c1_table(w)
+    f = c1_draw(t)
+    f.savefig(OUT / "01-margin-of-error.png", facecolor=BG)
+    plt.close(f)
+    print("wrote 01-margin-of-error.png")
+    c1_gif(t)
     return t
+
+
+def c1_gif(t, dpi=100):
+    """Animated version: the monthly estimates alone, then the margin of error grows out of each
+    dot, the colors resolve, it holds, and it loops."""
+    from PIL import Image
+
+    def frame(grow, color):
+        f = c1_draw(t, grow, color, dpi=dpi)
+        f.canvas.draw()
+        im = Image.frombuffer("RGBA", f.canvas.get_width_height(), f.canvas.buffer_rgba()).convert("RGB")
+        plt.close(f)
+        return im
+
+    ease = lambda a: a * a * (3 - 2 * a)
+    frames, ms = [frame(0, 0)], [1400]                       # the point estimates alone
+    for k in range(1, 31):                                   # bars grow out, 1.5 s
+        frames.append(frame(ease(k / 30), 0)); ms.append(50)
+    for k in range(1, 11):                                   # colors resolve, 0.5 s
+        frames.append(frame(1, ease(k / 10))); ms.append(50)
+    ms[-1] = 3500                                            # hold the finished chart, then loop
+    pal = frames[-1].quantize(colors=128, method=Image.Quantize.MEDIANCUT)
+    q = [im.quantize(palette=pal, dither=Image.Dither.NONE) for im in frames]
+    q[0].save(OUT / "01-margin-of-error.gif", save_all=True, append_images=q[1:], duration=ms, loop=0,
+              optimize=True, disposal=1)
+    print("wrote 01-margin-of-error.gif", len(q), "frames")
 
 
 # 3. What the two industries pay
