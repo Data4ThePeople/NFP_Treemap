@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2g
+Step: complete
 Since: 2026-10-04
 
 ## Steps
@@ -20,7 +20,7 @@ Since: 2026-10-04
 | 2d | Hero 1680x1080 + alt text | 2026-10-05 | JOBS illustration, O as a magnifying glass; D4TP logo on the handle; alt 483 characters |
 | 2e | SEO | 2026-10-05 | Meta title 46, description 145, 8 keywords; subtitle (Eric's wording); links to the explorer (2) and Giants Walk Among Us; data line |
 | 2f | Pushed to Prismic (draft) | 2026-10-05 | Created asNvTREAACgASG64, Migration Release, 30 slices, 6 images; dated 2026-10-05 6:45 am EDT |
-| 2g | Mailchimp teaser | | |
+| 2g | Mailchimp teaser | 2026-10-05 | Hero, opening two paragraphs, pay chart, August and three-year hooks; hero JPG 146 KB |
 
 ## Stale
 
@@ -55,3 +55,4 @@ None.
 - 2026-10-05 Step 2f opened. Dry run then publish: created draft asNvTREAACgASG64 (uid september-2026-jobs-report) in the Migration Release; 30 slices; 6 images uploaded (5 charts + hero). Dated 2026-10-05 6:45 am EDT. Animated chart checked as served: 37 frames as GIF and as AVIF (Prismic's auto=format). Before publishing: set author and tags in Prismic.
 - 2026-10-05 Step 2f confirmed by Eric. Step 2g opened.
 - 2026-10-05 2g: EMAIL.md drafted (hero, opening two paragraphs, pay chart, the August and three-year hooks, video mention); hero email JPG 146 KB; every number checked against the post.
+- 2026-10-05 Step 2g confirmed by Eric (approved as drafted). september-2026-jobs-report complete (steps 1 through 2g confirmed). In Prismic: set author and tags, then publish draft asNvTREAACgASG64 from the Migration Release.
