@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2b
+Step: 2c
 Since: 2026-10-04
 
 ## Steps
@@ -36,3 +36,4 @@ None.
 - 2026-10-04 Step 2b opened: Eric edits POST.md, then Claude looks it over.
 - 2026-10-04 2b: Eric's edits plus three Claude rewrites he asked for (parenthesis examples, the 'still useful' section). Look-over items 1-10 accepted. Channel link https://www.youtube.com/@Data4ThePeople. Publish date October 5, 2026, 6:45 am EDT (date + time in front matter).
 - 2026-10-04 Step 2b confirmed by Eric.
+- 2026-10-04 Step 2c opened. Defaults kept (drop cap, 20px heading and caption spacers, no dividers; no extras section, so no end divider). Added a 20px spacer after the video embed. Convert-only: 30 slices, 5 images, 1 embed.

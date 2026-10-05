@@ -42,6 +42,8 @@ But before we do, we’re super excited to announce that we finally figured out 
 
 <iframe src="https://www.youtube.com/embed/Pk_GuM4U0c4?si=CXEwns1HKCjaIJsA" title="How to Use the U.S. Jobs Data Explorer" width="100%" height="495" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
 
+::: spacer
+
 OK, now onto the analysis.
 
 ## How depth changes our perception
