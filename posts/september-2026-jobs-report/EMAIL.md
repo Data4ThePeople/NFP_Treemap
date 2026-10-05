@@ -29,10 +29,10 @@ So, why do so many people care about this one number? They shouldn't. It says ve
 
 ## 4. Chart
 
-`images/03-pay.png` (the static pay chart; the animated chart 1 is left out because Outlook shows only a GIF's first frame, which for that chart is the dots without the margin of error)
+`images/01-margin-of-error.png` (the static margin of error chart; the animated GIF is for the post only, since Outlook shows just a GIF's first frame)
 Alt:
 ```
-Bar chart of average annual pay per job in 2025. Food services and drinking places, $28,503. Local government education, $62,024. The two industries combined, $41,777. All other industries, $84,226.
+Dot chart of the monthly change in U.S. nonfarm payroll jobs from October 2025 to September 2026, each with a bar showing the BLS 90% range of plus or minus 122,000. Only four months, January, March, April and August, have a range that is all gains. In October and February the whole range is losses, and in the other six it crosses zero. September shows +29,000, with a range from -93,000 to +151,000.
 ```
 
 ## 5. Body, part two
