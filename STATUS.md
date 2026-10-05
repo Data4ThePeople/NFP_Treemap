@@ -39,3 +39,4 @@ None.
 - 2026-10-04 Step 2c opened. Defaults kept (drop cap, 20px heading and caption spacers, no dividers; no extras section, so no end divider). Added a 20px spacer after the video embed. Convert-only: 30 slices, 5 images, 1 embed.
 - 2026-10-04 Step 2c confirmed by Eric.
 - 2026-10-04 Step 2d opened.
+- 2026-10-04 2d: AI-image path, magnifying-glass concept (Eric). Prompts written to hero-prompt.md.
