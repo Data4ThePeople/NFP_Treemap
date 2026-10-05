@@ -125,5 +125,5 @@ scale would not stay level, and a tilted version needed a regeneration
 ## Chosen
 
 File: images/september-2026-jobs-report-hero-source.jpg (Gemini, 2528x1696; Prompt A)
-Crop: `hero fit --focus bottom`, then the light D4TP logo added lower left (52px high, 56px from the left, 48px from the bottom).
-Alt (491 characters): Illustration of the word JOBS in large off-white letters on a dark background. The O is a brass magnifying glass, and inside the lens is a busy scene of people at work: construction workers on a steel frame under a crane, office workers at desks, nurses and a doctor outside a clinic, a home health aide walking with an elderly man, cooks and a server in a diner, a delivery driver with a van, and a forklift operator in a warehouse. The Data 4 The People logo sits in the lower left corner.
+Crop: `hero fit --focus bottom`, then the dark D4TP logo set along the handle (38px high, rotated 46.9 degrees to the handle's angle), so no crop can cut it off.
+Alt (491 characters): Illustration of the word JOBS in large off-white letters on a dark background. The O is a brass magnifying glass, and inside the lens is a busy scene of people at work: construction workers on a steel frame under a crane, office workers at desks, nurses and a doctor outside a clinic, a home health aide walking with an elderly man, cooks and a server in a diner, a delivery driver with a van, and a forklift operator in a warehouse. The Data 4 The People logo runs along the handle.

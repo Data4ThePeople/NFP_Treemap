@@ -6,7 +6,7 @@ date: 2026-10-05
 time: 06:45:00-04:00
 section: Data 4 Thought
 hero: images/september-2026-jobs-report-hero-1680x1080.png
-hero_alt: Illustration of the word JOBS in large off-white letters on a dark background. The O is a brass magnifying glass, and inside the lens is a busy scene of people at work: construction workers on a steel frame under a crane, office workers at desks, nurses and a doctor outside a clinic, a home health aide walking with an elderly man, cooks and a server in a diner, a delivery driver with a van, and a forklift operator in a warehouse. The Data 4 The People logo sits in the lower left corner.
+hero_alt: Illustration of the word JOBS in large off-white letters on a dark background. The O is a brass magnifying glass, and inside the lens is a busy scene of people at work: construction workers on a steel frame under a crane, office workers at desks, nurses and a doctor outside a clinic, a home health aide walking with an elderly man, cooks and a server in a diner, a delivery driver with a van, and a forklift operator in a warehouse. The Data 4 The People logo runs along the handle.
 meta_title:
 description:
 keywords:

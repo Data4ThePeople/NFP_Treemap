@@ -44,3 +44,4 @@ None.
 - 2026-10-05 Chart 1 animated (Eric): dots alone, margin-of-error bars grow out, colors resolve, hold, loop. images/01-margin-of-error.gif replaces the PNG in the post; the PNG stays as the still.
 - 2026-10-05 2d: new hero concept from Eric: the word JOBS with the O as a magnifying glass over a miniature economy, illustrated. Prompts A and B in hero-prompt.md.
 - 2026-10-05 2d: hero = Gemini JOBS illustration (Prompt A), hero fit --focus bottom, light D4TP logo lower left; alt text 491 characters. hero check ok.
+- 2026-10-05 2d: logo moved onto the magnifying-glass handle (Eric), dark version, rotated to the handle's angle; alt text 483 characters.
