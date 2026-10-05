@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2a
+Step: 2b
 Since: 2026-10-04
 
 ## Steps
@@ -33,3 +33,4 @@ None.
 - 2026-10-04 Step 1 confirmed by Eric: the post is already written, so no separate exploration. Step 2a opened, slug september-2026-jobs-report. Eric's draft placed in POST.md verbatim; every number checked against the October 2 data and QCEW 2025. Five charts and twelve edits proposed (edit 6: the restaurant series, +110,400, does not add up to its parent food services, +33,800).
 - 2026-10-04 2a: Eric accepted edits 1-12 and charts 1-5; charts built (tools/september_2026_charts.py, numbers in posts/september-2026-jobs-report/numbers/). Title 'How to Analyze U.S. Jobs Data' (Eric). Video embedded (YouTube Pk_GuM4U0c4). Five section headers added at Eric's request.
 - 2026-10-04 Step 2a confirmed by Eric. Food services (+33,800) kept in place of restaurants (+110,400): the restaurant series' swing comes from its separate seasonal adjustment; unadjusted, the parts sum to food services exactly.
+- 2026-10-04 Step 2b opened: Eric edits POST.md, then Claude looks it over.
