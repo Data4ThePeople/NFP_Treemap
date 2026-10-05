@@ -50,3 +50,4 @@ None.
 - 2026-10-05 Step 2e opened.
 - 2026-10-05 2e: searches from Claude's list (Eric: use those). Meta title 46, description 145, 8 keywords; Article schema checked. Text proposals sent.
 - 2026-10-05 2e: link to Giants Walk Among Us added on '82% of all jobs added in this country' (Eric).
+- 2026-10-05 2e: proposals 2, 3, 5 accepted, 4 rejected; subtitle per Eric's wording (proposal 1 revised).

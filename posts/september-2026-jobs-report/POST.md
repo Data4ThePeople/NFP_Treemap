@@ -1,6 +1,6 @@
 ---
 title: How to Analyze U.S. Jobs Data
-subtitle:
+subtitle: "August's revised jobs number still looked strong. Underneath, most of the gain came from two industries that pay about half the average."
 slug: september-2026-jobs-report
 date: 2026-10-05
 time: 06:45:00-04:00
@@ -38,7 +38,7 @@ Today, we’re going to do just that with August’s revised numbers and the las
 
 ## Our first video tutorial
 
-But before we do, we’re super excited to announce that we finally figured out how to systematically create tutorial videos for our data visualizations. Here’s a quick 45-second video for our U.S. Jobs Data Explorer. Make sure to bookmark and subscribe to our new [YouTube page](https://www.youtube.com/@Data4ThePeople) to get alerts when we drop new visualization tutorials.
+But before we do, we’re super excited to announce that we finally figured out how to systematically create tutorial videos for our data visualizations. Here’s a quick 45-second video for our [U.S. Jobs Data Explorer](https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry). Make sure to bookmark and subscribe to our new [YouTube page](https://www.youtube.com/@Data4ThePeople) to get alerts when we drop new visualization tutorials.
 
 <iframe src="https://www.youtube.com/embed/Pk_GuM4U0c4?si=CXEwns1HKCjaIJsA" title="How to Use the U.S. Jobs Data Explorer" width="100%" height="495" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
 
@@ -86,4 +86,6 @@ But what jobs within Health care and social assistance drove this growth? It’s
 
 So, here’s the real picture as we see it. Outside of health care, America is not adding many jobs and hasn’t been for some time. Even the “good” month we recently got loses almost all its luster with a quick check of what those industries pay. Meanwhile, in health care many of the jobs we are adding are some of the lowest paying jobs in the industry, and, in our view, less likely to drive broad discretionary consumer spending that we may expect from “strong” job growth.
 
-If you don’t take anything else from today’s post, remember this – the media has largely failed us in providing interpretation of important economic data releases. But it’s gotten extremely easy to do this work yourself. So, stay skeptical, stay curious, ask questions, dig into the data, and come up with your own narrative.
+If you don’t take anything else from today’s post, remember this – the media has largely failed us in providing interpretation of important economic data releases. But it’s gotten extremely easy to [do this work yourself](https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry). So, stay skeptical, stay curious, ask questions, dig into the data, and come up with your own narrative.
+
+Data: BLS Current Employment Statistics, seasonally adjusted, as of October 2, 2026, and the BLS Quarterly Census of Employment and Wages, 2025 annual averages.
