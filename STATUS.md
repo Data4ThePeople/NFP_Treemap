@@ -42,3 +42,4 @@ None.
 - 2026-10-04 2d: AI-image path, magnifying-glass concept (Eric). Prompts written to hero-prompt.md.
 - 2026-10-04 2d: magnifying-glass images did not work; switched to a balance scale with work clothes (two sets against one suit jacket, pans level).
 - 2026-10-05 Chart 1 animated (Eric): dots alone, margin-of-error bars grow out, colors resolve, hold, loop. images/01-margin-of-error.gif replaces the PNG in the post; the PNG stays as the still.
+- 2026-10-05 2d: new hero concept from Eric: the word JOBS with the O as a magnifying glass over a miniature economy, illustrated. Prompts A and B in hero-prompt.md.
