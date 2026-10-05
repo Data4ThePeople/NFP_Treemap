@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2c
+Step: 2b
 Since: 2026-10-04
 
 ## Steps
@@ -15,7 +15,7 @@ Since: 2026-10-04
 |---|---|---|---|
 | 1  | Exploration and analysis | 2026-10-04 | Eric wrote the post himself; analysis from the October 2 session |
 | 2a | Draft with brackets resolved | 2026-10-04 | Edits 1-12 accepted; 5 charts; title and 6 headers; video embedded |
-| 2b | Eric's edit, Claude's look-over | 2026-10-04 | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
+| 2b | Eric's edit, Claude's look-over | | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
 | 2c | Slice markup | | |
 | 2d | Hero 1680x1080 + alt text | | |
 | 2e | SEO | | |
@@ -35,4 +35,3 @@ None.
 - 2026-10-04 Step 2a confirmed by Eric. Food services (+33,800) kept in place of restaurants (+110,400): the restaurant series' swing comes from its separate seasonal adjustment; unadjusted, the parts sum to food services exactly.
 - 2026-10-04 Step 2b opened: Eric edits POST.md, then Claude looks it over.
 - 2026-10-04 2b: Eric's edits plus three Claude rewrites he asked for (parenthesis examples, the 'still useful' section). Look-over items 1-10 accepted. Channel link https://www.youtube.com/@Data4ThePeople. Publish date October 5, 2026, 6:45 am EDT (date + time in front matter).
-- 2026-10-04 Step 2b confirmed by Eric.
