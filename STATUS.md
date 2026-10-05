@@ -57,3 +57,4 @@ None.
 - 2026-10-05 2g: EMAIL.md drafted (hero, opening two paragraphs, pay chart, the August and three-year hooks, video mention); hero email JPG 146 KB; every number checked against the post.
 - 2026-10-05 Step 2g confirmed by Eric (approved as drafted). september-2026-jobs-report complete (steps 1 through 2g confirmed). In Prismic: set author and tags, then publish draft asNvTREAACgASG64 from the Migration Release.
 - 2026-10-05 2g follow-up (Eric): email chart changed to the static margin of error chart (images/01-margin-of-error.png).
+- 2026-10-05 Social copy: posts/september-2026-jobs-report/SOCIAL.md, two versions (GIF, native tutorial video) for X and LinkedIn; supersedes social-2026-10-02-august-revisions.md.
