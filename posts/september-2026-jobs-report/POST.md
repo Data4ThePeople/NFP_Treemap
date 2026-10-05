@@ -72,7 +72,7 @@ What if we took just a few more minutes to study the data, realizing that the tw
 
 ## Three years of job growth
 
-Let’s break down the narrative even further, looking at all the job growth over the past three years. Over the past three years through August 2026, the U.S. has added 2.75 million jobs – 2.26 million of these jobs were added in Health care and social assistance. So, 82% of all jobs added in this country have been in Health care and social assistance, despite this industry only comprising 15% of all jobs.
+Let’s break down the narrative even further, looking at all the job growth over the past three years. Over the past three years through August 2026, the U.S. has added 2.75 million jobs – 2.26 million of these jobs were added in Health care and social assistance. So, [82% of all jobs added in this country](https://www.data4thepeople.com/p/giants-walk-among-us) have been in Health care and social assistance, despite this industry only comprising 15% of all jobs.
 
 ![Screenshot of the U.S. Jobs Data Explorer showing the change in jobs by industry from August 2023 to August 2026, at level 3. Health care and social assistance, at +2.26 million, takes up nearly half of the chart. The next largest gain is local government at +545,000. Federal government, administrative and support services, durable goods manufacturing and others show losses.](images/04-explorer-three-years-level-3.png)
 *August 2026 against three years earlier in the U.S. Jobs Data Explorer, level 3.*
