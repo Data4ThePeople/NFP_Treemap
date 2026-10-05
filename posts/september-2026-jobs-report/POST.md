@@ -7,9 +7,9 @@ time: 06:45:00-04:00
 section: Data 4 Thought
 hero: images/september-2026-jobs-report-hero-1680x1080.png
 hero_alt: Illustration of the word JOBS in large off-white letters on a dark background. The O is a brass magnifying glass, and inside the lens is a busy scene of people at work: construction workers on a steel frame under a crane, office workers at desks, nurses and a doctor outside a clinic, a home health aide walking with an elderly man, cooks and a server in a diner, a delivery driver with a van, and a forklift operator in a warehouse. The Data 4 The People logo runs along the handle.
-meta_title:
-description:
-keywords:
+meta_title: "How to Analyze the Jobs Report: September 2026"
+description: "August's 133,000 jobs came mostly from two industries that pay about half the average. How to read the jobs report by industry, revision and pay."
+keywords: how to analyze jobs report, September 2026 jobs report, August jobs report revision, jobs report by industry, what jobs are being added, health care job growth, low-wage job growth, nonfarm payrolls margin of error
 schema_type: article
 drop_cap: true
 heading_spacer: 20px

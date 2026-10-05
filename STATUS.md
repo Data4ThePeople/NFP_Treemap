@@ -48,3 +48,4 @@ None.
 - 2026-10-05 2d: logo moved up the handle and centered across the grip (Eric), 44px high.
 - 2026-10-05 Step 2d confirmed by Eric.
 - 2026-10-05 Step 2e opened.
+- 2026-10-05 2e: searches from Claude's list (Eric: use those). Meta title 46, description 145, 8 keywords; Article schema checked. Text proposals sent.
