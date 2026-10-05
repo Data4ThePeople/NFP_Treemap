@@ -3,73 +3,67 @@
 Target: 1680x1080 landscape (a ratio of about 1.56). Generate wide; the crop is
 done with `~/.claude/d4tp-process/hero fit`.
 
-The picture has one job: a single tall bar looks like one solid number until you
-look closely, and then it turns out to be made of people, most of them in
-restaurant, school and care work. The workers should look capable and dignified,
-busy at their jobs, never small in a pitying way.
+The picture has one job: it takes about two of the jobs that led August's gains
+to equal one paycheck elsewhere ($41,777 against $84,226 in 2025). A balance
+scale with two sets of work clothes on one pan and one on the other, sitting
+perfectly level, says that at a glance. Clothes, not people: generators handle
+objects far better than crowds, and it keeps the workers themselves out of the
+weighing.
 
-## Prompt 1 (photographic, miniature figures)
+## Prompt 1 (still life photograph, recommended)
 
-> Photograph of a large, clean bar chart built as a physical model on a light
-> wooden desk: five or six simple matte blue bars of different heights standing
-> in a row, the middle one much taller than the rest. A large brass-rimmed
-> magnifying glass is held at an angle in front of the tall bar by a hand
-> entering from the right edge of the frame. Outside the lens, the bar looks like
-> one smooth solid block. Inside the lens, the same bar is revealed to be built
-> from dozens of tiny, detailed human figures stacked and standing shoulder to
-> shoulder: cooks in white aprons and caps, restaurant servers carrying trays,
-> teachers holding books, home health aides in light blue scrubs helping elderly
-> people, a few school bus drivers. Only one or two figures in office clothes,
-> near the top. The figures are busy and upright, faces calm and capable.
+> Still life photograph of an antique brass balance scale standing on a dark
+> wooden table. The scale has two shallow round brass pans hanging from chains,
+> and the beam is perfectly level, both pans at exactly the same height.
 >
-> Soft, even daylight from a window on the left, gentle shadows. Shot on a macro
-> lens with shallow depth of field: the figures inside the lens are crisp, the
-> rest of the chart and the desk fall softly out of focus. Muted natural color,
-> blue bars against warm wood and an off-white wall. Composed for a 3:2 frame,
-> the magnifying glass just right of center with clear margin on all sides. No
-> text, numbers or labels anywhere in the image.
+> On the left pan sit two neatly folded sets of work clothes stacked on top of
+> each other: a white cook's apron with a few faint kitchen stains, and a set of
+> light blue medical scrubs with a lanyard and ID badge clip resting on top.
+> On the right pan sits a single neatly folded navy blue suit jacket with a
+> folded silk tie on top.
+>
+> Low, warm side light from the left, like late afternoon through a window,
+> raking across the brass and the fabric textures. The background falls off to
+> near black (#181A1B). Shot straight on at table height, 50mm lens at f/4,
+> sharp from pan to pan, the background softly out of focus. Muted, natural
+> color, rich brass highlights. Wide 3:2 composition with the scale centered and
+> clear margin on all sides, the full scale and both pans inside the frame. No
+> text, numbers, labels or logos anywhere in the image.
 
-## Prompt 2 (editorial illustration)
+## Prompt 2 (variant: more on the left pan)
 
-> Clean editorial illustration in a flat, modern style with soft shading. A
-> simple bar chart on a dark charcoal background (#181A1B): six bars in muted
-> blue, the center bar much taller than the others. A large magnifying glass
-> hovers over the tall bar. Outside the glass the bar is a plain solid blue
-> shape. Inside the glass, the bar is made of many small people standing
-> together and working: cooks in aprons, servers with plates, teachers with
-> books, home care aides in scrubs walking with elderly people, a school bus
-> driver. One or two office workers with laptops near the top. Friendly,
-> dignified figures, warm skin tones of many ethnicities, light gray and orange
-> accents (#f37952) on their clothing. Wide 3:2 composition, the glass slightly
-> right of center, generous empty space on the left. No text, numbers or labels.
+> Still life photograph of a brass balance scale on a dark wooden table, its
+> beam perfectly level. The left pan is piled with several folded work
+> uniforms: a white cook's apron, a black server's apron with an order pad, a
+> set of light blue scrubs, and a school cafeteria hairnet. The right pan holds
+> one folded navy suit jacket and a tie. Warm side light, dark background
+> (#181A1B), shallow depth of field, muted natural color, wide 3:2 composition,
+> the whole scale in frame. No text, numbers or logos.
 
-## Shorter variant, for models that do better with less
-
-> A magnifying glass held over the tallest bar of a blue bar chart. Outside the
-> lens the bar is solid; inside the lens it is made of many tiny people: cooks,
-> restaurant servers, teachers, and home health aides in scrubs caring for
-> elderly people, with only a couple of office workers. Dignified, busy figures.
-> Macro photography, shallow depth of field, soft daylight, muted color, 3:2,
-> no text.
+Prompt 2 shows "many against one" more strongly. Prompt 1 matches the data more
+closely (about two to one).
 
 ## Negative prompt
 
-> text, numbers, labels, watermark, garbled lettering, cartoonish exaggeration,
-> sad or suffering faces, crowds in distress, dollar signs, money, cluttered
-> background, oversaturated, hdr, lens flare, extra fingers, distorted hands,
-> fisheye distortion
+> people, hands, faces, text, numbers, labels, logos, watermark, garbled
+> lettering, money, coins, dollar signs, tilted scale, unequal pans, cartoon,
+> illustration, 3d render, oversaturated, hdr, lens flare, cluttered background
 
 ## Practical notes
 
-- AI models garble text, so these ask for none. If you want a label on the bar
-  ("JOBS ADDED"), add it to Prompt 2 only, and check the lettering before using
-  it.
+- The pans must be level. Generators often tilt a scale; regenerate any image
+  where the beam is not flat, because a tilted scale says the opposite.
 - Measure the shape you actually get before cropping; the explorer's launch
   hero first came back as a 4:3 image inside a 16:9 file with white bars down
   each side.
 - Drop the image you pick into `images/` and I will run `hero fit`, keep the
   original as `september-2026-jobs-report-hero-source.<ext>`, and write the alt
   text.
+
+## Tried and set aside
+
+A magnifying glass over a bar chart, the bar made of tiny workers. Generators
+could not render the figures inside the lens cleanly (October 4).
 
 ## Chosen
 

@@ -40,3 +40,4 @@ None.
 - 2026-10-04 Step 2c confirmed by Eric.
 - 2026-10-04 Step 2d opened.
 - 2026-10-04 2d: AI-image path, magnifying-glass concept (Eric). Prompts written to hero-prompt.md.
+- 2026-10-04 2d: magnifying-glass images did not work; switched to a balance scale with work clothes (two sets against one suit jacket, pans level).
