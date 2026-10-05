@@ -6,7 +6,7 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 ## Current
 
 Post: september-2026-jobs-report
-Step: 2e
+Step: 2f
 Since: 2026-10-04
 
 ## Steps
@@ -52,3 +52,4 @@ None.
 - 2026-10-05 2e: link to Giants Walk Among Us added on '82% of all jobs added in this country' (Eric).
 - 2026-10-05 2e: proposals 2, 3, 5 accepted, 4 rejected; subtitle per Eric's wording (proposal 1 revised).
 - 2026-10-05 Step 2e confirmed by Eric.
+- 2026-10-05 Step 2f opened. Dry run then publish: created draft asNvTREAACgASG64 (uid september-2026-jobs-report) in the Migration Release; 30 slices; 6 images uploaded (5 charts + hero). Dated 2026-10-05 6:45 am EDT. Animated chart checked as served: 37 frames as GIF and as AVIF (Prismic's auto=format). Before publishing: set author and tags in Prismic.
