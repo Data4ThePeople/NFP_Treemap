@@ -16,7 +16,7 @@ Since: 2026-10-04
 | 1  | Exploration and analysis | 2026-10-04 | Eric wrote the post himself; analysis from the October 2 session |
 | 2a | Draft with brackets resolved | 2026-10-04 | Edits 1-12 accepted; 5 charts; title and 6 headers; video embedded |
 | 2b | Eric's edit, Claude's look-over | 2026-10-04 | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
-| 2c | Slice markup | | |
+| 2c | Slice markup | 2026-10-04 | 30 slices, 5 images, 1 embed; defaults plus a spacer after the video |
 | 2d | Hero 1680x1080 + alt text | | |
 | 2e | SEO | | |
 | 2f | Pushed to Prismic (draft) | | |
@@ -37,3 +37,4 @@ None.
 - 2026-10-04 2b: Eric's edits plus three Claude rewrites he asked for (parenthesis examples, the 'still useful' section). Look-over items 1-10 accepted. Channel link https://www.youtube.com/@Data4ThePeople. Publish date October 5, 2026, 6:45 am EDT (date + time in front matter).
 - 2026-10-04 Step 2b confirmed by Eric.
 - 2026-10-04 Step 2c opened. Defaults kept (drop cap, 20px heading and caption spacers, no dividers; no extras section, so no end divider). Added a 20px spacer after the video embed. Convert-only: 30 slices, 5 images, 1 embed.
+- 2026-10-04 Step 2c confirmed by Eric.
