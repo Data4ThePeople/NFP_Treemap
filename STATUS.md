@@ -17,7 +17,7 @@ Since: 2026-10-04
 | 2a | Draft with brackets resolved | 2026-10-04 | Edits 1-12 accepted; 5 charts; title and 6 headers; video embedded |
 | 2b | Eric's edit, Claude's look-over | 2026-10-04 | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
 | 2c | Slice markup | 2026-10-04 | 30 slices, 5 images, 1 embed; defaults plus a spacer after the video |
-| 2d | Hero 1680x1080 + alt text | | |
+| 2d | Hero 1680x1080 + alt text | 2026-10-05 | JOBS illustration, O as a magnifying glass; D4TP logo on the handle; alt 483 characters |
 | 2e | SEO | | |
 | 2f | Pushed to Prismic (draft) | | |
 | 2g | Mailchimp teaser | | |
@@ -46,3 +46,4 @@ None.
 - 2026-10-05 2d: hero = Gemini JOBS illustration (Prompt A), hero fit --focus bottom, light D4TP logo lower left; alt text 491 characters. hero check ok.
 - 2026-10-05 2d: logo moved onto the magnifying-glass handle (Eric), dark version, rotated to the handle's angle; alt text 483 characters.
 - 2026-10-05 2d: logo moved up the handle and centered across the grip (Eric), 44px high.
+- 2026-10-05 Step 2d confirmed by Eric.
