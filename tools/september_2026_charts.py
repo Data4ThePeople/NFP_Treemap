@@ -10,6 +10,28 @@ behind each chart to posts/september-2026-jobs-report/numbers/*.csv for the tie-
 """
 from __future__ import annotations
 
+# Contact address for the User-Agent: read at run time, never hardcoded in the repo.
+# Set D4TP_CONTACT_EMAIL in the environment or in ~/.claude/d4tp-process/.env.
+import os as _os
+
+
+def _d4tp_contact():
+    v = _os.environ.get("D4TP_CONTACT_EMAIL")
+    if v:
+        return v
+    try:
+        with open(_os.path.expanduser("~/.claude/d4tp-process/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip().startswith("D4TP_CONTACT_EMAIL="):
+                    return line.split("=", 1)[1].strip().strip("'\"")
+    except OSError:
+        pass
+    return ""
+
+
+D4TP_CONTACT = _d4tp_contact()
+
+
 import base64
 import io
 import sys
@@ -29,7 +51,7 @@ sys.path.insert(0, str(ROOT / "video"))
 POST = ROOT / "posts" / "september-2026-jobs-report"
 OUT, NUM = POST / "images", POST / "numbers"
 QCEW_URL = "https://data.bls.gov/cew/data/api/2025/a/industry/{}.csv"
-UA = {"User-Agent": "Mozilla/5.0 (Macintosh) Data4ThePeople research D4TP_CONTACT_EMAIL"}
+UA = {"User-Agent": f"Mozilla/5.0 (Macintosh) Data4ThePeople research {D4TP_CONTACT}"}
 BG, INK, MUTED, GRID = "#181A1B", "#BBBDC0", "#8C9094", "#2A2E31"
 CORAL, BLUE = "#f37952", "#5598e7"
 CI = 122.0          # BLS: 90% confidence interval on the monthly change in total nonfarm, +/- 122,000
