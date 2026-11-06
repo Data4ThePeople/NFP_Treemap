@@ -22,9 +22,9 @@ vintage. Earlier vintages come from the BLS revision triangles
 `src/nfp_treemap/vintage.py` into `data/ces_vintages.parquet`.
 
 **Coverage.** United States, nonfarm payroll jobs. A few aggregates go back to
-1939; most industry detail starts in 1990. The figures are survey estimates,
-not counts. The survey covers about 119,000 businesses and government agencies
-(about 629,000 worksites), and the annual benchmark ties levels to
+1939; most industry detail starts in 1990. The figures are survey estimates
+from a sample of businesses and government agencies, not counts (sample size:
+https://www.bls.gov/web/empsit/cesfaq.htm). The annual benchmark ties levels to
 unemployment-insurance tax records (QCEW). In the first release of a month,
 BLS publishes the headline aggregates and the larger industries but not most
 detailed industries. Those follow a month later. On November 6, 2026, 175 of
