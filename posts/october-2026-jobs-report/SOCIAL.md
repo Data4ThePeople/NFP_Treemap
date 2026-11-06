@@ -13,7 +13,7 @@ plays a native video inline in the feed more reliably than a GIF.
 Alt text:
 
 ```
-Animation of the U.S. Jobs Data Explorer for October 2026, first estimate, stepping from level 0 to level 5. Level 0 shows total nonfarm employment up 165,000. Level 2 shows 11 sectors, 7 of which added jobs, led by professional and business services (+70,000) and private education and health services (+53,000). Level 3 shows 11 of 19 industries adding jobs. Level 5 shows that only 53 of 240 detailed industries have October numbers so far.
+Animation of the U.S. Jobs Data Explorer for October 2026, first estimate, stepping from level 0 to level 5. Level 0 shows total nonfarm employment up 165,000. Level 2 shows 11 sectors, 7 of which added jobs, led by professional and business services (+70,000). Level 3 shows 11 of 19 industries adding jobs, led by health care and social assistance (+55,100). Level 5 shows that only 53 of 240 detailed industries have October numbers so far.
 ```
 
 ---
@@ -40,7 +40,7 @@ The October jobs report: +165,000 jobs, and BLS revised August and September up 
 
 We ran the first estimate through our U.S. Jobs Data Explorer, which scores each industry's monthly change against that industry's own last 20 years. Our read: a solid month, not an unusual one.
 
-1. Two sectors led. Professional and business services added 70,000 and private education and health services added 53,000. Together that's 75% of the total.
+1. Two areas led. Professional and business services added 70,000 and health care and social assistance added 55,100. Together that's 76% of the total.
 
 2. 7 of 11 sectors added jobs. One level down, 11 of 19 industries did, which is within the range we've seen this year.
 
@@ -64,9 +64,9 @@ Explore October 2026 by industry in the U.S. Jobs Data Explorer: https://www.dat
 ## X
 
 ```
-October jobs: +165,000. August and September were revised up a combined 84,000.
+October jobs: +165,000. Aug. and Sept. revised up a combined 84,000.
 
-Solid, not unusual. Two sectors made up 75% of the gain, and only 6 industries had moves unusual for them, the same as a typical month.
+Solid, not unusual. Business services and health care made up 76% of the gain, and only 6 industries had moves unusual for them, same as a typical month.
 
 First estimate. Dig in:
 https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry
