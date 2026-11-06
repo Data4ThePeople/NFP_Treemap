@@ -8,7 +8,9 @@ explorer; the October post doesn't exist yet).
 
 Attach: `social/october-2026-levels.gif` (1200x842, 15 seconds, 4.0 MB) on X.
 On LinkedIn, upload `social/october-2026-levels.mp4` (1.5 MB) instead: LinkedIn
-plays a native video inline in the feed more reliably than a GIF.
+plays a native video inline in the feed more reliably than a GIF. Set
+`social/october-2026-levels-thumbnail.jpg` (2400x1684, same shape as the video,
+0.3 MB) as the video's thumbnail.
 
 Alt text:
 
