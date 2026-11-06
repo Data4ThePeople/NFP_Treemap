@@ -38,17 +38,17 @@ Post:
 ```
 The October jobs report: +165,000 jobs, and BLS revised August and September up by a combined 84,000.
 
-We ran the first estimate through our U.S. Jobs Data Explorer, which scores each industry's monthly change against that industry's own last 20 years. Our read: a solid month, not an unusual one.
+We ran the first estimate through Data 4 The People's U.S. Jobs Data Explorer, which scores each industry's monthly change against that industry's own last 20 years. Our read: a solid month, not driven by many unusual gains at the granular industry level.
 
-1. Two areas led. Professional and business services added 70,000 and health care and social assistance added 55,100. Together that's 76% of the total.
+1. Two areas led. Professional and business services added 70,000 and health care and social assistance added 55,100. Together that's 76% of the total gain.
 
 2. 7 of 11 sectors added jobs. One level down, 11 of 19 industries did, which is within the range we've seen this year.
 
-3. Only 6 industry series had gains the explorer marks as unusual for that industry, and some of them sit inside others, so they cover about 4 separate industries. A typical month since 2013 has 6 such series. None reached our anomaly tier.
+3. Only 6 industries had gains our tool marks as "unusual" for that industry. A typical month since 2013 has 6. None reached our "anomaly" tier.
 
 This is a first estimate. BLS will revise it twice, and most detailed industries don't have October numbers yet: so far, 53 of 240 do. We'll be watching whether the leaders hold up.
 
-The video steps from the headline number down to the detailed industries. Explore any month or industry yourself with the link in the comments.
+This gif steps from the headline number down to the detailed industries. Explore any month or industry yourself with the link in the comments.
 
 #JobsReport #LaborMarket #Economy #BLS
 ```
