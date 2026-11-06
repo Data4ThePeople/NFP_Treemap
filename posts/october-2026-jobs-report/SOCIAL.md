@@ -68,7 +68,7 @@ October jobs: +165,000. Aug. and Sept. revised up a combined 84,000.
 
 Solid, not unusual. Business services and health care made up 76% of the gain, and only 6 industries had moves unusual for them, same as a typical month.
 
-First estimate. Dig in:
+First estimate:
 https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry
 
 #JobsReport
