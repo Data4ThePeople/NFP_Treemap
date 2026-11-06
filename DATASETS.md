@@ -78,8 +78,9 @@ industries have wider relative error.
 
 For an industry's change over horizon h (1 month in the social copy):
 
-- **Sample:** the same industry's changes over the same horizon for the prior
-  max(240, 10h) months, plus the current one. A change is dropped if either of
+- **Sample:** the same industry's changes over the same horizon whose end
+  month falls in the max(240, 10h) months before the current month, plus the
+  current change. A change is dropped if either of
   its endpoints falls between March 2020 and June 2022. At least 24 samples and
   6 non-overlapping windows are required.
 - **Robust z** = 0.6745 x (change minus the sample median) / the median
