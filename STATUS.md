@@ -5,22 +5,22 @@ Process: ~/.claude/d4tp-process/PROCESS.md
 
 ## Current
 
-Post: september-2026-jobs-report
-Step: complete
-Since: 2026-10-04
+Post: none yet (October 2026 jobs report; slug set in 2a)
+Step: 1
+Since: 2026-11-06
 
 ## Steps
 
 | Step | What | Confirmed | Notes |
 |---|---|---|---|
-| 1  | Exploration and analysis | 2026-10-04 | Eric wrote the post himself; analysis from the October 2 session |
-| 2a | Draft with brackets resolved | 2026-10-04 | Edits 1-12 accepted; 5 charts; title and 6 headers; video embedded |
-| 2b | Eric's edit, Claude's look-over | 2026-10-04 | Look-over items 1-10 accepted; YouTube channel linked; publish date 2026-10-05 6:45 am EDT |
-| 2c | Slice markup | 2026-10-04 | 30 slices, 5 images, 1 embed; defaults plus a spacer after the video |
-| 2d | Hero 1680x1080 + alt text | 2026-10-05 | JOBS illustration, O as a magnifying glass; D4TP logo on the handle; alt 483 characters |
-| 2e | SEO | 2026-10-05 | Meta title 46, description 145, 8 keywords; subtitle (Eric's wording); links to the explorer (2) and Giants Walk Among Us; data line |
-| 2f | Pushed to Prismic (draft) | 2026-10-05 | Created asNvTREAACgASG64, Migration Release, 30 slices, 6 images; dated 2026-10-05 6:45 am EDT |
-| 2g | Mailchimp teaser | 2026-10-05 | Hero, opening two paragraphs, pay chart, August and three-year hooks; hero JPG 146 KB |
+| 1  | Exploration and analysis | | |
+| 2a | Draft with brackets resolved | | |
+| 2b | Eric's edit, Claude's look-over | | |
+| 2c | Slice markup | | |
+| 2d | Hero 1680x1080 + alt text | | |
+| 2e | SEO | | |
+| 2f | Pushed to Prismic (draft) | | |
+| 2g | Mailchimp teaser | | |
 
 ## Stale
 
@@ -58,3 +58,4 @@ None.
 - 2026-10-05 Step 2g confirmed by Eric (approved as drafted). september-2026-jobs-report complete (steps 1 through 2g confirmed). In Prismic: set author and tags, then publish draft asNvTREAACgASG64 from the Migration Release.
 - 2026-10-05 2g follow-up (Eric): email chart changed to the static margin of error chart (images/01-margin-of-error.png).
 - 2026-10-05 Social copy: posts/september-2026-jobs-report/SOCIAL.md, two versions (GIF, native tutorial video) for X and LinkedIn; supersedes social-2026-10-02-august-revisions.md.
+- 2026-11-06 Step 1 opened for the next post: the October 2026 jobs report (released 2026-11-06; August and September revised). The september-2026-jobs-report post is complete (steps above were reset for the new post; its record is in git history). Order reversed at Eric's request: social reaction posts first (a GIF of the explorer stepping from level 0 to level 5, plus LinkedIn and X copy), the post itself next week. Eric's take: broad-based strength, first estimate, few unusual moves to flag.
