@@ -44,7 +44,7 @@ We ran the first estimate through our U.S. Jobs Data Explorer, which scores each
 
 2. 7 of 11 sectors added jobs. One level down, 11 of 19 industries did, which is within the range we've seen this year.
 
-3. Only 6 industries had gains the explorer marks as unusual for that industry. A typical month since 2013 has 6. None reached our anomaly tier.
+3. Only 6 industry series had gains the explorer marks as unusual for that industry, and some of them sit inside others, so they cover about 4 separate industries. A typical month since 2013 has 6 such series. None reached our anomaly tier.
 
 This is a first estimate. BLS will revise it twice, and most detailed industries don't have October numbers yet: so far, 53 of 240 do. We'll be watching whether the leaders hold up.
 
@@ -66,7 +66,7 @@ Explore October 2026 by industry in the U.S. Jobs Data Explorer: https://www.dat
 ```
 October jobs: +165,000. Aug. and Sept. revised up a combined 84,000.
 
-Solid, not unusual. Business services and health care made up 76% of the gain, and only 6 industries had moves unusual for them, same as a typical month.
+Solid, not unusual. 76% of the gain came from professional and business services plus health care and social assistance. Unusual moves: a typical count.
 
 First estimate:
 https://www.data4thepeople.com/p/nonfarm-payrolls-by-industry

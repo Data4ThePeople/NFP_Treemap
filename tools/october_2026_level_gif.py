@@ -63,7 +63,7 @@ def counts():
 def caption(level, c, tiles, gap_text):
     title = {
         0: f"Level 0: Total nonfarm, {c['total']:+,} jobs",
-        1: "Level 1: the broad groups (private, goods-producing, service-providing)",
+        1: f"Level 1: {tiles} broad groups, which overlap",
         2: f"Level 2: {c['l2_n']} sectors, {c['l2_up']} added jobs",
         3: f"Level 3: {c['l3_n']} industries, {c['l3_up']} added jobs",
         4: f"Level 4: {tiles} industries",
